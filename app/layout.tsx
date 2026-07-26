@@ -1,34 +1,50 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-// @ts-ignore: side-effect import for global CSS
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+import { buildMetadata } from '@/lib/seo/metadata';
+import {
+  ThemeTokenProvider,
+  MotionProvider,
+  AnalyticsProvider,
+  ToastProvider,
+} from '@/providers';
+import './globals.css';
 
 const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-inter",
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: "NorAI Technologies — Smart AI Micro-SaaS Utilities",
-  description:
-    "We build AI Tools, AI Chatbots, AI Websites, AI Videos, Product Ads, Logo & Brand Design, and Business Automation to save time and grow your business.",
-};
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
+
+export const metadata: Metadata = buildMetadata();
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-      </head>
-      <body>{children}</body>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="min-h-screen bg-bg-page text-primary-800 font-sans antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-bg-elevated focus:text-primary-800"
+        >
+          Skip to main content
+        </a>
+        <ThemeTokenProvider>
+          <MotionProvider>
+            <AnalyticsProvider>
+              <ToastProvider>{children}</ToastProvider>
+            </AnalyticsProvider>
+          </MotionProvider>
+        </ThemeTokenProvider>
+      </body>
     </html>
   );
 }
