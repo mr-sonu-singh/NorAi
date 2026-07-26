@@ -1,0 +1,73 @@
+'use client';
+
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { Icon } from '../Icon';
+import { StatusDot } from '../StatusDot';
+import { AvatarProps, AvatarSize } from './Avatar.types';
+
+const sizeClasses: Record<AvatarSize, string> = {
+  sm: 'w-8 h-8 text-body-xs',
+  md: 'w-10 h-10 text-body-sm',
+  lg: 'w-14 h-14 text-body-lg',
+};
+
+const iconSizeMap: Record<AvatarSize, 'xs' | 'sm' | 'md'> = {
+  sm: 'xs',
+  md: 'sm',
+  lg: 'md',
+};
+
+export function Avatar({
+  src,
+  alt = '',
+  size = 'md',
+  fallback,
+  status,
+  className,
+  ...props
+}: AvatarProps) {
+  const [hasError, setHasError] = React.useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  const showImage = src && !hasError;
+
+  return (
+    <div className={cn('relative inline-block shrink-0', className)} {...props}>
+      <div
+        className={cn(
+          'flex items-center justify-center rounded-full overflow-hidden bg-primary-100 text-primary-800 font-sans font-semibold border border-[var(--border-width-default)] border-primary-200 select-none',
+          sizeClasses[size],
+        )}
+      >
+        {showImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={src}
+            alt={alt}
+            onLoad={() => setIsLoaded(true)}
+            onError={() => setHasError(true)}
+            className={cn(
+              'w-full h-full object-cover',
+              !prefersReducedMotion &&
+                'transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-smooth)]',
+              isLoaded || prefersReducedMotion ? 'opacity-100' : 'opacity-0',
+            )}
+          />
+        ) : fallback ? (
+          <span>{fallback.substring(0, 2).toUpperCase()}</span>
+        ) : (
+          <Icon name="User" size={iconSizeMap[size]} className="text-primary-400" />
+        )}
+      </div>
+
+      {status && (
+        <span className="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 ring-2 ring-bg-elevated rounded-full">
+          <StatusDot status={status} size={size === 'lg' ? 'md' : 'sm'} />
+        </span>
+      )}
+    </div>
+  );
+}

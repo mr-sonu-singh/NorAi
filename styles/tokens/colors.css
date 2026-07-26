@@ -35,4 +35,7 @@
   --error-100: #fee2e2;
   --info-600: #2563eb;
   --info-100: #dbeafe;
+
+  /* Approved Foundation Patch Tokens */
+  --opacity-disabled: 0.5;
 }

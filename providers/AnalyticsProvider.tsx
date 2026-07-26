@@ -10,11 +10,7 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     initAnalytics(process.env.NEXT_PUBLIC_ANALYTICS_ID);
   }, []);
 
-  return (
-    <AnalyticsContext.Provider value={true}>
-      {children}
-    </AnalyticsContext.Provider>
-  );
+  return <AnalyticsContext.Provider value={true}>{children}</AnalyticsContext.Provider>;
 }
 
 export const useAnalytics = () => useContext(AnalyticsContext);

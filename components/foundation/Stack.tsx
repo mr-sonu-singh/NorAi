@@ -56,7 +56,7 @@ export function Stack({
         gapClasses[gap],
         align && alignClasses[align],
         justify && justifyClasses[justify],
-        className
+        className,
       )}
       {...props}
     >

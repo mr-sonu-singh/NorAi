@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "../styles/tokens/index.css";
-@import "../styles/base/base.css";
+@import 'tailwindcss';
+@import '../styles/tokens/index.css';
+@import '../styles/base/base.css';
 
 @theme {
   --color-primary-50: var(--primary-50);
@@ -71,4 +71,8 @@
   --breakpoint-md: var(--breakpoint-md);
   --breakpoint-lg: var(--breakpoint-lg);
   --breakpoint-xl: var(--breakpoint-xl);
+
+  --opacity-disabled: var(--opacity-disabled);
+  --focus-ring-width: var(--focus-ring-width);
+  --border-width-default: var(--border-width-default);
 }

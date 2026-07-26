@@ -24,18 +24,29 @@ export function Heading({
   ...props
 }: HeadingProps) {
   const variantClasses: Record<HeadingVariant, string> = {
-    'display-xl': 'text-[length:var(--text-display-xl-size)] leading-[var(--text-display-xl-line)] font-[var(--text-display-xl-weight)] tracking-tight',
-    'display-lg': 'text-[length:var(--text-display-lg-size)] leading-[var(--text-display-lg-line)] font-[var(--text-display-lg-weight)] tracking-tight',
-    'display-md': 'text-[length:var(--text-display-md-size)] leading-[var(--text-display-md-line)] font-[var(--text-display-md-weight)] tracking-tight',
-    'heading-xl': 'text-[length:var(--text-heading-xl-size)] leading-[var(--text-heading-xl-line)] font-[var(--text-heading-xl-weight)]',
-    'heading-lg': 'text-[length:var(--text-heading-lg-size)] leading-[var(--text-heading-lg-line)] font-[var(--text-heading-lg-weight)]',
-    'heading-md': 'text-[length:var(--text-heading-md-size)] leading-[var(--text-heading-md-line)] font-[var(--text-heading-md-weight)]',
-    'heading-sm': 'text-[length:var(--text-heading-sm-size)] leading-[var(--text-heading-sm-line)] font-[var(--text-heading-sm-weight)]',
-    'heading-xs': 'text-[length:var(--text-heading-xs-size)] leading-[var(--text-heading-xs-line)] font-[var(--text-heading-xs-weight)]',
+    'display-xl':
+      'text-[length:var(--text-display-xl-size)] leading-[var(--text-display-xl-line)] font-[var(--text-display-xl-weight)] tracking-tight',
+    'display-lg':
+      'text-[length:var(--text-display-lg-size)] leading-[var(--text-display-lg-line)] font-[var(--text-display-lg-weight)] tracking-tight',
+    'display-md':
+      'text-[length:var(--text-display-md-size)] leading-[var(--text-display-md-line)] font-[var(--text-display-md-weight)] tracking-tight',
+    'heading-xl':
+      'text-[length:var(--text-heading-xl-size)] leading-[var(--text-heading-xl-line)] font-[var(--text-heading-xl-weight)]',
+    'heading-lg':
+      'text-[length:var(--text-heading-lg-size)] leading-[var(--text-heading-lg-line)] font-[var(--text-heading-lg-weight)]',
+    'heading-md':
+      'text-[length:var(--text-heading-md-size)] leading-[var(--text-heading-md-line)] font-[var(--text-heading-md-weight)]',
+    'heading-sm':
+      'text-[length:var(--text-heading-sm-size)] leading-[var(--text-heading-sm-line)] font-[var(--text-heading-sm-weight)]',
+    'heading-xs':
+      'text-[length:var(--text-heading-xs-size)] leading-[var(--text-heading-xs-line)] font-[var(--text-heading-xs-weight)]',
   };
 
   return (
-    <Component className={cn('font-sans text-primary-800', variantClasses[variant], className)} {...props}>
+    <Component
+      className={cn('font-sans text-primary-800', variantClasses[variant], className)}
+      {...props}
+    >
       {children}
     </Component>
   );

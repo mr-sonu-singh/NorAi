@@ -6,13 +6,7 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   gap?: '2' | '4' | '6' | '8' | '12';
 }
 
-export function Grid({
-  cols = 3,
-  gap = '6',
-  className,
-  children,
-  ...props
-}: GridProps) {
+export function Grid({ cols = 3, gap = '6', className, children, ...props }: GridProps) {
   const colClasses = {
     1: 'grid-cols-1',
     2: 'grid-cols-1 md:grid-cols-2',

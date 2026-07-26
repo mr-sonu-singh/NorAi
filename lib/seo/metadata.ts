@@ -49,8 +49,6 @@ export function buildMetadata(options: BuildMetadataOptions = {}): Metadata {
       description,
       images: [ogImage],
     },
-    robots: noIndex
-      ? { index: false, follow: false }
-      : { index: true, follow: true },
+    robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
   };
 }

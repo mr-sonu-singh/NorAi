@@ -3,10 +3,7 @@
 import { useState } from 'react';
 import type { ZodSchema } from 'zod';
 
-export function useForm<T extends Record<string, unknown>>(
-  initialValues: T,
-  schema: ZodSchema<T>
-) {
+export function useForm<T extends Record<string, unknown>>(initialValues: T, schema: ZodSchema<T>) {
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -8,8 +8,6 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <MotionConfig reducedMotion={prefersReducedMotion ? 'always' : 'user'}>
-      {children}
-    </MotionConfig>
+    <MotionConfig reducedMotion={prefersReducedMotion ? 'always' : 'user'}>{children}</MotionConfig>
   );
 }

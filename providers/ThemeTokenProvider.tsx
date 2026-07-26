@@ -9,11 +9,7 @@ export function ThemeTokenProvider({ children }: { children: React.ReactNode }) 
     document.documentElement.setAttribute('data-theme-tokens', 'true');
   }, []);
 
-  return (
-    <ThemeTokenContext.Provider value={true}>
-      {children}
-    </ThemeTokenContext.Provider>
-  );
+  return <ThemeTokenContext.Provider value={true}>{children}</ThemeTokenContext.Provider>;
 }
 
 export const useThemeTokens = () => useContext(ThemeTokenContext);

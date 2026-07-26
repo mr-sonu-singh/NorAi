@@ -5,11 +5,12 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header Landmark Placeholder (Organism reserved for Phase 3) */}
-      <nav aria-label="Main navigation" className="w-full border-b border-primary-100 bg-bg-elevated py-4">
+      <nav
+        aria-label="Main navigation"
+        className="w-full border-b border-primary-100 bg-bg-elevated py-4"
+      >
         <Container size="default">
-          <div className="text-body-sm text-primary-400">
-            Header Landmark Placeholder (Phase 3)
-          </div>
+          <div className="text-body-sm text-primary-400">Header Landmark Placeholder (Phase 3)</div>
         </Container>
       </nav>
 
@@ -20,9 +21,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       {/* Footer Landmark Placeholder (Organism reserved for Phase 3) */}
       <footer className="w-full border-t border-primary-100 bg-bg-dark text-white py-8">
         <Container size="default">
-          <div className="text-body-sm text-primary-300">
-            Footer Landmark Placeholder (Phase 3)
-          </div>
+          <div className="text-body-sm text-primary-300">Footer Landmark Placeholder (Phase 3)</div>
         </Container>
       </footer>
     </div>

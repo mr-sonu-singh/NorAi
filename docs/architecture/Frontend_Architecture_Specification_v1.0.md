@@ -90,31 +90,40 @@ noraitech-web/
 Atomic composition per Masterplan §2 ("Composition over Configuration") and §4.2.
 
 ### Foundation (`components/foundation/`)
+
 Token-consuming primitives that carry no standalone UI meaning. `Container` (Wide 1280 / Default 1120 / Narrow 720), `Grid`, `Stack`, `Section`, `VisuallyHidden`, `Text` (renders the 14-step typographic scale), `Heading`. These wrap tokens so no downstream component reads raw values.
 
 ### Atoms (`components/atoms/`)
+
 `Button` (5 variants: Primary, Secondary, Ghost, Dark, Danger), `Badge`, `Tag`, `Input`, `Textarea`, `Label`, `IconBox`, `Icon` (Lucide wrapper enforcing 1.5–2px stroke), `Link`, `FocusRing`. Atoms are stateless and token-driven.
 
 ### Molecules (`components/molecules/`)
+
 `Accordion`, `Tabs`, `Pagination`, `FormGroup` (Label + Input/Textarea + inline Error), `StatBar` / `Stat`, `CTAGroup` (enforces one Primary per viewport), `NavItem`, `SocialProofItem`.
 
 ### Organisms (`components/organisms/`)
+
 **Cards (`cards/`):** `ProductCard` (interactive — hover elevation + shadow), `FeatureCard` (static — flat), `TeamCard` (circular crop), `BlogCard` (interactive), `PricingCard`, `TestimonialCard`.
 **Sections (`sections/`):** `Header` (with mobile hamburger), `Footer`, `HeroTypographic`, `HeroStandard`, `AlertBanner`, `ProductGrid`, `ProcessFlow` (Input → AI → Output), `UseCases`, `Testimonials`, `TeamPreview`, `FinalCTA`, `ContactForm`.
 
 ### Layouts (`components/layouts/`)
+
 `DefaultLayout` (Header + `Container` Default + Footer), `NarrowLayout` (Container Narrow, reading-optimized), `SplitLayout` (asymmetric two-column). Consumed by App Router group `layout.tsx` files.
 
 ### Templates (`components/templates/`)
+
 Page-shape compositions with slots, no content: `ProductDetailTemplate`, `BlogPostTemplate`, `LegalTemplate`, `HubTemplate`.
 
 ### Utilities (`lib/utils/`)
+
 `cn` (class merge), token-safe formatters, `slugify`, metadata builders, MDX/content parsers. No visual output.
 
 ### Hooks (`hooks/`)
+
 `useScrollReveal` (IntersectionObserver, fire-once), `usePrefersReducedMotion`, `useMediaQuery` (breakpoint reads), `useLockBodyScroll` (mobile menu), `useActiveNav`, `useForm` (contact, 3-field). Logic only.
 
 ### Providers (`providers/`)
+
 `MotionProvider` (Framer Motion config + reduced-motion gating), `ThemeTokenProvider` (guarantees token layer availability), `AnalyticsProvider`, `ToastProvider` (in-page success/error states — no `alert()`). Mounted in root `app/layout.tsx`.
 
 ---
@@ -136,19 +145,19 @@ To prevent circular dependencies and spaghetti code, the following strict import
 
 Mapped from Design Bible §3.1 tiers and Masterplan §6 dependencies.
 
-| Route | Layout | Template | Key Organisms |
-|---|---|---|---|
-| `/` | Default | — (direct assembly) | `HeroTypographic`, `ProductGrid`→`ProductCard`, `FeatureCard`, `ProcessFlow`, `UseCases`, `Testimonials`→`TestimonialCard`, `TeamPreview`→`TeamCard`, `Accordion`, `StatBar`, `FinalCTA` |
-| `/products` | Default | `HubTemplate` | `HeroStandard`, `ProductCard` (Expanded), `Section` |
-| `/products/[slug]` | Default | `ProductDetailTemplate` | `HeroStandard`, Problem/Solution, `FeatureCard` grid, `ProcessFlow`, `TestimonialCard`, `PricingCard`, `Accordion`, `FinalCTA` |
-| `/about` | Default | — | Editorial long-form, Trust Elements (CIN/address), link to Team |
-| `/team` | Default | — | `TeamCard` grid, link to Careers |
-| `/careers` | Default | — | Roles list, link to Contact |
-| `/contact` | Split | — | `ContactForm` (`FormGroup`, `Input`, `Textarea`, `Button`), direct routing (`sales@`/`careers@`/`press@`), in-page success state |
-| `/blog` | Narrow | `HubTemplate` | `BlogCard`, `Pagination` |
-| `/blog/[slug]` | Narrow | `BlogPostTemplate` | MDX article, related links |
-| `/[policy]` (legal) | Narrow | `LegalTemplate` | MDX content |
-| `not-found` | Default | — | 404 with escape hatch to Home/Products |
+| Route               | Layout  | Template                | Key Organisms                                                                                                                                                                            |
+| ------------------- | ------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                 | Default | — (direct assembly)     | `HeroTypographic`, `ProductGrid`→`ProductCard`, `FeatureCard`, `ProcessFlow`, `UseCases`, `Testimonials`→`TestimonialCard`, `TeamPreview`→`TeamCard`, `Accordion`, `StatBar`, `FinalCTA` |
+| `/products`         | Default | `HubTemplate`           | `HeroStandard`, `ProductCard` (Expanded), `Section`                                                                                                                                      |
+| `/products/[slug]`  | Default | `ProductDetailTemplate` | `HeroStandard`, Problem/Solution, `FeatureCard` grid, `ProcessFlow`, `TestimonialCard`, `PricingCard`, `Accordion`, `FinalCTA`                                                           |
+| `/about`            | Default | —                       | Editorial long-form, Trust Elements (CIN/address), link to Team                                                                                                                          |
+| `/team`             | Default | —                       | `TeamCard` grid, link to Careers                                                                                                                                                         |
+| `/careers`          | Default | —                       | Roles list, link to Contact                                                                                                                                                              |
+| `/contact`          | Split   | —                       | `ContactForm` (`FormGroup`, `Input`, `Textarea`, `Button`), direct routing (`sales@`/`careers@`/`press@`), in-page success state                                                         |
+| `/blog`             | Narrow  | `HubTemplate`           | `BlogCard`, `Pagination`                                                                                                                                                                 |
+| `/blog/[slug]`      | Narrow  | `BlogPostTemplate`      | MDX article, related links                                                                                                                                                               |
+| `/[policy]` (legal) | Narrow  | `LegalTemplate`         | MDX content                                                                                                                                                                              |
+| `not-found`         | Default | —                       | 404 with escape hatch to Home/Products                                                                                                                                                   |
 
 Every page: one `H1`, links to Contact, no dead ends (Design Bible §3.3, §7.1). Homepage follows the strict 8-step scroll narrative (§4.1).
 
@@ -167,10 +176,12 @@ Every page: one `H1`, links to Contact, no dead ends (Design Bible §3.3, §7.1)
 ## 6. Service & Schema Layers
 
 ### Service Layer (`services/`)
+
 - **Responsibility:** Handles all API integrations, external data fetching, and business logic.
 - **Contrast with `lib/`:** `lib/` contains reusable, pure utilities (like class mergers or date formatters). `services/` contains logic specifically tied to the NorAI business domain (e.g., submitting contact forms to the CRM, fetching job listings from an ATS).
 
 ### Schema Layer (`schemas/`)
+
 - **Responsibility:** The exclusive home for Zod validation schemas and shared TypeScript types that span boundaries (e.g., API payloads, form data).
 - Ensures absolute type safety between the frontend and any external services or Server Actions.
 

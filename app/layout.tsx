@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { buildMetadata } from '@/lib/seo/metadata';
-import {
-  ThemeTokenProvider,
-  MotionProvider,
-  AnalyticsProvider,
-  ToastProvider,
-} from '@/providers';
+import { ThemeTokenProvider, MotionProvider, AnalyticsProvider, ToastProvider } from '@/providers';
 import './globals.css';
 
 const inter = Inter({

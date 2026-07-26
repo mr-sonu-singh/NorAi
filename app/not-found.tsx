@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Route } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
@@ -15,13 +16,13 @@ export default function NotFound() {
       </Text>
       <div className="flex justify-center gap-4">
         <Link
-          href={routes.home}
+          href={routes.home as Route}
           className="px-6 py-3 rounded-md bg-accent-600 text-white hover:bg-accent-700 transition-colors"
         >
           Go to Homepage
         </Link>
         <Link
-          href={routes.products}
+          href={routes.products as Route}
           className="px-6 py-3 rounded-md bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors"
         >
           Explore Products

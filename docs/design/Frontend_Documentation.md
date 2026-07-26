@@ -57,48 +57,57 @@ frontend/
 ### File Details
 
 **`app/globals.css`**
+
 - **Purpose**: Defines all CSS variables, resets, global typography, and all utility/component classes.
 - **Responsibility**: Global styling system.
 - **Imported by**: `app/layout.tsx`
 - **Dependencies**: None.
 
 **`app/layout.tsx`**
+
 - **Purpose**: Next.js root layout.
 - **Responsibility**: Wraps the entire application, configures the `Inter` font, injects FontAwesome CDN in the `<head>`, and sets global metadata.
 - **Exports**: `metadata`, `RootLayout` default export.
 - **Dependencies**: `next/font/google`, `globals.css`.
 
 **`app/page.tsx`**
+
 - **Purpose**: Homepage.
 - **Responsibility**: Renders the landing page sections (Hero, About, Services, Features, CTA).
 - **Dependencies**: `Header`, `Footer`, `Link` from `next/link`.
 
 **`app/about/About_page.tsx` & `page.tsx`**
+
 - **Purpose**: About Us page view.
 - **Responsibility**: Displays company history, stats, and value proposition. `page.tsx` simply re-exports `About_page.tsx` as default and defines metadata.
 - **Dependencies**: `Header`, `Footer`.
 
 **`app/services/Service_page.tsx` & `page.tsx`**
+
 - **Purpose**: Services page view.
 - **Responsibility**: Renders the full list of micro-SaaS tools.
 - **Dependencies**: `Header`, `Footer`.
 
 **`app/team/Team_page.tsx` & `page.tsx`**
+
 - **Purpose**: Team page view.
 - **Responsibility**: Displays the founding engineering team profiles with images.
 - **Dependencies**: `Header`, `Footer`, `Image` from `next/image`.
 
 **`app/contact/Contact_page.tsx` & `page.tsx`**
+
 - **Purpose**: Contact page view (Client Component).
 - **Responsibility**: Renders a form for users to send inquiries and handles the `onSubmit` event (currently an alert).
 - **Dependencies**: `Header`, `Footer`, `react` (FormEvent).
 
 **`components/Header.tsx`**
+
 - **Purpose**: Site navigation.
 - **Responsibility**: Renders logo, desktop nav, and mobile hamburger menu. Uses `usePathname` to highlight the active link. (Client Component)
 - **Dependencies**: `next/link`, `next/navigation`, `react` (useState, useEffect).
 
 **`components/Footer.tsx`**
+
 - **Purpose**: Site footer.
 - **Responsibility**: Renders copyright and basic branding at the bottom of the page.
 - **Dependencies**: None.
@@ -108,9 +117,10 @@ frontend/
 ## STEP 3 — PAGE INVENTORY
 
 ### 1. Home Page
+
 - **Route**: `/`
 - **Purpose**: Primary landing page to hook visitors and direct them to services or contact.
-- **Sections**: 
+- **Sections**:
   1. Hero (Title, subtitle, CTA buttons)
   2. About summary (Text + 4 statistical data points)
   3. Product Suite preview (4 service cards + "View All" button)
@@ -121,6 +131,7 @@ frontend/
 - **Reusable components used**: `Header`, `Footer`.
 
 ### 2. About Us
+
 - **Route**: `/about`
 - **Purpose**: Explain the company's background and core statistics.
 - **Sections**:
@@ -129,6 +140,7 @@ frontend/
 - **Reusable components used**: `Header`, `Footer`.
 
 ### 3. Services
+
 - **Route**: `/services`
 - **Purpose**: Detailed list of all 5 products.
 - **Sections**:
@@ -137,6 +149,7 @@ frontend/
 - **Reusable components used**: `Header`, `Footer`.
 
 ### 4. Team
+
 - **Route**: `/team`
 - **Purpose**: Build trust by showing the founders.
 - **Sections**:
@@ -145,6 +158,7 @@ frontend/
 - **Reusable components used**: `Header`, `Footer`.
 
 ### 5. Contact
+
 - **Route**: `/contact`
 - **Purpose**: Capture lead information.
 - **Sections**:
@@ -158,6 +172,7 @@ frontend/
 ## STEP 4 — COMPONENT INVENTORY
 
 ### 1. Header
+
 - **Purpose**: Site-wide top navigation.
 - **Props**: None.
 - **Internal state**: `isOpen` (boolean) for mobile menu toggle.
@@ -171,6 +186,7 @@ frontend/
 - **Accessibility notes**: Uses `aria-label="Toggle navigation menu"` and `aria-expanded={isOpen}` on the mobile menu toggle button.
 
 ### 2. Footer
+
 - **Purpose**: Site-wide footer.
 - **Props**: None.
 - **Internal state**: None.
@@ -188,12 +204,14 @@ frontend/
 ## STEP 5 — SECTION-BY-SECTION WEBSITE BREAKDOWN
 
 ### 1. Header (Global)
+
 - **Background**: Frosted glass (`rgba(255, 255, 255, 0.95)`, `backdrop-filter: blur(8px)`).
 - **Links**: Dark gray, change to Blue on hover or active.
 - **CTA**: "Get Started" button in Solid Blue.
 - **Hover effects**: Links change color smoothly, CTA button darkens.
 
 ### 2. Hero Section (Home)
+
 - **Background**: Radial gradient `radial-gradient(circle at 50% 0%, #eff6ff 0%, var(--bg-body) 70%)`.
 - **Badge**: Light blue pill shape with a magic wand icon "AI Tools • AI Videos • AI Websites".
 - **Heading**: "Simple AI Tools for Every Business" (3rem, bold, dark slate).
@@ -201,31 +219,37 @@ frontend/
 - **Buttons**: Primary (Solid Blue) and Secondary (White outline with shadow). Hover effects include `transform: translateY(-2px)`.
 
 ### 3. About Section (Home & About Page)
+
 - **Layout**: 2 columns (Content left, Stats right).
 - **Cards**: White background, light gray border, subtle shadow.
 - **Stats**: 4 boxes (4 Core Micro-Tools, < 1s Average Processing, 100% Automated Pipelines, 24/7 API Availability). Number in Blue, label in gray.
 - **Responsive**: Stacks to 1 column `< 900px`.
 
 ### 4. Services Grid (Home & Services Page)
+
 - **Layout**: 4-column grid (`auto-fit, minmax(260px, 1fr)`).
 - **Card**: Icon box (Light blue bg, blue icon), Title, Description, and an uppercase Tag.
 - **Interactions**: Card elevates (`translateY(-5px)`) and shadow intensifies on hover. Border turns light blue.
 
 ### 5. Why Choose Us (Home)
+
 - **Layout**: 4-column grid.
 - **Features**: Lightning Fast, Reliable by Design, Cost Effective, Easy Integration. Cards similar to services but without the tags. Elevate on hover.
 
 ### 6. CTA Banner (Home)
+
 - **Background**: Solid primary dark slate (`#0f172a`).
 - **Layout**: Flexbox (Text left, Button right). Text is white/light gray.
 - **Button**: Solid Blue.
 
 ### 7. Team Section (Team Page)
+
 - **Layout**: 5-column grid on desktop, 3 on tablet, 1 on mobile.
 - **Images**: Circular, 110x110px, with a light blue border (`3px solid var(--accent-soft)`).
 - **Interactions**: Card elevates on hover.
 
 ### 8. Contact Section (Contact Page)
+
 - **Layout**: Split wrapper (Left column: Dark Slate background with white text for info. Right column: White background for form).
 - **Icons**: FontAwesome location, envelope, and shield icons.
 - **Form UI**: Inputs have light gray borders, focus state adds blue border and blue outline `box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1)`.
@@ -234,10 +258,10 @@ frontend/
 
 ## STEP 6 — DESIGN SYSTEM
 
-- **Primary colors**: 
+- **Primary colors**:
   - `--primary`: `#0f172a` (Dark Slate for brand & headings)
   - `--primary-light`: `#1e293b`
-- **Secondary colors**: 
+- **Secondary colors**:
   - `--bg-body`: `#f8fafc` (Off-white for page background)
   - `--bg-card`: `#ffffff` (White for cards/surfaces)
   - `--text-main`: `#0f172a`
@@ -270,7 +294,7 @@ frontend/
 - **Card styles**: White background, 1px border (`#e2e8f0`), 12px border-radius, `--shadow-sm`.
 - **Container widths**: `.nav-container`, `.section`, and `.footer-container` capped at `1200px`. Hero `.hero-container` capped at `900px`.
 - **Grid systems**: CSS Grid (`display: grid`). Used `.grid-5` (5 cols), `.grid-4` (4 cols max-width auto-fit), and dual column setups (`1fr 1fr`).
-- **Breakpoints**: 
+- **Breakpoints**:
   - Tablet/Laptop: `1024px`
   - Mobile Menu Threshold: `900px`
   - Small Tablet/Phones: `640px`
@@ -284,12 +308,14 @@ frontend/
 ## STEP 7 — CONTENT EXTRACTION
 
 ### Global
+
 - **Title Tag**: "NorAI Technologies — Smart AI Micro-SaaS Utilities"
 - **Meta Description**: "We build AI Tools, AI Chatbots, AI Websites, AI Videos, Product Ads, Logo & Brand Design, and Business Automation to save time and grow your business."
 - **Navigation**: Home, About Us, Services, Team.
 - **Nav CTA**: Get Started
 
 ### Home Page
+
 - **Hero Badge**: AI Tools • AI Videos • AI Websites
 - **Hero Heading**: Simple AI Tools for Every Business
 - **Hero Body**: We build AI Tools, AI Chatbots, AI Websites, AI Videos, Product Ads, Logo & Brand Design, and Business Automation to save time and grow your business.
@@ -310,6 +336,7 @@ frontend/
 - **CTA Body**: Talk to our team about integrating a micro-SaaS utility into your existing stack, no long onboarding required.
 
 ### Services Details
+
 1. **AI Resume Shortlister** (B2B SaaS / Recruiter Tool) - Automates bulk candidate resume parsing, soft-skills extraction, and precise qualification scoring against job descriptions.
 2. **Course Note-Taker** (Freemium Productivity) - Transforms YouTube and Udemy video links into structured Markdown study notes, flashcards, key takeaways, and quizzes.
 3. **Community Chat Digest** (Community Management) - Processes WhatsApp/Facebook chat logs to extract action items, key decision logs, and topic breakdowns.
@@ -317,6 +344,7 @@ frontend/
 5. **AR/VR Experience Studio** (Immersive / Spatial Computing) - Builds immersive AR/VR product demos, virtual showrooms, and spatial-computing experiences for brands and training use cases.
 
 ### Team Profiles
+
 1. **Dhruw Singh** (Founder, B.Sc) - Retd. Indian Army (Corps of Signals) after 30 years of distinguished military service. Leads strategic operations and administrative leadership.
 2. **Sonu Singh** (AR-VR / AI Engineer, BCA) - Returned from Japan VR/AR Summit. Specializes in spatial computing, immersive tech, and modern AI model pipelines.
 3. **Annant** (Digital Marketing, B.Com) - Drives brand development, inbound marketing pipelines, SEO strategies, and corporate client acquisition.
@@ -324,6 +352,7 @@ frontend/
 5. **Gaurav Singh** (AI Engineer / Orchestration, B.Tech) - Builds AI agents, workflows, and automation using modern AI models, ensuring smart, reliable, and scalable AI solutions.
 
 ### Contact Page
+
 - **Page Hero Heading**: Get in Touch
 - **Page Hero Subheading**: Have questions about integrating our Micro-SaaS tools or setting up custom API integrations for your team?
 - **Location**: Umarganj Ghazipur, Uttar Pradesh, India
@@ -333,6 +362,7 @@ frontend/
 - **Submit Button**: Submit Inquiry
 
 ### Footer
+
 - **Text**: Simple AI Tools for Every Business.
 - **Copyright**: © 2026 NorAI Technologies Pvt. Ltd. All rights reserved.
 
@@ -356,7 +386,7 @@ frontend/
 
 - **Architecture**: A single, global stylesheet (`globals.css`) totaling ~850 lines of plain vanilla CSS. It uses CSS custom properties (`:root`) for theming and standardized variables.
 - **Methodology**: Classes are semantic, flat, and component-based (`.btn`, `.btn-primary`, `.service-card`, `.nav-container`). No BEM explicitly enforced, but structured similarly.
-- **Technologies NOT Used**: Tailwind, SCSS, Styled Components, CSS Modules are not used. 
+- **Technologies NOT Used**: Tailwind, SCSS, Styled Components, CSS Modules are not used.
 - **Global Styles**: Defined top-level styles for `body`, `*` reset, and general layout utilities like `.section` and `.section-header`.
 
 ---
@@ -378,7 +408,7 @@ frontend/
 - **Responsive Utilities**: Native CSS Media Queries in `globals.css` at the bottom of the file.
 - **Desktop Layout (`>1024px`)**: Max-width constraints (1200px and 900px). 5-column team grid, 4-column services grid. Header spans full width with items spaced out.
 - **Tablet Layout (`<1024px`)**: Team grid drops to 3 columns.
-- **Mobile Menu Threshold (`<900px`)**: 
+- **Mobile Menu Threshold (`<900px`)**:
   - Hamburger menu activates. Desktop nav is hidden and shifts to a fixed dropdown below the header.
   - Split wrapper grids (About, Contact) collapse to a 1-column layout.
   - Padding adjustments (removes excess hero spacing).
@@ -393,6 +423,7 @@ frontend/
 ## STEP 12 — DEPENDENCIES
 
 **`package.json` Analysis:**
+
 - **`next` (14.2.35)**: Core framework providing App Router architecture, Server-Side Rendering (SSR), and `<Image>` component.
 - **`react` & `react-dom` (18.3.1)**: UI library rendering the components.
 - **`typescript` (5.5.4) & `@types/node`, `@types/react`, `@types/react-dom`**: Provides strict static typing across the project.
@@ -402,7 +433,7 @@ frontend/
 
 ## STEP 13 — PERFORMANCE
 
-- **Strengths**: 
+- **Strengths**:
   - Built on Next.js App Router, using Server Components by default which ships minimal JS to the client.
   - Uses `next/image` for automatic optimization of Unsplash avatars (lazy loading, responsive sizing, compression).
   - Extremely lean dependency tree means near-instant TTI (Time to Interactive).
@@ -415,7 +446,7 @@ frontend/
 
 ## STEP 14 — FRONTEND ARCHITECTURE
 
-- **Component hierarchy**: 
+- **Component hierarchy**:
   `RootLayout` (wraps everything) -> `Page Components` -> Render `Header`, Page content sections, and `Footer`.
 - **Folder organization**: Next.js standard App Router pattern (`app/` for routing, `components/` for shared UI). Each page sits in its respective route folder (`app/about/page.tsx` exports `About_page.tsx`).
 - **Data flow**: Static content is hardcoded directly into the TSX files as arrays of objects (e.g., `services` array, `team` array). No API calls or database connections exist.
@@ -467,4 +498,4 @@ To rebuild this exact application from scratch using this blueprint, follow thes
 7. **Implement Logic**: Wire up the Contact form to trigger an `alert("Thank you! Your message has been sent to the NorAI team.");` on submit, followed by `e.currentTarget.reset()`.
 8. **Finalize Responsiveness**: Apply media queries at `1024px`, `900px`, `640px`, and `480px` ensuring grids stack to single columns on mobile and the hamburger menu slides down with max-height animations.
 
-*End of Report.*
+_End of Report._
