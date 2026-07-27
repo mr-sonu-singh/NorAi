@@ -9,3 +9,6 @@ export * from './sections/FeatureGrid';
 export * from './sections/UseCasesSection';
 export * from './sections/TestimonialsSection';
 export * from './sections/PricingSection';
+export * from './sections/FAQSection';
+export * from './sections/CTASection';
+export * from './sections/ContactSection';
