@@ -12,3 +12,7 @@ export * from './sections/PricingSection';
 export * from './sections/FAQSection';
 export * from './sections/CTASection';
 export * from './sections/ContactSection';
+export * from './sections/TeamSection';
+export * from './sections/BlogPreviewSection';
+export * from './sections/ComparisonTable';
+export * from './cards/BlogCard';
