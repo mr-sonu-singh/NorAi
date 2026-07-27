@@ -1,33 +1,41 @@
+import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import type { Route } from 'next';
-import { Container } from '@/components/foundation/Container';
-import { Heading } from '@/components/foundation/Heading';
-import { Text } from '@/components/foundation/Text';
-import { routes } from '@/config/routes';
+import MarketingLayout from './(marketing)/layout';
+import { ErrorState } from '@/components/molecules/ErrorState';
+import { Button } from '@/components/atoms/Button';
+import { buildMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildMetadata({
+  title: '404 — Page Not Found',
+  description: 'The page you requested could not be found or may have moved to another URL.',
+  noIndex: true,
+});
 
 export default function NotFound() {
   return (
-    <Container size="default" className="py-20 text-center">
-      <Heading variant="display-lg" as="h1" className="mb-4">
-        404 — Page Not Found
-      </Heading>
-      <Text variant="body-lg" className="mb-8 text-primary-400">
-        The page you are looking for does not exist or has been moved.
-      </Text>
-      <div className="flex justify-center gap-4">
-        <Link
-          href={routes.home as Route}
-          className="px-6 py-3 rounded-md bg-accent-600 text-white hover:bg-accent-700 transition-colors"
-        >
-          Go to Homepage
-        </Link>
-        <Link
-          href={routes.products as Route}
-          className="px-6 py-3 rounded-md bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors"
-        >
-          Explore Products
-        </Link>
+    <MarketingLayout>
+      <div className="py-20 flex items-center justify-center">
+        <ErrorState
+          variant="notFound"
+          title="404 — Page Not Found"
+          description="The page you requested could not be found or may have moved to another URL."
+          primaryAction={
+            <Link href="/">
+              <Button variant="primary" size="md">
+                Go to Homepage
+              </Button>
+            </Link>
+          }
+          secondaryAction={
+            <Link href="/products">
+              <Button variant="secondary" size="md">
+                Explore Products
+              </Button>
+            </Link>
+          }
+        />
       </div>
-    </Container>
+    </MarketingLayout>
   );
 }
