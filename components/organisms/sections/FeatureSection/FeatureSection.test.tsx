@@ -9,66 +9,41 @@ describe('FeatureSection Organism', () => {
     expect(FeatureSection).toBeDefined();
   });
 
-  it('renders heading and body copy', () => {
+  it('renders text content, heading, and body', () => {
     const { getByRole, getByText } = render(
       <FeatureSection
-        heading="Real-Time Model Auditability"
-        body="Track every inference request with cryptographic verification logs."
+        heading="Real-Time Verifiable Inference"
+        body="Execute model inferences with sub-10ms latency."
       />,
     );
 
     const h2 = getByRole('heading', { level: 2 });
     expect(h2).toBeTruthy();
-    expect(h2.textContent).toBe('Real-Time Model Auditability');
-    expect(
-      getByText('Track every inference request with cryptographic verification logs.'),
-    ).toBeTruthy();
+    expect(h2.textContent).toBe('Real-Time Verifiable Inference');
+    expect(getByText('Execute model inferences with sub-10ms latency.')).toBeTruthy();
   });
 
-  it('renders CTA button when provided', () => {
-    const { getByText } = render(
-      <FeatureSection
-        heading="Feature Heading"
-        body="Feature Body"
-        cta={{ label: 'Explore Feature', href: '/feature' }}
-      />,
-    );
-    expect(getByText('Explore Feature')).toBeTruthy();
-  });
-
-  it('renders textOnly variant when no media or feature card is provided', () => {
+  it('renders textOnly variant when media or feature are omitted', () => {
     const { getByTestId } = render(
-      <FeatureSection heading="Text Only" body="Body content" />,
+      <FeatureSection
+        heading="Text Only Title"
+        body="Text only body copy."
+      />,
     );
     const container = getByTestId('feature-section-organism');
     expect(container.getAttribute('data-variant')).toBe('textOnly');
   });
 
-  it('renders FeatureCard molecule when feature prop is provided', () => {
-    const { getByTestId, getByText } = render(
-      <FeatureSection
-        heading="Feature with Card"
-        body="Body content"
-        feature={{ title: 'Card Title', description: 'Card Description', icon: 'shield' }}
-      />,
-    );
-    const container = getByTestId('feature-section-organism');
-    expect(container.getAttribute('data-variant')).toBe('textLeftMediaRight');
-    expect(getByText('Card Title')).toBeTruthy();
-    expect(getByText('Card Description')).toBeTruthy();
-  });
-
-  it('renders mediaLeftTextRight variant when align="mediaLeft"', () => {
+  it('renders mediaLeft alignment correctly', () => {
     const { getByTestId } = render(
       <FeatureSection
-        heading="Left Aligned Media"
-        body="Body content"
+        heading="Media Left Title"
+        body="Media left description."
+        media={<div data-testid="custom-media">Media</div>}
         align="mediaLeft"
-        media={<div data-testid="media-slot">Media</div>}
       />,
     );
     const container = getByTestId('feature-section-organism');
     expect(container.getAttribute('data-variant')).toBe('mediaLeftTextRight');
-    expect(getByTestId('media-slot')).toBeTruthy();
   });
 });

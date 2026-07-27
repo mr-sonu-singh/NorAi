@@ -11,7 +11,7 @@ import { FeatureCard } from '@/components/molecules/FeatureCard';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
-import { FeatureSectionProps, FeatureSectionVariant } from './FeatureSection.types';
+import { FeatureSectionProps } from './FeatureSection.types';
 
 export function FeatureSection({
   heading,
@@ -20,22 +20,19 @@ export function FeatureSection({
   media,
   cta,
   align,
-  variant,
-  className,
 }: FeatureSectionProps) {
   const { ref, isRevealed } = useScrollReveal<HTMLDivElement>();
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const shouldAnimate = !prefersReducedMotion;
+  const isMediaLeft = align === 'mediaLeft';
+  const hasMediaOrFeature = Boolean(media || feature);
 
-  // Infer active variant
-  const activeVariant: FeatureSectionVariant =
-    variant ||
-    (align === 'mediaLeft'
-      ? 'mediaLeftTextRight'
-      : media || feature
-      ? 'textLeftMediaRight'
-      : 'textOnly');
+  const activeVariant = !hasMediaOrFeature
+    ? 'textOnly'
+    : isMediaLeft
+    ? 'mediaLeftTextRight'
+    : 'textLeftMediaRight';
 
   const renderTextContent = () => (
     <div className="space-y-6">
@@ -68,7 +65,13 @@ export function FeatureSection({
     }
 
     if (feature) {
-      return <FeatureCard {...feature} />;
+      return (
+        <FeatureCard
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+        />
+      );
     }
 
     return null;
@@ -82,21 +85,20 @@ export function FeatureSection({
           'relative overflow-hidden py-16 lg:py-24 transition-all duration-normal',
           shouldAnimate && !isRevealed && 'opacity-0 translate-y-4',
           shouldAnimate && isRevealed && 'opacity-100 translate-y-0',
-          className,
         )}
         data-testid="feature-section-organism"
         data-variant={activeVariant}
         data-revealed={isRevealed}
       >
         <Container size="default">
-          {activeVariant === 'textOnly' ? (
+          {!hasMediaOrFeature ? (
             <div className="max-w-3xl space-y-6">{renderTextContent()}</div>
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
               <div
                 className={cn(
                   'lg:col-span-6',
-                  activeVariant === 'mediaLeftTextRight' ? 'lg:order-2' : 'lg:order-1',
+                  isMediaLeft ? 'lg:order-2' : 'lg:order-1',
                 )}
               >
                 {renderTextContent()}
@@ -105,7 +107,7 @@ export function FeatureSection({
               <div
                 className={cn(
                   'lg:col-span-6 w-full',
-                  activeVariant === 'mediaLeftTextRight' ? 'lg:order-1' : 'lg:order-2',
+                  isMediaLeft ? 'lg:order-1' : 'lg:order-2',
                 )}
               >
                 {renderMediaOrFeature()}

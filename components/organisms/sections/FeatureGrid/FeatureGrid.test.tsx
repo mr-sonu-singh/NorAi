@@ -44,7 +44,7 @@ describe('FeatureGrid Organism', () => {
     expect(container.getAttribute('data-variant')).toBe('twoUp');
   });
 
-  it('renders threeUp variant when features count > 4 or explicitly requested', () => {
+  it('renders threeUp variant when features count > 4', () => {
     const sixFeatures = [
       ...mockFeatures,
       { title: 'Zero-Knowledge Proofs', description: 'ZK Engine built-in.', icon: 'lock' },

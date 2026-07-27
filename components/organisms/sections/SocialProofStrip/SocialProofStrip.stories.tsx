@@ -14,35 +14,22 @@ export const LogoCloud = {
   args: {
     eyebrow: 'Trusted by innovative teams worldwide',
     logos: [
-      { name: 'Apex AI', icon: 'zap' },
-      { name: 'QuantumData', icon: 'layers' },
-      { name: 'VeriCore', icon: 'shield' },
-      { name: 'CloudScale', icon: 'cpu' },
+      { name: 'Acme Corp' },
+      { name: 'Globex Corporation', href: 'https://example.com' },
+      { name: 'Soylent Corp' },
+      { name: 'Initech' },
+      { name: 'Umbrella Corp' },
     ],
   },
 };
 
 export const TrustIndicators = {
   args: {
-    eyebrow: 'Security & Compliance Standards',
+    eyebrow: 'Enterprise Grade Compliance',
     trustIndicators: [
-      { label: 'SOC2 Type II', value: 'Certified', status: 'verified' },
-      { label: 'ISO 27001', value: 'Compliant', status: 'verified' },
-      { label: 'Global SLA', value: '99.99%', status: 'active' },
-    ],
-  },
-};
-
-export const Combined = {
-  args: {
-    eyebrow: 'Enterprise-grade Security & Trusted Partners',
-    logos: [
-      { name: 'Apex AI', icon: 'zap' },
-      { name: 'VeriCore', icon: 'shield' },
-    ],
-    trustIndicators: [
-      { label: 'SOC2 Type II', value: 'Certified', status: 'verified' },
-      { label: 'Data Encryption', value: '256-bit AES', status: 'active' },
+      { label: 'Uptime SLA', value: '99.99%' },
+      { label: 'Security Certification', value: 'SOC 2 Type II' },
+      { label: 'Data Privacy', value: 'GDPR Compliant' },
     ],
   },
 };

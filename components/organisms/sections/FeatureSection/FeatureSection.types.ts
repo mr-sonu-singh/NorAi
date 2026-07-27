@@ -1,5 +1,10 @@
 import React from 'react';
-import { FeatureCardProps } from '@/components/molecules/FeatureCard/FeatureCard.types';
+
+export interface FeatureSectionFeature {
+  title: string;
+  description: string;
+  icon?: string;
+}
 
 export interface FeatureSectionCTAConfig {
   label: string;
@@ -8,15 +13,11 @@ export interface FeatureSectionCTAConfig {
   onClick?: () => void;
 }
 
-export type FeatureSectionVariant = 'textLeftMediaRight' | 'mediaLeftTextRight' | 'textOnly';
-
 export interface FeatureSectionProps {
   heading: string;
   body: string;
-  feature?: FeatureCardProps;
+  feature?: FeatureSectionFeature;
   media?: React.ReactNode;
   cta?: FeatureSectionCTAConfig;
   align?: 'mediaLeft' | 'mediaRight';
-  variant?: FeatureSectionVariant;
-  className?: string;
 }

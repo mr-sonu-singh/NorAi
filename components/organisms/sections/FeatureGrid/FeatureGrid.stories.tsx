@@ -43,7 +43,6 @@ export const ThreeUpSixItems = {
   args: {
     heading: 'End-to-End Enterprise Suite',
     intro: 'Discover the full ecosystem of tools designed for verifiable AI deployments.',
-    variant: 'threeUp',
     features: [
       {
         title: 'Cryptographic Proofs',

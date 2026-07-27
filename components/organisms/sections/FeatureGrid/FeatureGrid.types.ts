@@ -1,11 +1,11 @@
-import { FeatureCardProps } from '@/components/molecules/FeatureCard/FeatureCard.types';
-
-export type FeatureGridVariant = 'twoUp' | 'threeUp';
+export interface FeatureGridItem {
+  title: string;
+  description: string;
+  icon?: string;
+}
 
 export interface FeatureGridProps {
   heading: string;
-  features: FeatureCardProps[];
+  features: FeatureGridItem[];
   intro?: string;
-  variant?: FeatureGridVariant;
-  className?: string;
 }

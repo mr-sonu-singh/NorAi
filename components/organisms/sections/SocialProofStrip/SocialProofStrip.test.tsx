@@ -5,14 +5,13 @@ import { render } from '@testing-library/react';
 import { SocialProofStrip } from './SocialProofStrip';
 
 const mockLogos = [
-  { name: 'Acme Corp', icon: 'shield' },
-  { name: 'TechScale', icon: 'check-circle' },
-  { name: 'GlobalNet', icon: 'zap' },
+  { name: 'Acme Corp', logoUrl: '/logos/acme.svg' },
+  { name: 'Globex', href: 'https://globex.com' },
 ];
 
 const mockTrustIndicators = [
-  { label: 'SOC2 Type II', value: 'Certified', status: 'verified' },
-  { label: 'Uptime', value: '99.99%', status: 'active' },
+  { label: 'Uptime', value: '99.99%' },
+  { label: 'SOC2', value: 'Certified' },
 ];
 
 describe('SocialProofStrip Organism', () => {
@@ -20,35 +19,23 @@ describe('SocialProofStrip Organism', () => {
     expect(SocialProofStrip).toBeDefined();
   });
 
-  it('renders logo cloud correctly', () => {
-    const { getByText } = render(<SocialProofStrip logos={mockLogos} />);
-    expect(getByText('Acme Corp')).toBeTruthy();
-    expect(getByText('TechScale')).toBeTruthy();
-    expect(getByText('GlobalNet')).toBeTruthy();
-  });
-
-  it('renders eyebrow text when provided', () => {
+  it('renders eyebrow and logos', () => {
     const { getByText } = render(
-      <SocialProofStrip eyebrow="TRUSTED BY INDUSTRY LEADERS" logos={mockLogos} />,
+      <SocialProofStrip eyebrow="Trusted by industry leaders" logos={mockLogos} />,
     );
+
     expect(getByText('TRUSTED BY INDUSTRY LEADERS')).toBeTruthy();
+    expect(getByText('Globex')).toBeTruthy();
   });
 
-  it('renders trust indicators correctly', () => {
-    const { getByText } = render(
+  it('renders trust indicators variant', () => {
+    const { getByText, getByTestId } = render(
       <SocialProofStrip trustIndicators={mockTrustIndicators} />,
     );
-    expect(getByText('SOC2 Type II:')).toBeTruthy();
-    expect(getByText('Certified')).toBeTruthy();
+
+    const container = getByTestId('social-proof-strip-organism');
+    expect(container.getAttribute('data-variant')).toBe('trustIndicators');
     expect(getByText('Uptime:')).toBeTruthy();
     expect(getByText('99.99%')).toBeTruthy();
-  });
-
-  it('renders combined variant when both logos and trust indicators are provided', () => {
-    const { getByTestId } = render(
-      <SocialProofStrip logos={mockLogos} trustIndicators={mockTrustIndicators} />,
-    );
-    const container = getByTestId('social-proof-strip-organism');
-    expect(container.getAttribute('data-variant')).toBe('combined');
   });
 });

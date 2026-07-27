@@ -6,22 +6,48 @@ import { Container } from '@/components/foundation/Container';
 import { Grid } from '@/components/foundation/Grid';
 import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
-import { FeatureCard } from '@/components/molecules/FeatureCard';
+import { Button } from '@/components/atoms/Button';
+import { PricingCard } from '@/components/molecules/PricingCard';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
-import { FeatureGridProps } from './FeatureGrid.types';
+import { PricingSectionProps, PricingTierConfig } from './PricingSection.types';
 
-export function FeatureGrid({
+export function PricingSection({
   heading,
-  features = [],
+  tiers = [],
   intro,
-}: FeatureGridProps) {
+}: PricingSectionProps) {
   const { ref, isRevealed } = useScrollReveal<HTMLDivElement>();
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const shouldAnimate = !prefersReducedMotion;
-  const gridCols = features.length <= 4 ? 2 : 3;
+  const gridCols = tiers.length <= 2 ? 2 : 3;
+
+  const renderTierCard = (tier: PricingTierConfig, index: number) => {
+    const ctaButton = (
+      <Button
+        variant={tier.highlighted ? 'primary' : 'secondary'}
+        size="md"
+        fullWidth
+        onClick={tier.cta.onClick}
+      >
+        {tier.cta.label}
+      </Button>
+    );
+
+    return (
+      <PricingCard
+        key={`${tier.name}-${index}`}
+        tierName={tier.name}
+        price={tier.price}
+        interval={tier.interval}
+        features={tier.features}
+        highlighted={tier.highlighted}
+        cta={ctaButton}
+      />
+    );
+  };
 
   return (
     <div ref={ref}>
@@ -32,8 +58,7 @@ export function FeatureGrid({
           shouldAnimate && !isRevealed && 'opacity-0 translate-y-4',
           shouldAnimate && isRevealed && 'opacity-100 translate-y-0',
         )}
-        data-testid="feature-grid-organism"
-        data-variant={gridCols === 2 ? 'twoUp' : 'threeUp'}
+        data-testid="pricing-section-organism"
         data-revealed={isRevealed}
       >
         <Container size="default">
@@ -49,14 +74,7 @@ export function FeatureGrid({
           </div>
 
           <Grid cols={gridCols} gap="6">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={`${feature.title}-${index}`}
-                title={feature.title}
-                description={feature.description}
-                icon={feature.icon}
-              />
-            ))}
+            {tiers.map((tier, index) => renderTierCard(tier, index))}
           </Grid>
         </Container>
       </Section>

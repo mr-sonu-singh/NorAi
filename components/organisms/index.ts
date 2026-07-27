@@ -6,3 +6,6 @@ export * from './sections/StatisticsSection';
 export * from './sections/SocialProofStrip';
 export * from './sections/FeatureSection';
 export * from './sections/FeatureGrid';
+export * from './sections/UseCasesSection';
+export * from './sections/TestimonialsSection';
+export * from './sections/PricingSection';
