@@ -34,7 +34,7 @@ export function SocialLinks({
           )}
           data-testid={`social-link-${item.label.toLowerCase()}`}
         >
-          <Icon name={item.icon} size={size} aria-label={item.label} />
+          <Icon name={item.icon} size={size} aria-hidden="true" />
         </Link>
       ))}
     </Stack>

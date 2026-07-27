@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Button } from '@/components/atoms/Button';
 import { IconButton } from '@/components/atoms/IconButton';
 import { cn } from '@/lib/utils';
@@ -14,43 +14,43 @@ export function Pagination({
   className,
   ...props
 }: PaginationProps) {
-  if (totalPages <= 1) return null;
+  const pages = useMemo(() => {
+    if (totalPages <= 1) return [];
 
-  const getPageNumbers = () => {
-    const pages: (number | string)[] = [];
+    const pagesList: (number | string)[] = [];
     const totalNumbers = siblingCount * 2 + 3;
     const totalBlocks = totalNumbers + 2;
 
     if (totalPages <= totalBlocks) {
       for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
+        pagesList.push(i);
       }
-      return pages;
+      return pagesList;
     }
 
     const startPage = Math.max(2, currentPage - siblingCount);
     const endPage = Math.min(totalPages - 1, currentPage + siblingCount);
 
-    pages.push(1);
+    pagesList.push(1);
 
     if (startPage > 2) {
-      pages.push('...');
+      pagesList.push('...');
     }
 
     for (let i = startPage; i <= endPage; i++) {
-      pages.push(i);
+      pagesList.push(i);
     }
 
     if (endPage < totalPages - 1) {
-      pages.push('...');
+      pagesList.push('...');
     }
 
-    pages.push(totalPages);
+    pagesList.push(totalPages);
 
-    return pages;
-  };
+    return pagesList;
+  }, [currentPage, totalPages, siblingCount]);
 
-  const pages = getPageNumbers();
+  if (totalPages <= 1) return null;
 
   return (
     <nav

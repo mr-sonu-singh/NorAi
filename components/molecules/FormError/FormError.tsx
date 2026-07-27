@@ -11,7 +11,6 @@ export function FormError({ message, id, className, ...props }: FormErrorProps) 
     <div
       id={id}
       role="alert"
-      aria-live="polite"
       className={cn('inline-flex items-center gap-1.5 text-error text-body-xs mt-1', className)}
       data-testid="form-error-molecule"
       {...props}

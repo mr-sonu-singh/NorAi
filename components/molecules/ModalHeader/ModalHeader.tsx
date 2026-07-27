@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
 import { IconButton } from '@/components/atoms/IconButton';
@@ -9,10 +9,13 @@ export function ModalHeader({
   title,
   description,
   onClose,
-  id = 'modal-title',
+  id,
   className,
   ...props
 }: ModalHeaderProps) {
+  const generatedId = useId();
+  const titleId = id || generatedId;
+
   return (
     <div
       className={cn(
@@ -23,7 +26,7 @@ export function ModalHeader({
       {...props}
     >
       <div className="space-y-1 min-w-0">
-        <Heading id={id} as="h4" variant="heading-sm" className="font-semibold text-primary truncate">
+        <Heading id={titleId} as="h4" variant="heading-sm" className="font-semibold text-primary truncate">
           {title}
         </Heading>
         {description && (

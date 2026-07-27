@@ -11,10 +11,6 @@ export function InputGroup({
   invalid,
   ...props
 }: InputGroupProps) {
-  if (!leading && !trailing) {
-    return <Input className={className} disabled={disabled} invalid={invalid} {...props} />;
-  }
-
   return (
     <div
       className={cn(

@@ -24,11 +24,12 @@ export function Toast({
   ...props
 }: ToastProps) {
   const { icon, iconColor } = severityMap[severity];
+  const isCritical = severity === 'error' || severity === 'warning';
 
   return (
     <div
-      role="status"
-      aria-live="polite"
+      role={isCritical ? 'alert' : 'status'}
+      aria-live={isCritical ? 'assertive' : 'polite'}
       className={cn(
         'inline-flex items-center gap-3 p-3.5 bg-elevated border border-primary-200 shadow-xl rounded-default max-w-md w-full',
         className,
