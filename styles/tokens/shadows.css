@@ -1,8 +1,20 @@
 :root {
-  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.1), 0 1px 2px -1px rgba(15, 23, 42, 0.1);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -2px rgba(15, 23, 42, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
-  --shadow-accent: 0 0 0 3px rgba(37, 99, 235, 0.4);
+  /* Vercel Shadow-as-Border & Elevation Tokens (DESIGN.md) */
+  --ds-shadow-border-base: 0 0 0 1px #00000014;
+  --ds-shadow-background-border: 0 0 0 1px var(--ds-background-200, #ffffff);
+  --ds-shadow-border: var(--ds-shadow-border-base), var(--ds-shadow-background-border);
+  --ds-focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px var(--ds-interactive, #0072f5);
+
+  --ds-shadow-small: 0 0 0 1px #00000014, 0 2px 2px 0 rgba(0, 0, 0, 0.04);
+  --ds-shadow-medium: 0 0 0 1px #00000014, 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 8px 8px -8px rgba(0, 0, 0, 0.04);
+  --ds-shadow-large: 0 0 0 1px #00000014, 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+  --ds-shadow-menu: 0 0 0 1px #00000014, 0 1px 1px 0 rgba(0, 0, 0, 0.02), 0 4px 8px -4px rgba(0, 0, 0, 0.04), 0 16px 24px -8px rgba(0, 0, 0, 0.06);
+
+  --shadow-xs: var(--ds-shadow-border);
+  --shadow-sm: var(--ds-shadow-small);
+  --shadow-md: var(--ds-shadow-medium);
+  --shadow-lg: var(--ds-shadow-large);
+  --shadow-xl: var(--ds-shadow-menu);
+  --shadow-accent: var(--ds-focus-ring);
 }
+

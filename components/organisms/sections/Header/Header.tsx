@@ -16,16 +16,10 @@ import { cn } from '@/lib/utils';
 import { HeaderProps, HeaderCTA } from './Header.types';
 
 export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = [
-  {
-    label: 'Products',
-    href: '/products',
-    children: [
-      { label: 'All Products', href: '/products' },
-      { label: 'NorAI Core', href: '/products/core' },
-      { label: 'NorAI Vision', href: '/products/vision' },
-    ],
-  },
-  { label: 'About', href: '/about' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Services', href: '/products' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Blog', href: '/blog' },
   { label: 'Team', href: '/team' },
 ];
@@ -163,9 +157,9 @@ export function Header({
   return (
     <header
       className={cn(
-        'w-full bg-background border-b border-primary-200 transition-colors duration-fast z-40',
+        'w-full bg-slate-950/80 backdrop-blur-xl border-b border-white/10 text-white transition-colors duration-fast z-50',
         sticky && 'sticky top-0',
-        sticky && isScrolled && 'shadow-sm bg-background/95 backdrop-blur-md',
+        sticky && isScrolled && 'shadow-lg shadow-blue-500/5 bg-slate-950/90 backdrop-blur-xl',
         className,
       )}
       data-testid="header-organism"

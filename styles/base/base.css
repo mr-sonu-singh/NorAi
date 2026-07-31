@@ -13,18 +13,30 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-page);
-  color: var(--primary-800);
+  background-color: var(--ds-background-100, #fafafa);
+  color: var(--ds-text-100, #171717);
   font-family: var(--font-sans);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Global 3px Accent Focus Ring (Design Bible §7.3, Foundation Spec §21) */
+/* Headline tracking & weight limits (DESIGN.md) */
+h1 {
+  font-weight: 600;
+  letter-spacing: -2.28px;
+}
+
+h2, h3 {
+  font-weight: 600;
+  letter-spacing: -1.28px;
+}
+
+/* Vercel Double-Ring Focus Pattern (DESIGN.md §4) */
 :focus-visible {
-  outline: 3px solid var(--accent-600);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: var(--ds-focus-ring, 0 0 0 2px #ffffff, 0 0 0 4px #0072f5);
+  border-radius: 4px;
 }
 
 /* Global prefers-reduced-motion rule */
@@ -38,3 +50,4 @@ body {
     scroll-behavior: auto !important;
   }
 }
+

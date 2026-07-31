@@ -23,6 +23,7 @@ export * from './TestimonialCard';
 export * from './TeamMemberCard';
 export * from './StatCard';
 export * from './MetricCard';
+export * from './TiltCard';
 
 // Ticket 4: Interactive Molecules
 export * from './Breadcrumb';

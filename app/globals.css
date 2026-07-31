@@ -79,3 +79,91 @@
   --focus-ring-width: var(--focus-ring-width);
   --border-width-default: var(--border-width-default);
 }
+
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-15px) translateX(8px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.2;
+  }
+}
+
+@keyframes lineGlow {
+  0%, 100% {
+    stroke-opacity: 0.3;
+  }
+  50% {
+    stroke-opacity: 0.8;
+  }
+}
+
+.animate-orb-pulse {
+  animation: orbPulse 6s ease-in-out infinite;
+}
+
+.animate-float-particle {
+  animation: floatParticle 8s ease-in-out infinite;
+}
+
+.animate-line-glow {
+  animation: lineGlow 4s ease-in-out infinite;
+}
+
+/* 3D Tilt Card dynamic spotlight border & transformation */
+.tilt-card {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    600px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(96, 165, 250, 0.4),
+    transparent 40%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tilt-card:hover::before {
+  opacity: 1;
+}
+
+/* Ambient Radial Glow Background Overlay */
+.dark-ambient-bg {
+  background-color: #030712;
+  background-image: 
+    radial-gradient(at 50% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(96, 165, 250, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(30, 58, 138, 0.1) 0px, transparent 50%);
+}
+

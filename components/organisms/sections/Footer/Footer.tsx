@@ -57,7 +57,7 @@ export const DEFAULT_FOOTER_SOCIAL_LINKS: SocialLinkItem[] = [
   { label: 'LinkedIn', href: 'https://linkedin.com/company/norai', icon: 'linkedin' },
 ];
 
-export const DEFAULT_LEGAL_TEXT = `© ${new Date().getFullYear()} NorAI Technologies Inc. All rights reserved.`;
+export const DEFAULT_LEGAL_TEXT = `© 2026 NorAI Technologies Pvt. Ltd. All rights reserved.`;
 
 export function Footer({
   columns = DEFAULT_FOOTER_COLUMNS,

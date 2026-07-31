@@ -52,8 +52,8 @@ export function Logo({
   );
 
   const renderWordmark = () => (
-    <Text as="span" className={cn('text-primary font-mono select-none', text)}>
-      Nor<span className="text-accent">AI</span>
+    <Text as="span" className={cn('text-white font-mono select-none', text)}>
+      Nor<span className="text-blue-400">AI</span>
     </Text>
   );
 

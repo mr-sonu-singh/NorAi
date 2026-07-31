@@ -19,3 +19,4 @@ export * from './sections/Timeline';
 export * from './sections/ProcessFlow';
 export * from './cards/BlogCard';
 export * from './cards/ProductCard';
+export * from './HeroOrb';

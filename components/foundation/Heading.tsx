@@ -44,7 +44,7 @@ export function Heading({
 
   return (
     <Component
-      className={cn('font-sans text-primary-800', variantClasses[variant], className)}
+      className={cn('font-sans text-white', variantClasses[variant], className)}
       {...props}
     >
       {children}

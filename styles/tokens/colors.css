@@ -1,17 +1,30 @@
 :root {
-  /* Primary Slate Scale */
-  --primary-50: #f1f5f9;
-  --primary-100: #e2e8f0;
-  --primary-200: #cbd5e1;
-  --primary-300: #94a3b8;
-  --primary-400: #64748b;
-  --primary-500: #475569;
-  --primary-600: #334155;
-  --primary-700: #1e293b;
-  --primary-800: #0f172a;
-  --primary-900: #0c1222;
+  /* Vercel Achromatic Core Scale (DESIGN.md - Dark Mode) */
+  --ds-background-100: #030712; /* Page Canvas Base (Deep Dark Slate) */
+  --ds-background-200: #0b0f19; /* Card / Surface Base */
+  --ds-background-300: #111827; /* Toggle / Recessed Base */
+  --ds-background-400: #1f2937; /* Hover Surface Base */
 
-  /* Accent Blue Scale */
+  --ds-text-100: #ffffff; /* Primary Headings & Text */
+  --ds-text-200: #e2e8f0; /* Secondary Text & Nav Links */
+  --ds-text-300: #94a3b8; /* Muted & Caption Text */
+
+  /* Sole Interactive Accent */
+  --ds-interactive: #3b82f6; /* Primary Interactive Accent */
+  --ds-focus-color: #60a5fa; /* Input & Button Focus Accent */
+
+  /* Backward Compatibility Aliases */
+  --primary-50: #0f172a;
+  --primary-100: #1e293b;
+  --primary-200: #334155;
+  --primary-300: #475569;
+  --primary-400: #64748b;
+  --primary-500: #94a3b8;
+  --primary-600: #cbd5e1;
+  --primary-700: #e2e8f0;
+  --primary-800: #f8fafc;
+  --primary-900: #ffffff;
+
   --accent-50: #eff6ff;
   --accent-100: #dbeafe;
   --accent-400: #60a5fa;
@@ -19,23 +32,30 @@
   --accent-600: #2563eb;
   --accent-700: #1d4ed8;
 
-  /* Surface & Background Tokens */
-  --bg-page: #f8fafc;
-  --bg-elevated: #ffffff;
-  --bg-sunken: #f1f5f9;
-  --bg-dark: #0f172a;
-  --bg-dark-elevated: #1e293b;
+  --bg-page: #030712;
+  --bg-elevated: #0b0f19;
+  --bg-sunken: #111827;
+  --bg-dark: #030712;
+  --bg-dark-elevated: #0b0f19;
 
-  /* Semantic Tokens */
-  --success-600: #16a34a;
+  /* Status Indicator Dot Colors (DESIGN.md - 10px dots only) */
+  --status-blue: #0062d1;
+  --status-cyan: #52aeff;
+  --status-teal: #067a6e;
+  --status-green: #398e4a;
+  --status-orange: #ff990a;
+  --status-red: #e5484d;
+  --status-purple: #7820bc;
+
+  --success-600: var(--status-green);
   --success-100: #dcfce7;
-  --warning-600: #ca8a04;
+  --warning-600: var(--status-orange);
   --warning-100: #fef9c3;
-  --error-600: #dc2626;
+  --error-600: var(--status-red);
   --error-100: #fee2e2;
-  --info-600: #2563eb;
+  --info-600: var(--ds-interactive);
   --info-100: #dbeafe;
 
-  /* Approved Foundation Patch Tokens */
   --opacity-disabled: 0.5;
 }
+
