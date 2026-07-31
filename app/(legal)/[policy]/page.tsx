@@ -19,9 +19,9 @@ export async function generateMetadata({ params }: PageProps) {
 
   if (!policy) {
     return buildMetadata({
-      title: 'Policy Not Found | NorAI Technologies',
+      title: '404 — Page Not Found',
       description: 'The requested legal policy document could not be found.',
-      path: '/',
+      noIndex: true,
     });
   }
 

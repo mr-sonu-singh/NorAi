@@ -29,8 +29,15 @@ export function Avatar({
   ...props
 }: AvatarProps) {
   const [hasError, setHasError] = React.useState(false);
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(true);
+  const imgRef = React.useRef<HTMLImageElement>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
+
+  React.useEffect(() => {
+    if (imgRef.current?.complete) {
+      setIsLoaded(true);
+    }
+  }, [src]);
 
   const showImage = src && !hasError;
 
@@ -45,6 +52,7 @@ export function Avatar({
         {showImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
+            ref={imgRef}
             src={src}
             alt={alt}
             onLoad={() => setIsLoaded(true)}

@@ -48,7 +48,7 @@ export function BlogCard({
       data-variant={variant}
     >
       {image && (
-        <div className="relative w-full h-48 overflow-hidden rounded-md bg-primary-100 mb-4">
+        <div className="relative w-full h-48 overflow-hidden rounded-md bg-primary-100 mb-4" style={{ position: 'relative', height: '12rem' }}>
           <Image
             src={image}
             alt={title}

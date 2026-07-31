@@ -38,6 +38,7 @@ export function SocialProofStrip({
             width={100}
             height={24}
             className="h-6 w-auto object-contain"
+            style={{ width: 'auto', height: 'auto' }}
           />
         ) : (
           <Text variant="body-sm" className="font-semibold text-primary-700 tracking-tight">

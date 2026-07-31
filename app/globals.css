@@ -1,8 +1,11 @@
 @import 'tailwindcss';
+@source '..';
 @import '../styles/tokens/index.css';
 @import '../styles/base/base.css';
 
-@theme {
+@theme inline {
+  --color-white: #ffffff;
+  --color-black: #000000;
   --color-primary-50: var(--primary-50);
   --color-primary-100: var(--primary-100);
   --color-primary-200: var(--primary-200);

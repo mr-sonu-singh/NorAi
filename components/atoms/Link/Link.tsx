@@ -28,7 +28,10 @@ export function Link({
 }: LinkProps) {
   const isExternal = external || href.startsWith('http://') || href.startsWith('https://');
 
-  const combinedClasses = cn('font-sans cursor-pointer', variantClasses[variant], className);
+  const isWrapper = React.isValidElement(children) && typeof children.type !== 'string';
+  const effectiveVariant = isWrapper ? 'unstyled' : variant;
+
+  const combinedClasses = cn('font-sans cursor-pointer', variantClasses[effectiveVariant], className);
 
   const linkContent = (
     <>
