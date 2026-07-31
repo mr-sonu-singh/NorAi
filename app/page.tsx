@@ -1,12 +1,40 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import AIOrb from "@/components/AIOrb";
+import TiltCard from "@/components/TiltCard";
 
 export const metadata: Metadata = {
   title: "NorAI Technologies — Simple AI Tools for Every Business",
   description:
     "NorAI Technologies builds AI tools, AI chatbots, AI websites, AI videos, and business automation utilities that save time and help you grow.",
 };
+
+const services = [
+  {
+    icon: "fa-file-user",
+    title: "AI Resume Shortlister",
+    desc: "Automates bulk candidate resume parsing, soft-skills extraction, and precise qualification scoring against job descriptions.",
+    tag: "B2B SaaS / Recruiter Tool",
+  },
+  {
+    icon: "fa-graduation-cap",
+    title: "Course Note-Taker",
+    desc: "Transforms YouTube and Udemy video links into structured Markdown study notes, flashcards, key takeaways, and quizzes.",
+    tag: "Freemium Productivity",
+  },
+  {
+    icon: "fa-comments",
+    title: "Community Chat Digest",
+    desc: "Processes WhatsApp/Facebook chat logs to extract action items, key decision logs, and topic breakdowns.",
+    tag: "Community Management",
+  },
+  {
+    icon: "fa-rss",
+    title: "Smart Dainik News",
+    desc: "Aggregates complex news feeds into personalized, executive-ready daily summaries delivered straight to inbox.",
+    tag: "Executive Briefings",
+  },
+];
 
 const processSteps = [
   {
@@ -26,6 +54,29 @@ const processSteps = [
     icon: "fa-plug",
     title: "Plug In & Go Live",
     desc: "Simple API integration or a ready-made dashboard — most teams are live within days, not months.",
+  },
+];
+
+const features = [
+  {
+    icon: "fa-bolt",
+    title: "Lightning Fast",
+    desc: "Optimized LLM pipelines return structured results in under a second on average, so tools feel instant, not batch-processed.",
+  },
+  {
+    icon: "fa-shield-halved",
+    title: "Reliable by Design",
+    desc: "Every micro-tool runs on automated, monitored pipelines built to stay available around the clock.",
+  },
+  {
+    icon: "fa-sack-dollar",
+    title: "Cost Effective",
+    desc: "Lightweight models keep running costs low, so you get enterprise-grade output at micro-SaaS pricing.",
+  },
+  {
+    icon: "fa-plug",
+    title: "Easy Integration",
+    desc: "Simple APIs and clean documentation mean your team can plug a tool in and start using it the same day.",
   },
 ];
 
@@ -72,7 +123,6 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
-
       <section id="home" className="hero">
         <div className="hero-container hero-grid">
           <div className="hero-text">
@@ -85,8 +135,8 @@ export default function HomePage() {
 
             <p>
               We build AI Tools, AI Chatbots, AI Websites, AI Videos, Product
-              Ads, Logo &amp; Brand Design, and Business Automation to save time
-              and grow your business.
+              Ads, Logo &amp; Brand Design, and Business Automation to save
+              time and grow your business.
             </p>
 
             <div className="hero-btns">
@@ -129,24 +179,24 @@ export default function HomePage() {
               Learn More <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
             </Link>
           </div>
-          <div className="stat-grid">
+          <dl className="stat-grid">
             <div className="stat-item">
-              <div className="stat-number">5</div>
-              <div className="stat-label">Core Micro-Tools</div>
+              <dt className="stat-number">5</dt>
+              <dd className="stat-label">Core Micro-Tools</dd>
             </div>
             <div className="stat-item">
-              <div className="stat-number">&lt; 1s</div>
-              <div className="stat-label">Average Processing</div>
+              <dt className="stat-number">&lt; 1s</dt>
+              <dd className="stat-label">Average Processing</dd>
             </div>
             <div className="stat-item">
-              <div className="stat-number">100%</div>
-              <div className="stat-label">Automated Pipelines</div>
+              <dt className="stat-number">100%</dt>
+              <dd className="stat-label">Automated Pipelines</dd>
             </div>
             <div className="stat-item">
-              <div className="stat-number">24/7</div>
-              <div className="stat-label">API Availability</div>
+              <dt className="stat-number">24/7</dt>
+              <dd className="stat-label">API Availability</dd>
             </div>
-          </div>
+          </dl>
         </div>
       </section>
 
@@ -159,51 +209,16 @@ export default function HomePage() {
           </p>
         </div>
         <div className="grid-4">
-          <div className="service-card">
-            <div className="icon-box" aria-hidden="true">
-              <i className="fa-solid fa-file-user"></i>
-            </div>
-            <h3>AI Resume Shortlister</h3>
-            <p>
-              Automates bulk candidate resume parsing, soft-skills
-              extraction, and precise qualification scoring against job
-              descriptions.
-            </p>
-            <span className="service-tag">B2B SaaS / Recruiter Tool</span>
-          </div>
-          <div className="service-card">
-            <div className="icon-box" aria-hidden="true">
-              <i className="fa-solid fa-graduation-cap"></i>
-            </div>
-            <h3>Course Note-Taker</h3>
-            <p>
-              Transforms YouTube and Udemy video links into structured
-              Markdown study notes, flashcards, key takeaways, and quizzes.
-            </p>
-            <span className="service-tag">Freemium Productivity</span>
-          </div>
-          <div className="service-card">
-            <div className="icon-box" aria-hidden="true">
-              <i className="fa-solid fa-comments"></i>
-            </div>
-            <h3>Community Chat Digest</h3>
-            <p>
-              Processes WhatsApp/Facebook chat logs to extract action items,
-              key decision logs, and topic breakdowns.
-            </p>
-            <span className="service-tag">Community Management</span>
-          </div>
-          <div className="service-card">
-            <div className="icon-box" aria-hidden="true">
-              <i className="fa-solid fa-rss"></i>
-            </div>
-            <h3>Smart Dainik News</h3>
-            <p>
-              Aggregates complex news feeds into personalized,
-              executive-ready daily summaries delivered straight to inbox.
-            </p>
-            <span className="service-tag">Executive Briefings</span>
-          </div>
+          {services.map((s) => (
+            <TiltCard className="service-card" key={s.title}>
+              <div className="icon-box" aria-hidden="true">
+                <i className={`fa-solid ${s.icon}`}></i>
+              </div>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <span className="service-tag">{s.tag}</span>
+            </TiltCard>
+          ))}
         </div>
         <div className="view-all-wrap">
           <Link href="/services" className="btn btn-secondary">
@@ -222,14 +237,14 @@ export default function HomePage() {
         </div>
         <div className="grid-4 process-grid">
           {processSteps.map((p) => (
-            <div className="process-card" key={p.step}>
+            <TiltCard className="process-card" key={p.step}>
               <div className="process-step">{p.step}</div>
               <div className="icon-box" aria-hidden="true">
                 <i className={`fa-solid ${p.icon}`}></i>
               </div>
               <h3>{p.title}</h3>
               <p>{p.desc}</p>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </section>
@@ -243,46 +258,15 @@ export default function HomePage() {
           </p>
         </div>
         <div className="grid-4">
-          <div className="feature-card">
-            <div className="icon-box" aria-hidden="true">
-              <i className="fa-solid fa-bolt"></i>
-            </div>
-            <h3>Lightning Fast</h3>
-            <p>
-              Optimized LLM pipelines return structured results in under a
-              second on average, so tools feel instant, not batch-processed.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="icon-box" aria-hidden="true">
-              <i className="fa-solid fa-shield-halved"></i>
-            </div>
-            <h3>Reliable by Design</h3>
-            <p>
-              Every micro-tool runs on automated, monitored pipelines built
-              to stay available around the clock.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="icon-box" aria-hidden="true">
-              <i className="fa-solid fa-sack-dollar"></i>
-            </div>
-            <h3>Cost Effective</h3>
-            <p>
-              Lightweight models keep running costs low, so you get
-              enterprise-grade output at micro-SaaS pricing.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="icon-box" aria-hidden="true">
-              <i className="fa-solid fa-plug"></i>
-            </div>
-            <h3>Easy Integration</h3>
-            <p>
-              Simple APIs and clean documentation mean your team can plug a
-              tool in and start using it the same day.
-            </p>
-          </div>
+          {features.map((f) => (
+            <TiltCard className="feature-card" key={f.title}>
+              <div className="icon-box" aria-hidden="true">
+                <i className={`fa-solid ${f.icon}`}></i>
+              </div>
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+            </TiltCard>
+          ))}
         </div>
       </section>
 
@@ -293,14 +277,14 @@ export default function HomePage() {
         </div>
         <div className="grid-4 testimonial-grid">
           {testimonials.map((t) => (
-            <figure className="testimonial-card" key={t.name}>
+            <TiltCard className="testimonial-card" key={t.name}>
               <i className="fa-solid fa-quote-left" aria-hidden="true"></i>
               <blockquote>{t.quote}</blockquote>
               <figcaption>
                 <strong>{t.name}</strong>
                 <span>{t.role}</span>
               </figcaption>
-            </figure>
+            </TiltCard>
           ))}
         </div>
       </section>
@@ -308,7 +292,7 @@ export default function HomePage() {
       <section className="section">
         <div className="section-header">
           <h2>Frequently Asked Questions</h2>
-          <p>Can't find what you're looking for? Reach out on the contact page.</p>
+          <p>Can&apos;t find what you&apos;re looking for? Reach out on the contact page.</p>
         </div>
         <div className="faq-list">
           {faqs.map((f) => (

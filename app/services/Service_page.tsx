@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import TiltCard from "@/components/TiltCard";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -59,14 +60,14 @@ export default function ServicesPage() {
       <section id="services" className="section">
         <div className="grid-4">
           {services.map((s) => (
-            <article className="service-card" key={s.title}>
+            <TiltCard className="service-card" key={s.title}>
               <div className="icon-box">
                 <i className={`fa-solid ${s.icon}`} aria-hidden="true"></i>
               </div>
               <h3>{s.title}</h3>
               <p>{s.desc}</p>
               <span className="service-tag">{s.tag}</span>
-            </article>
+            </TiltCard>
           ))}
         </div>
       </section>

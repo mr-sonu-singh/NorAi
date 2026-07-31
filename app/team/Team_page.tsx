@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { Metadata } from "next";
+import TeamCard from "@/components/TeamCard";
 
 export const metadata: Metadata = {
   title: "Team",
@@ -53,10 +53,6 @@ const team: TeamMember[] = [
   },
 ];
 
-function slugify(name: string) {
-  return name.toLowerCase().replace(/\s+/g, "-");
-}
-
 export default function TeamPage() {
   return (
     <>
@@ -88,24 +84,7 @@ export default function TeamPage() {
       <section id="team" className="section">
         <div className="grid-5">
           {team.map((m) => (
-            <article
-              className="team-card"
-              key={m.name}
-              aria-labelledby={`name-${slugify(m.name)}`}
-            >
-              <Image
-                src={m.img}
-                alt={`Portrait of ${m.name}, ${m.role} at NorAI Technologies`}
-                width={110}
-                height={110}
-                sizes="110px"
-                className="team-avatar"
-              />
-              <h4 id={`name-${slugify(m.name)}`}>{m.name}</h4>
-              <div className="role">{m.role}</div>
-              <div className="degree">{m.degree}</div>
-              <p>{m.bio}</p>
-            </article>
+            <TeamCard member={m} key={m.name} />
           ))}
         </div>
       </section>
