@@ -1,14 +1,22 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <footer>
-      <div className="footer-container">
-        <div className="footer-logo">
-          <i className="fa-solid fa-bolt"></i> NorAI Technologies
+    <footer className="footer-minimal">
+      <div className="footer-minimal-container">
+        <div className="footer-minimal-left">
+          <i className="fa-solid fa-bolt" aria-hidden="true"></i>
+          <span>&copy; 2026 NorAI Technologies Pvt. Ltd.</span>
         </div>
-        <div>Simple AI Tools for Every Business.</div>
-      </div>
-      <div className="copyright">
-        &copy; 2026 NorAI Technologies Pvt. Ltd. All rights reserved.
+
+        <nav className="footer-minimal-links">
+          <Link href="/terms">Terms</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/pricing">Pricing</Link>
+          <Link href="/about">About</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/contact">Contact</Link>
+        </nav>
       </div>
     </footer>
   );
