@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import AIOrb from "@/components/AIOrb";
 import TiltCard from "@/components/TiltCard";
+import VideoSection from "@/components/VideoSection";
 
 export const metadata: Metadata = {
   title: "NorAI Technologies — Simple AI Tools for Every Business",
@@ -268,6 +269,17 @@ export default function HomePage() {
             </TiltCard>
           ))}
         </div>
+      </section>
+      
+      <section className="section">
+        <div className="section-header">
+          <h2>See NorAI in Action</h2>
+          <p>
+            A quick walkthrough of how our micro-SaaS tools plug into your
+            workflow.
+          </p>
+        </div>
+        <VideoSection videoId="rcExV3-YAPE" />
       </section>
 
       <section className="section">
