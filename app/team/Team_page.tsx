@@ -1,13 +1,21 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Team — NorAI Technologies",
+  title: "Team",
+  description:
+    "Meet the founding engineering team at NorAI Technologies — spatial computing, AI orchestration, design, and growth experts building micro-SaaS AI tools.",
 };
 
-const team = [
+interface TeamMember {
+  name: string;
+  role: string;
+  degree: string;
+  img: string;
+  bio: string;
+}
+
+const team: TeamMember[] = [
   {
     name: "Dhruw Singh",
     role: "Founder",
@@ -45,11 +53,13 @@ const team = [
   },
 ];
 
+function slugify(name: string) {
+  return name.toLowerCase().replace(/\s+/g, "-");
+}
+
 export default function TeamPage() {
   return (
     <>
-      <Header />
-
       <section className="page-hero">
         <h1>Founding Engineering Team</h1>
         <p>
@@ -59,27 +69,46 @@ export default function TeamPage() {
         </p>
       </section>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            itemListElement: team.map((m, i) => ({
+              "@type": "Person",
+              position: i + 1,
+              name: m.name,
+              jobTitle: m.role,
+            })),
+          }),
+        }}
+      />
+
       <section id="team" className="section">
         <div className="grid-5">
           {team.map((m) => (
-            <div className="team-card" key={m.name}>
+            <article
+              className="team-card"
+              key={m.name}
+              aria-labelledby={`name-${slugify(m.name)}`}
+            >
               <Image
                 src={m.img}
-                alt={m.name}
+                alt={`Portrait of ${m.name}, ${m.role} at NorAI Technologies`}
                 width={110}
                 height={110}
+                sizes="110px"
                 className="team-avatar"
               />
-              <h4>{m.name}</h4>
+              <h4 id={`name-${slugify(m.name)}`}>{m.name}</h4>
               <div className="role">{m.role}</div>
               <div className="degree">{m.degree}</div>
               <p>{m.bio}</p>
-            </div>
+            </article>
           ))}
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

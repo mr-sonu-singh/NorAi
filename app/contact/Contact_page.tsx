@@ -1,20 +1,32 @@
 "use client";
-
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 export default function ContactPage() {
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    alert("Thank you! Your message has been sent to the NorAI team.");
-    e.currentTarget.reset();
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setStatus("sent");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
     <>
-      <Header />
-
       <section className="page-hero">
         <h1>Get in Touch</h1>
         <p>
@@ -22,7 +34,6 @@ export default function ContactPage() {
           custom API integrations for your team?
         </p>
       </section>
-
       <section id="contact" className="section">
         <div className="contact-wrapper">
           <div className="contact-info">
@@ -35,7 +46,7 @@ export default function ContactPage() {
             </div>
             <ul className="info-list">
               <li className="info-item">
-                <i className="fa-solid fa-location-dot"></i>
+                <i className="fa-solid fa-location-dot" aria-hidden="true"></i>
                 <div>
                   <strong>Location</strong>
                   <br />
@@ -43,15 +54,15 @@ export default function ContactPage() {
                 </div>
               </li>
               <li className="info-item">
-                <i className="fa-solid fa-envelope"></i>
+                <i className="fa-solid fa-envelope" aria-hidden="true"></i>
                 <div>
                   <strong>Email Direct</strong>
                   <br />
-                  contact@norai.tech
+                  <a href="mailto:contact@norai.tech">contact@norai.tech</a>
                 </div>
               </li>
               <li className="info-item">
-                <i className="fa-solid fa-shield-halved"></i>
+                <i className="fa-solid fa-shield-halved" aria-hidden="true"></i>
                 <div>
                   <strong>Enterprise Support</strong>
                   <br />
@@ -61,12 +72,13 @@ export default function ContactPage() {
             </ul>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form" onSubmit={handleSubmit} noValidate>
             <div className="form-group">
               <label htmlFor="name">Full Name</label>
               <input
                 type="text"
                 id="name"
+                name="name"
                 className="form-control"
                 placeholder="e.g. Rahul Sharma"
                 required
@@ -77,6 +89,7 @@ export default function ContactPage() {
               <input
                 type="email"
                 id="email"
+                name="email"
                 className="form-control"
                 placeholder="name@company.com"
                 required
@@ -84,11 +97,11 @@ export default function ContactPage() {
             </div>
             <div className="form-group">
               <label htmlFor="tool">Interested Tool / Inquiry</label>
-              <select id="tool" className="form-control" style={{ color: "var(--text-main)" }}>
+              <select id="tool" name="tool" className="form-control" style={{ color: "var(--text-main)" }}>
                 <option>AI Resume Shortlister</option>
                 <option>Personalized Course Note-Taker</option>
                 <option>Community Chat Summarizer</option>
-                <option>Smart Danik News</option>
+                <option>Smart Dainik News</option>
                 <option>AR/VR Experience Studio</option>
                 <option>General Partner Inquiry</option>
               </select>
@@ -97,23 +110,30 @@ export default function ContactPage() {
               <label htmlFor="message">Message</label>
               <textarea
                 id="message"
+                name="message"
                 className="form-control"
                 placeholder="Tell us about your use case..."
                 required
               ></textarea>
             </div>
+
             <button
               type="submit"
               className="btn btn-primary"
               style={{ width: "100%", justifyContent: "center" }}
+              disabled={status === "sending"}
             >
-              Submit Inquiry <i className="fa-solid fa-paper-plane"></i>
+              {status === "sending" ? "Sending..." : "Submit Inquiry"}
+              {status !== "sending" && <i className="fa-solid fa-paper-plane"></i>}
             </button>
+
+            <div role="status" aria-live="polite">
+              {status === "sent" && <p className="form-success">Thanks — we'll get back to you shortly.</p>}
+              {status === "error" && <p className="form-error">Something went wrong. Please email us directly at contact@norai.tech.</p>}
+            </div>
           </form>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

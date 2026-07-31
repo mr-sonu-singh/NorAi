@@ -1,12 +1,19 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services — NorAI Technologies",
+  title: "Services",
+  description:
+    "NorAI's micro-SaaS product suite: AI resume shortlisting, course note-taking, chat digests, news briefings, and AR/VR experience design.",
 };
 
-const services = [
+interface Service {
+  icon: string;
+  title: string;
+  desc: string;
+  tag: string;
+}
+
+const services: Service[] = [
   {
     icon: "fa-file-user",
     title: "AI Resume Shortlister",
@@ -42,8 +49,6 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <Header />
-
       <section className="page-hero">
         <h1>Our Micro-SaaS Product Suite</h1>
         <p>
@@ -51,23 +56,20 @@ export default function ServicesPage() {
           learners, community managers, and executives.
         </p>
       </section>
-
       <section id="services" className="section">
         <div className="grid-4">
           {services.map((s) => (
-            <div className="service-card" key={s.title}>
+            <article className="service-card" key={s.title}>
               <div className="icon-box">
-                <i className={`fa-solid ${s.icon}`}></i>
+                <i className={`fa-solid ${s.icon}`} aria-hidden="true"></i>
               </div>
               <h3>{s.title}</h3>
               <p>{s.desc}</p>
               <span className="service-tag">{s.tag}</span>
-            </div>
+            </article>
           ))}
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

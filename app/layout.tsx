@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// @ts-ignore: side-effect import for global CSS
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "NorAI Technologies — Smart AI Micro-SaaS Utilities",
+  title: {
+    default: "NorAI Technologies — Simple AI Tools for Every Business",
+    template: "%s — NorAI Technologies",
+  },
   description:
-    "We build AI Tools, AI Chatbots, AI Websites, AI Videos, Product Ads, Logo & Brand Design, and Business Automation to save time and grow your business.",
+    "NorAI Technologies builds AI tools, AI chatbots, AI websites, AI videos, and business automation utilities that save time and help you grow.",
 };
 
 export default function RootLayout({
@@ -22,13 +25,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-      </head>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

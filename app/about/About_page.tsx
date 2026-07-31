@@ -1,16 +1,21 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us — NorAI Technologies",
+  title: "About Us",
+  description:
+    "NorAI Technologies engineers accessible, modular AI infrastructure — lightweight LLM pipelines for fast, cost-effective structured data extraction and summarization.",
 };
+
+const stats = [
+  { number: "5", label: "Core Micro-Tools" },
+  { number: "< 1s", label: "Average Processing" },
+  { number: "100%", label: "Automated Pipelines" },
+  { number: "24/7", label: "API Availability" },
+];
 
 export default function AboutPage() {
   return (
     <>
-      <Header />
-
       <section className="page-hero">
         <h1>About NorAI Technologies</h1>
         <p>
@@ -18,7 +23,6 @@ export default function AboutPage() {
           complex daily digital workflows.
         </p>
       </section>
-
       <section id="about" className="section">
         <div className="about-card">
           <div className="about-content">
@@ -34,28 +38,16 @@ export default function AboutPage() {
               data extraction, summarization, and parsing tools.
             </p>
           </div>
-          <div className="stat-grid">
-            <div className="stat-item">
-              <div className="stat-number">5</div>
-              <div className="stat-label">Core Micro-Tools</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">&lt; 1s</div>
-              <div className="stat-label">Average Processing</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">100%</div>
-              <div className="stat-label">Automated Pipelines</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-number">24/7</div>
-              <div className="stat-label">API Availability</div>
-            </div>
-          </div>
+          <dl className="stat-grid">
+            {stats.map((s) => (
+              <div className="stat-item" key={s.label}>
+                <dt className="stat-number">{s.number}</dt>
+                <dd className="stat-label">{s.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }
