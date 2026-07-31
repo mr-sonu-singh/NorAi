@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { Container } from '@/components/foundation/Container';
 import { Stack } from '@/components/foundation/Stack';
 import { Logo } from '@/components/molecules/Logo';
@@ -17,11 +18,12 @@ import { HeaderProps, HeaderCTA } from './Header.types';
 
 export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Services', href: '/products' },
+  { label: 'Services', href: '/services' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'About Us', href: '/about' },
   { label: 'Team', href: '/team' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const DEFAULT_HEADER_PRIMARY_CTA: HeaderCTA = {
@@ -34,24 +36,32 @@ export function Header({
   logoVariant = 'full',
   primaryCta = DEFAULT_HEADER_PRIMARY_CTA,
   secondaryCta,
-  sticky = false,
+  sticky = true,
   className,
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const pathname = usePathname();
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
   const prefersReducedMotion = usePrefersReducedMotion();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const prevIsDesktop = useRef(isDesktop);
+
+  // Automatically close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   // Lock body scroll when mobile menu is open
   useLockBodyScroll(isMobileMenuOpen && !isDesktop);
 
-  // Close mobile menu if window resizes to desktop breakpoint
+  // Close mobile menu ONLY when resizing from mobile screen to desktop breakpoint
   useEffect(() => {
-    if (isDesktop && isMobileMenuOpen) {
+    if (isDesktop && !prevIsDesktop.current) {
       setIsMobileMenuOpen(false);
     }
-  }, [isDesktop, isMobileMenuOpen]);
+    prevIsDesktop.current = isDesktop;
+  }, [isDesktop]);
 
   // Handle scroll listener for sticky variant
   useEffect(() => {
@@ -79,35 +89,6 @@ export function Header({
         setIsMobileMenuOpen(false);
         document.getElementById('mobile-menu-toggle')?.focus();
       }
-
-      if (event.key === 'Tab' && mobileMenuRef.current) {
-        const toggleBtn = document.getElementById('mobile-menu-toggle');
-        const menuFocusables = Array.from(
-          mobileMenuRef.current.querySelectorAll<HTMLElement>(
-            'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
-          )
-        );
-        
-        const focusableElements = toggleBtn ? [toggleBtn, ...menuFocusables] : menuFocusables;
-        if (focusableElements.length === 0) return;
-
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (firstElement && lastElement) {
-          if (event.shiftKey) {
-            if (document.activeElement === firstElement) {
-              event.preventDefault();
-              lastElement.focus();
-            }
-          } else {
-            if (document.activeElement === lastElement) {
-              event.preventDefault();
-              firstElement.focus();
-            }
-          }
-        }
-      }
     }
 
     document.addEventListener('keydown', handleKeyDown);
@@ -118,16 +99,20 @@ export function Header({
     setIsMobileMenuOpen((prev) => !prev);
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   const renderCtaButtons = (isMobileLayout = false) => {
     return (
       <Stack
         direction={isMobileLayout ? 'col' : 'row'}
         gap="3"
         align={isMobileLayout ? 'stretch' : 'center'}
-        className={isMobileLayout ? 'w-full pt-4 border-t border-primary-200' : undefined}
+        className={isMobileLayout ? 'w-full pt-4 border-t border-white/10' : undefined}
       >
         {secondaryCta && (
-          <Link href={secondaryCta.href} external={secondaryCta.external} className="w-full md:w-auto">
+          <Link href={secondaryCta.href} external={secondaryCta.external} className="w-full lg:w-auto" onClick={closeMobileMenu}>
             <Button
               variant="secondary"
               size={isMobileLayout ? 'md' : 'sm'}
@@ -139,12 +124,13 @@ export function Header({
           </Link>
         )}
         {primaryCta && (
-          <Link href={primaryCta.href} external={primaryCta.external} className="w-full md:w-auto">
+          <Link href={primaryCta.href} external={primaryCta.external} className="w-full lg:w-auto" onClick={closeMobileMenu}>
             <Button
               variant="primary"
               size={isMobileLayout ? 'md' : 'sm'}
               fullWidth={isMobileLayout}
               onClick={primaryCta.onClick}
+              className="bg-blue-600 hover:bg-blue-500 text-white border-none shadow-md shadow-blue-600/30 font-semibold"
             >
               {primaryCta.label}
             </Button>
@@ -157,9 +143,9 @@ export function Header({
   return (
     <header
       className={cn(
-        'w-full bg-slate-950/80 backdrop-blur-xl border-b border-white/10 text-white transition-colors duration-fast z-50',
+        'w-full bg-slate-950/90 backdrop-blur-xl border-b border-white/10 text-white transition-all duration-300 z-50',
         sticky && 'sticky top-0',
-        sticky && isScrolled && 'shadow-lg shadow-blue-500/5 bg-slate-950/90 backdrop-blur-xl',
+        sticky && isScrolled && 'shadow-lg shadow-blue-500/10 bg-slate-950/95 backdrop-blur-2xl',
         className,
       )}
       data-testid="header-organism"
@@ -172,22 +158,22 @@ export function Header({
           className="flex items-center justify-between py-3 md:py-4"
         >
           {/* Brand Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center" onClick={closeMobileMenu}>
             <Logo variant={logoVariant} href="/" />
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-8">
             <NavigationGroup items={navItems} orientation="horizontal" />
           </div>
 
           {/* Desktop CTA Group */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden lg:flex items-center">
             {renderCtaButtons(false)}
           </div>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex md:hidden items-center">
+          {/* Mobile / Tablet Hamburger Button */}
+          <div className="flex lg:hidden items-center">
             <IconButton
               id="mobile-menu-toggle"
               icon={isMobileMenuOpen ? 'x' : 'menu'}
@@ -197,24 +183,25 @@ export function Header({
               variant="ghost"
               size="md"
               onClick={toggleMobileMenu}
+              className="text-white hover:bg-white/10"
               data-testid="mobile-menu-toggle"
             />
           </div>
         </nav>
 
-        {/* Mobile Dropdown Panel */}
+        {/* Mobile / Tablet Dropdown Panel */}
         {isMobileMenuOpen && (
           <div
             id="mobile-menu"
             ref={mobileMenuRef}
             aria-label="Mobile Menu"
             className={cn(
-              'md:hidden py-4 border-t border-primary-200 bg-background',
-              !prefersReducedMotion && 'animate-in fade-in slide-in-from-top-2 duration-300',
+              'lg:hidden py-6 border-t border-white/10 bg-slate-950/95 backdrop-blur-2xl text-white space-y-4',
+              !prefersReducedMotion && 'animate-in fade-in slide-in-from-top-2 duration-200',
             )}
             data-testid="mobile-menu-panel"
           >
-            <Stack direction="col" gap="6">
+            <Stack direction="col" gap="4" onClick={closeMobileMenu}>
               <NavigationGroup items={navItems} orientation="vertical" collapsible={false} />
               {renderCtaButtons(true)}
             </Stack>

@@ -7,6 +7,7 @@ export interface BlogPostData {
   category: string;
   image: string;
   meta: string;
+  readTime: string;
   sections: Array<{
     heading?: string;
     paragraphs: string[];
@@ -18,118 +19,84 @@ export interface BlogPostData {
 }
 
 export const BLOG_POSTS: Record<string, BlogPostData> = {
-  'sub-10ms-neural-compute': {
-    slug: 'sub-10ms-neural-compute',
-    title: 'Achieving Sub-10ms Latency in Deterministic Neural Compute',
-    excerpt: 'How custom FPGA acceleration hardware and zero-knowledge matrix compilation eliminate execution jitter in high-throughput enterprise inference.',
-    author: 'Dr. Elena Rostova',
-    date: 'October 14, 2025',
-    category: 'Engineering',
+  'ai-agent-orchestration-architecture': {
+    slug: 'ai-agent-orchestration-architecture',
+    title: 'Architecting Deterministic AI Agent Workflows for Scale',
+    excerpt: 'How NorAI orchestrates multi-agent workflows with sub-second response guarantees, structured JSON schemas, and fault-tolerant fallbacks.',
+    author: 'Gourav Singh',
+    date: 'January 15, 2026',
+    category: 'AI Orchestration',
     image: '/images/blog/neural-compute.jpg',
-    meta: 'Dr. Elena Rostova · Oct 14, 2025',
+    meta: 'Gourav Singh · Jan 15, 2026',
+    readTime: '5 min read',
     sections: [
       {
-        heading: 'The Determinism Challenge in Neural Execution',
+        heading: 'The Challenge of Stochastic LLM Outputs',
         paragraphs: [
-          'High-frequency financial settlement pipelines and autonomous defense nodes require zero-tolerance latency SLAs. Standard GPU inferencing clusters introduce non-deterministic execution jitter due to thread scheduling overhead, memory paging delays, and floating-point non-determinism across driver versions.',
-          'To eliminate these variances, NorAI engineered a custom FPGA matrix execution layer coupled with deterministic memory pipeline scheduling, enforcing a strict sub-10ms upper latency bound.',
+          'Enterprise automated pipelines require predictable, structured outputs. Standard unstructured text generation leads to parsing errors, hallucination edge cases, and unexpected system downtime.',
+          'At NorAI, we enforce strict JSON schema validation and deterministic prompt DAGs to ensure AI agents return clean, type-safe payloads every single time.',
         ],
       },
       {
-        heading: 'FPGA Acceleration and Memory Pipeline Design',
+        heading: 'Deterministic Agent State Machine',
         paragraphs: [
-          'By bypassing traditional kernel-level interrupt loops, direct DMA streaming pipelines transfer model tensors straight into hardware registers. Matrix multiplies are compiled into fixed clock-cycle DAG execution steps.',
-        ],
-        codeSnippet: {
-          language: 'rust',
-          code: `// FPGA Matrix Execution Pipeline Interface
-pub struct DeterministicNeuralCore {
-    cycle_cap: u64,
-    dma_channel: DirectRegisterChannel,
-}
-
-impl DeterministicNeuralCore {
-    pub fn execute_layer(&self, input: &[f32]) -> Result<ArrayBuffer, ExecutionError> {
-        self.dma_channel.stream_sync(input)?;
-        assert!(self.dma_channel.latency_cycles() <= 45000);
-        Ok(self.dma_channel.read_output())
-    }
-}`,
-        },
-      },
-      {
-        heading: 'Real-World Production Metrics',
-        paragraphs: [
-          'Across 10 million simulated algorithmic settlement transactions, 99.99% of neural inference runs executed within 8.4ms, providing the predictable throughput required for high-consequence enterprise applications.',
-        ],
-      },
-    ],
-  },
-  'zero-knowledge-stark-compilers': {
-    slug: 'zero-knowledge-stark-compilers',
-    title: 'Zero-Knowledge STARK Compilers for Neural Networks',
-    excerpt: 'Architecting transparent, trusted-setup-free cryptographic proofs to verify neural model outputs without compromising model weights.',
-    author: 'Marcus Vance',
-    date: 'November 3, 2025',
-    category: 'Cryptography',
-    image: '/images/blog/stark-compiler.jpg',
-    meta: 'Marcus Vance · Nov 3, 2025',
-    sections: [
-      {
-        heading: 'Cryptographic Auditability Without Data Disclosure',
-        paragraphs: [
-          'In regulated enterprise domains, validating that an AI inference was computed by an approved model version without exposing proprietary weights or private input data is a fundamental requirement.',
-          'NorAI utilizes STARK (Scalable Transparent ARguments of Knowledge) proof systems, eliminating trusted setup vulnerabilities while enabling rapid verification on lightweight client nodes.',
-        ],
-      },
-      {
-        heading: 'Matrix Algebra Circuit Compilation',
-        paragraphs: [
-          'Our ZK compiler translates standard ONNX computation graphs into algebraic execution traces (AIR polynomials). Each matrix multiplication step is converted into arithmetic constraints over a finite prime field.',
+          'By modeling multi-agent interactions as state transition machines, every execution step carries clear pre-conditions, retry logic, and fallback fallbacks.',
         ],
         codeSnippet: {
           language: 'typescript',
-          code: `import { ZkCompiler, StarkProof } from '@norai/zk-stark';
+          code: `import { AgentOrchestrator, SchemaValidator } from '@norai/agent-core';
 
-const compiler = new ZkCompiler({ fieldSize: '2^64 - 2^32 + 1' });
-const circuit = compiler.compileModel('model_v4.onnx');
-
-const proof: StarkProof = await circuit.generateProof({
-  inputs: encryptedPayload,
-  weights: privateWeights,
+const orchestrator = new AgentOrchestrator({
+  timeoutMs: 800,
+  maxRetries: 2,
 });
-console.log('Proof size:', proof.byteLength, 'bytes');`,
+
+const result = await orchestrator.executeTask({
+  task: 'SHORTLIST_RESUME',
+  payload: resumeText,
+  schema: ResumeScoringSchema,
+});
+console.log('Score:', result.qualificationScore);`,
         },
       },
+    ],
+  },
+  'spatial-computing-ar-vr-ai-pipelines': {
+    slug: 'spatial-computing-ar-vr-ai-pipelines',
+    title: 'Bridging Spatial Computing & Neural Model Inference',
+    excerpt: 'Insights from Japan VR/AR Summit: How spatial 3D rendering and real-time vision AI unlock next-generation immersive applications.',
+    author: 'Sonu Singh',
+    date: 'December 28, 2025',
+    category: 'Spatial Computing',
+    image: '/images/blog/stark-compiler.jpg',
+    meta: 'Sonu Singh · Dec 28, 2025',
+    readTime: '6 min read',
+    sections: [
       {
-        heading: 'Client-Side Instant Verification',
+        heading: 'Spatial Telemetry Meets Real-Time Computer Vision',
         paragraphs: [
-          'Verification takes under 2ms in any browser environment or lightweight IoT edge node, giving third-party auditors cryptographically unforgeable proof of model output integrity.',
+          'High-precision spatial tracking requires processing 60+ camera frames per second with sub-10ms neural mesh alignment.',
+          'We leverage WebGPU hardware acceleration and quantized vision models to deliver instantaneous spatial segmentation in browser viewports.',
         ],
       },
     ],
   },
-  'deterministic-ai-architecture': {
-    slug: 'deterministic-ai-architecture',
-    title: 'Why Hardware Determinism is Essential for Verifiable AI',
-    excerpt: 'Examining the risks of floating-point drift across heterogeneous GPU clusters and how NorAI achieves bit-exact reproducibility.',
-    author: 'Sarah Jenkins',
-    date: 'December 12, 2025',
-    category: 'Architecture',
+  'military-discipline-in-software-ops': {
+    slug: 'military-discipline-in-software-ops',
+    title: 'Applying 30 Years of Military Discipline to Modern DevSecOps',
+    excerpt: 'Lessons from 30 years in the Indian Army Corps of Signals on zero-trust security, operational redundancy, and fail-safe system design.',
+    author: 'Dhruw Singh',
+    date: 'November 12, 2025',
+    category: 'Operations & Leadership',
     image: '/images/blog/deterministic-ai.jpg',
-    meta: 'Sarah Jenkins · Dec 12, 2025',
+    meta: 'Dhruw Singh · Nov 12, 2025',
+    readTime: '4 min read',
     sections: [
       {
-        heading: 'The Hidden Danger of Floating-Point Non-Determinism',
+        heading: 'Operational Redundancy & Signal Reliability',
         paragraphs: [
-          'Different GPU architectures, CUDA library versions, and parallel reduction orders produce slightly varying floating-point outputs for the exact same neural network input payload. In credit scoring, healthcare diagnostics, or automated trading, these micro-deviations accumulate into non-deterministic decision branching.',
-          'NorAI addresses this at the hardware primitive level by enforcing deterministic fixed-point accumulation pipelines.',
-        ],
-      },
-      {
-        heading: 'Fixed-Point Quantization & Execution Guarantees',
-        paragraphs: [
-          'By quantizing neural layer weights into deterministic 16-bit fixed-point representations, every execution across any node in a global cluster produces identical bit-for-bit output vectors.',
+          'In military communications, packet loss or system failure is never an option. The exact same principle applies to mission-critical business automation.',
+          'We enforce 3-tier fallback systems, automated database heartbeats, and strict security compliance across all NorAI production endpoints.',
         ],
       },
     ],
