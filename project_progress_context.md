@@ -48,4 +48,4 @@ To transform the website from generic AI startup tropes into a bespoke, state-of
 | **Phase 4 (`/contact`)** | Interactive form & pre-filled routing | Upgrade form to parse URL query params (`?service=...`), hairline form cards, UP India address block, `< 2 Hours Guaranteed` SLA telemetry badge. | ✅ Complete |
 | **Phase 5 (`/team`)** | Team presentation & roles | Clean hierarchy, preserved 100% authentic founder roles & credentials, hairline roster cards, `#0CCAB1` accents. | ✅ Complete |
 | **Phase 6 (`/blog`)** | Content hub & article reader | High-contrast typography, reading time badges, stateful category routing (`[ALL]`, `[AI ORCHESTRATION]`, `[SPATIAL]`, `[OPERATIONS]`), high-contrast code snippet reader. | ✅ Complete |
-| **Phase 7 (`/privacy` & `/terms`)** | Legal & compliance templates | Structured legal typography, clear section navigation, updated organization metadata. | ⏳ Scheduled |
+| **Phase 7 (`/privacy` & `/terms`)** | Legal & compliance templates | Structured legal typography, sticky document index sidebar, updated organization metadata (NorAI Technologies Pvt. Ltd., Uttar Pradesh, India), `#0CCAB1` accents. | ✅ Complete |
