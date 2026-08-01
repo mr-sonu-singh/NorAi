@@ -1,107 +1,170 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Sparkles, Cpu, Zap, Bot, ShieldCheck } from 'lucide-react';
+import { Terminal, Sparkles, Zap, Cpu, CheckCircle2, ArrowRight, type LucideIcon } from 'lucide-react';
 
 export interface HeroOrbProps {
   className?: string;
 }
 
+interface TeaserTab {
+  id: string;
+  name: string;
+  badge: string;
+  icon: LucideIcon;
+  inputSnippet: string;
+  outputSummary: string;
+  latency: string;
+}
+
+const TEASER_TABS: TeaserTab[] = [
+  {
+    id: 'resume',
+    name: 'Resume-Shortlister.v1',
+    badge: 'Recruitment AI',
+    icon: Sparkles,
+    inputSnippet: 'Candidate: Senior Fullstack Engineer\nSkills: React, Next.js, Node.js, Python, PostgreSQL\nExperience: 5+ years building SaaS automation...',
+    outputSummary: 'Score: 94/100 (Top 2%)\nExtraction: Strong React + Python match\nRecommendation: Advance to Technical Screen',
+    latency: '0.34s',
+  },
+  {
+    id: 'notetaker',
+    name: 'Course-NoteTaker.v1',
+    badge: 'EdTech AI',
+    icon: Zap,
+    inputSnippet: 'Audio Stream: Lecture_04_Neural_Networks.mp3\nDuration: 45m 12s\nTopic: Gradient Descent & Loss Functions',
+    outputSummary: 'Key Takeaways: 4 Core Formulas\nSummary: Executive 3-para digest\nQuiz: 5 Auto-generated Flashcards ready',
+    latency: '0.41s',
+  },
+  {
+    id: 'digest',
+    name: 'Chat-Digest.v1',
+    badge: 'Community AI',
+    icon: Cpu,
+    inputSnippet: 'Source: #general-discussions (Discord)\nMessages Analyzed: 1,420 unread\nTimeframe: Last 24 Hours',
+    outputSummary: 'Urgent Issues: 2 API rate limit reports\nSentiment: 88% Positive\nAction: Sent alert to @engineering',
+    latency: '0.28s',
+  },
+];
+
 export const HeroOrb: React.FC<HeroOrbProps> = ({ className }) => {
+  const [activeTab, setActiveTab] = useState(0);
+  const activeItem = TEASER_TABS[activeTab] ?? TEASER_TABS[0];
+  if (!activeItem) return null;
+  const current = activeItem;
+  const IconComp = current.icon;
+
   return (
-    <div className={cn('relative flex items-center justify-center w-full max-w-2xl mx-auto aspect-square select-none pointer-events-none', className)}>
-      {/* Outer Ambient Glowing Backdrop */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-600/30 via-cyan-500/20 to-indigo-600/30 blur-3xl animate-orb-pulse" />
-      <div className="absolute inset-10 rounded-full bg-blue-500/10 blur-2xl animate-ping opacity-20" />
-
-      {/* SVG Neural Orbital Mesh Canvas */}
-      <svg
-        className="w-full h-full relative z-10 overflow-visible"
-        viewBox="0 0 500 500"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          {/* Gradients */}
-          <radialGradient id="orbCoreGradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.8" />
-            <stop offset="60%" stopColor="#2563eb" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#1e3a8a" stopOpacity="0" />
-          </radialGradient>
-
-          <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.2" />
-          </linearGradient>
-
-          <linearGradient id="lineGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#6366f1" stopOpacity="0.2" />
-          </linearGradient>
-
-          <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="8" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-        </defs>
-
-        {/* Concentric Rotating Rings */}
-        <circle cx="250" cy="250" r="210" stroke="#3b82f6" strokeWidth="1" strokeDasharray="4 8" strokeOpacity="0.3" className="animate-spin" style={{ animationDuration: '40s' }} />
-        <circle cx="250" cy="250" r="170" stroke="#60a5fa" strokeWidth="1.5" strokeDasharray="12 12" strokeOpacity="0.4" className="animate-spin" style={{ animationDuration: '25s', animationDirection: 'reverse' }} />
-        <circle cx="250" cy="250" r="120" stroke="#38bdf8" strokeWidth="1" strokeOpacity="0.5" />
-
-        {/* Core Glowing Orb Sphere */}
-        <circle cx="250" cy="250" r="90" fill="url(#orbCoreGradient)" filter="url(#glowFilter)" />
-        <circle cx="250" cy="250" r="45" fill="#1e40af" fillOpacity="0.6" stroke="#60a5fa" strokeWidth="2" />
-
-        {/* Neural Vector Connections */}
-        <g className="animate-line-glow">
-          <line x1="250" y1="250" x2="110" y2="140" stroke="url(#lineGrad1)" strokeWidth="2" />
-          <line x1="250" y1="250" x2="390" y2="130" stroke="url(#lineGrad2)" strokeWidth="2" />
-          <line x1="250" y1="250" x2="380" y2="370" stroke="url(#lineGrad1)" strokeWidth="2" />
-          <line x1="250" y1="250" x2="120" y2="360" stroke="url(#lineGrad2)" strokeWidth="2" />
-          <line x1="110" y1="140" x2="250" y2="80" stroke="url(#lineGrad1)" strokeWidth="1.5" strokeDasharray="4 4" />
-          <line x1="390" y1="130" x2="250" y2="80" stroke="url(#lineGrad2)" strokeWidth="1.5" strokeDasharray="4 4" />
-          <line x1="380" y1="370" x2="250" y2="420" stroke="url(#lineGrad1)" strokeWidth="1.5" strokeDasharray="4 4" />
-          <line x1="120" y1="360" x2="250" y2="420" stroke="url(#lineGrad2)" strokeWidth="1.5" strokeDasharray="4 4" />
-        </g>
-
-        {/* Node Points */}
-        <circle cx="250" cy="80" r="8" fill="#38bdf8" className="animate-pulse" filter="url(#glowFilter)" />
-        <circle cx="110" cy="140" r="7" fill="#60a5fa" className="animate-pulse" />
-        <circle cx="390" cy="130" r="9" fill="#818cf8" className="animate-pulse" />
-        <circle cx="380" cy="370" r="7" fill="#38bdf8" className="animate-pulse" />
-        <circle cx="120" cy="360" r="8" fill="#60a5fa" className="animate-pulse" />
-        <circle cx="250" cy="420" r="7" fill="#818cf8" className="animate-pulse" />
-      </svg>
-
-      {/* Center AI Core Icon */}
-      <div className="absolute inset-0 flex items-center justify-center z-20">
-        <div className="p-4 rounded-full bg-blue-950/80 border border-blue-400/40 text-blue-400 shadow-lg shadow-blue-500/20 backdrop-blur-md">
-          <Bot className="w-10 h-10 animate-pulse" />
+    <div className={cn('w-full max-w-xl mx-auto rounded-xl border border-white/10 bg-[#131924] shadow-2xl overflow-hidden font-sans select-none', className)}>
+      {/* Console Top Header Bar */}
+      <div className="flex items-center justify-between px-4 py-3 bg-[#0B0F17] border-b border-white/10">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-red-500/80" />
+          <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+          <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+          <span className="ml-2 text-xs font-mono text-slate-400 flex items-center gap-1.5">
+            <Terminal className="w-3.5 h-3.5 text-[#0CCAB1]" /> norai-console ~ live-preview
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#0CCAB1]/10 border border-[#0CCAB1]/30 text-[#45F7D6] text-[11px] font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#45F7D6] animate-pulse" />
+            {current.latency} latency
+          </span>
         </div>
       </div>
 
-      {/* Floating Interactive Badge Micro-Cards */}
-      <div className="absolute top-[12%] left-[2%] z-30 flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-slate-900/80 backdrop-blur-md text-xs font-medium text-blue-300 shadow-lg animate-float-particle">
-        <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-        <span>AI Resume Parser</span>
+      {/* Console Tab Selector */}
+      <div className="flex border-b border-white/10 bg-[#0B0F17]/60 overflow-x-auto scrollbar-none" role="tablist" aria-label="NorAI Micro-Tool Teaser Console">
+        {TEASER_TABS.map((tab, idx) => {
+          const TabIcon = tab.icon;
+          const isActive = activeTab === idx;
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              tabIndex={isActive ? 0 : -1}
+              onClick={() => setActiveTab(idx)}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowRight') {
+                  e.preventDefault();
+                  setActiveTab((idx + 1) % TEASER_TABS.length);
+                } else if (e.key === 'ArrowLeft') {
+                  e.preventDefault();
+                  setActiveTab((idx - 1 + TEASER_TABS.length) % TEASER_TABS.length);
+                }
+              }}
+              className={cn(
+                'flex items-center gap-2 px-4 py-2.5 text-xs font-mono transition-all border-b-2 whitespace-nowrap cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1]',
+                isActive
+                  ? 'border-[#0CCAB1] text-[#45F7D6] bg-[#131924]'
+                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-white/5'
+              )}
+            >
+              <TabIcon className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>{tab.name}</span>
+            </button>
+          );
+        })}
       </div>
 
-      <div className="absolute top-[10%] right-[2%] z-30 flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-slate-900/80 backdrop-blur-md text-xs font-medium text-sky-300 shadow-lg animate-float-particle" style={{ animationDelay: '2s' }}>
-        <Zap className="w-3.5 h-3.5 text-blue-400" />
-        <span>Fast Note-Taker</span>
-      </div>
+      {/* Console Live Teaser Payload View */}
+      <div className="p-5 space-y-4">
+        {/* Tool Header & Badge */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="p-2 rounded-lg bg-[#0CCAB1]/10 border border-[#0CCAB1]/20 text-[#0CCAB1]">
+              <IconComp className="w-4 h-4" />
+            </div>
+            <span className="text-sm font-semibold text-white font-display">
+              {current.name}
+            </span>
+          </div>
+          <span className="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-800 text-[#45F7D6] border border-white/10">
+            {current.badge}
+          </span>
+        </div>
 
-      <div className="absolute bottom-[12%] right-[5%] z-30 flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-slate-900/80 backdrop-blur-md text-xs font-medium text-indigo-300 shadow-lg animate-float-particle" style={{ animationDelay: '4s' }}>
-        <Cpu className="w-3.5 h-3.5 text-indigo-400" />
-        <span>Chat Digest Bot</span>
-      </div>
+        {/* Input & Output Split Preview */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+          {/* Input Block */}
+          <div className="p-3 rounded-lg bg-[#0B0F17] border border-white/5 space-y-1.5">
+            <div className="text-[10px] text-slate-500 uppercase tracking-wider font-bold flex items-center justify-between">
+              <span>Input Stream</span>
+              <span className="text-slate-600">RAW_DATA</span>
+            </div>
+            <pre className="text-slate-300 whitespace-pre-wrap leading-relaxed text-[11px] font-mono">
+              {current.inputSnippet}
+            </pre>
+          </div>
 
-      <div className="absolute bottom-[10%] left-[5%] z-30 flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/30 bg-slate-900/80 backdrop-blur-md text-xs font-medium text-teal-300 shadow-lg animate-float-particle" style={{ animationDelay: '6s' }}>
-        <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
-        <span>Smart News Engine</span>
+          {/* Output Block */}
+          <div className="p-3 rounded-lg bg-[#0B0F17] border border-[#0CCAB1]/30 space-y-1.5 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-16 h-16 bg-[#0CCAB1]/5 rounded-full blur-xl pointer-events-none" />
+            <div className="text-[10px] text-[#0CCAB1] uppercase tracking-wider font-bold flex items-center justify-between">
+              <span className="flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3 text-[#45F7D6]" /> AI Output Payload
+              </span>
+              <span className="text-[#45F7D6]">EXTRACTED</span>
+            </div>
+            <pre className="text-[#45F7D6] whitespace-pre-wrap leading-relaxed text-[11px] font-mono">
+              {current.outputSummary}
+            </pre>
+          </div>
+        </div>
+
+        {/* Teaser Footer Note */}
+        <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#0CCAB1]" /> Instant Rest API payload simulation
+          </span>
+          <span className="text-slate-400 hover:text-white transition-colors cursor-pointer flex items-center gap-1">
+            See product docs <ArrowRight className="w-3 h-3" />
+          </span>
+        </div>
       </div>
     </div>
   );

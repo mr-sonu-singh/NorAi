@@ -1,35 +1,22 @@
 import React from 'react';
-import { buildMetadata } from '@/lib/seo';
 import { Container } from '@/components/foundation/Container';
 import { Section } from '@/components/foundation/Section';
 import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import { TiltCard } from '@/components/molecules/TiltCard';
 import {
-  Sparkles,
-  Zap,
   ShieldCheck,
   CheckCircle2,
   ArrowRight,
   Code2,
   Cpu,
   Lock,
-  Globe2,
   HelpCircle,
   ChevronDown,
   Briefcase,
-  Award,
-  GraduationCap,
-  Compass,
+  Users,
 } from 'lucide-react';
-
-export const metadata = buildMetadata({
-  path: '/team',
-  title: 'Founding Engineering Team — NorAI Technologies',
-  description: 'Meet the founding engineering team at NorAI Technologies combining military discipline, spatial computing, strategic marketing, UI/UX design, and AI orchestration.',
-});
 
 const FOUNDING_TEAM = [
   {
@@ -109,25 +96,25 @@ const TEAM_FAQ = [
 
 export default function TeamPage() {
   return (
-    <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-blue-500 selection:text-white">
+    <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-[#0CCAB1] selection:text-[#0B0F17]">
       {/* Hero Section */}
-      <Section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
+      <Section className="relative pt-12 pb-14 md:pt-20 md:pb-20 overflow-hidden">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-6">
-            {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-semibold tracking-wide uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              <span>Founding Engineering Team</span>
+            {/* Signature Element: Founding Roster Credentials Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-[#131924] text-slate-300 text-xs font-mono tracking-wide">
+              <Users className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" />
+              <span>Founding Roster • 5 Specializations • Military Rigor &amp; Spatial AI</span>
             </div>
 
             {/* Headline */}
             <Heading
               as="h1"
               variant="display-xl"
-              className="font-extrabold tracking-tight text-white leading-tight"
+              className="font-display font-extrabold tracking-tight text-white leading-tight"
             >
               Founding Engineering{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">
+              <span className="text-[#0CCAB1] underline decoration-[#0CCAB1]/40 underline-offset-8">
                 Team
               </span>
             </Heading>
@@ -140,12 +127,12 @@ export default function TeamPage() {
             {/* Action Buttons */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact" className="w-full sm:w-auto">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/30">
-                  Talk to Our Team <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                <Button variant="primary" size="lg" className="w-full sm:w-auto bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-8 py-3.5 rounded-lg shadow-lg shadow-[#0CCAB1]/20 transition-all">
+                  Talk to Our Team <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
                 </Button>
               </Link>
               <Link href="/about" className="w-full sm:w-auto">
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto border-white/20 bg-white/5 hover:bg-white/10 text-white px-8 py-3.5 rounded-xl backdrop-blur-md">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto border-white/10 bg-white/5 hover:bg-white/10 text-white px-8 py-3.5 rounded-lg backdrop-blur-md">
                   Read Company Story
                 </Button>
               </Link>
@@ -155,40 +142,44 @@ export default function TeamPage() {
       </Section>
 
       {/* 5-Member Team Grid */}
-      <Section className="py-16 bg-slate-950/40 border-y border-white/10">
+      <Section className="py-16 bg-[#131924]/40 border-y border-white/10">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
-              Meet the Founders & Key Engineers
+            <div className="text-xs font-mono text-[#0CCAB1] uppercase font-bold tracking-widest">
+              Core Leadership &amp; Engineering
+            </div>
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
+              Meet the Founders &amp; Key Engineers
             </Heading>
             <Text variant="body-md" className="text-slate-400">
-              Cross-disciplinary leaders driving NorAI's micro-SaaS tools and AI orchestration architecture.
+              Cross-disciplinary leaders driving NorAI&apos;s micro-SaaS tools and AI orchestration architecture.
             </Text>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {FOUNDING_TEAM.map((member, index) => (
-              <TiltCard key={index} className="group flex flex-col justify-between p-8 bg-slate-900/80 border border-white/10">
+              <div
+                key={index}
+                className="bg-[#131924] border border-white/10 rounded-xl p-8 flex flex-col justify-between space-y-6 hover:border-[#0CCAB1]/40 transition-all group"
+              >
                 <div className="space-y-5">
-                  {/* Top Avatar Circle Placeholder & Degree Badge */}
+                  {/* Top Avatar Circle Badge & Degree Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 p-0.5 shadow-lg shadow-blue-500/20">
-                      <div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-blue-400 font-bold text-lg">
-                        {member.name.split(' ').map(n => n[0]).join('')}
-                      </div>
+                    <div className="w-16 h-16 rounded-full bg-[#0B0F17] border-2 border-[#0CCAB1]/40 flex items-center justify-center text-[#0CCAB1] font-display font-extrabold text-xl shadow-lg shadow-[#0CCAB1]/10">
+                      {member.name.split(' ').map(n => n[0]).join('')}
                     </div>
 
-                    <span className="text-xs font-mono font-bold px-3 py-1 rounded-md bg-slate-800 border border-blue-400/20 text-slate-300">
+                    <span className="text-xs font-mono font-bold px-3 py-1 rounded bg-[#0B0F17] border border-white/10 text-[#45F7D6]">
                       {member.degree}
                     </span>
                   </div>
 
                   {/* Member Name & Role */}
                   <div>
-                    <Heading as="h3" variant="heading-lg" className="font-bold text-white group-hover:text-blue-400 transition-colors">
+                    <Heading as="h3" variant="heading-lg" className="font-display font-bold text-white group-hover:text-[#0CCAB1] transition-colors">
                       {member.name}
                     </Heading>
-                    <div className="text-xs font-bold font-mono tracking-wider text-blue-400 uppercase pt-1">
+                    <div className="text-xs font-bold font-mono tracking-wider text-[#0CCAB1] uppercase pt-1">
                       {member.role}
                     </div>
                   </div>
@@ -200,11 +191,11 @@ export default function TeamPage() {
                 </div>
 
                 {/* Tag Footer */}
-                <div className="pt-6 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 font-mono">
-                  <span className="text-blue-300 font-medium">{member.tag}</span>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <div className="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+                  <span className="text-slate-400 font-medium">{member.tag}</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#0CCAB1] shrink-0" aria-hidden="true" />
                 </div>
-              </TiltCard>
+              </div>
             ))}
           </div>
         </Container>
@@ -214,8 +205,8 @@ export default function TeamPage() {
       <Section className="py-20">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
-              Engineering Culture & Discipline
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
+              Engineering Culture &amp; Discipline
             </Heading>
             <Text variant="body-md" className="text-slate-400">
               Combining military operational standards with modern spatial and AI engineering.
@@ -226,17 +217,17 @@ export default function TeamPage() {
             {CULTURE_POINTS.map((item, index) => {
               const IconComp = item.icon;
               return (
-                <TiltCard key={index} className="space-y-4 p-6 bg-slate-900/60">
-                  <div className="p-3 w-fit rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                    <IconComp className="w-6 h-6" />
+                <div key={index} className="bg-[#131924] border border-white/10 rounded-xl p-6 space-y-4 hover:border-[#0CCAB1]/40 transition-all">
+                  <div className="p-3 w-fit rounded-lg bg-[#0CCAB1]/10 border border-[#0CCAB1]/20 text-[#0CCAB1]">
+                    <IconComp className="w-5 h-5" aria-hidden="true" />
                   </div>
-                  <Heading as="h4" variant="heading-md" className="font-bold text-white">
+                  <Heading as="h4" variant="heading-md" className="font-display font-bold text-white">
                     {item.title}
                   </Heading>
                   <Text variant="body-xs" className="text-slate-300 leading-relaxed">
                     {item.desc}
                   </Text>
-                </TiltCard>
+                </div>
               );
             })}
           </div>
@@ -244,10 +235,10 @@ export default function TeamPage() {
       </Section>
 
       {/* Team FAQ Accordion */}
-      <Section className="py-20 bg-slate-950/60 border-t border-white/10">
+      <Section className="py-20 bg-[#131924]/40 border-t border-white/10">
         <Container size="narrow">
           <div className="text-center space-y-4 mb-12">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
               Team FAQ
             </Heading>
             <Text variant="body-md" className="text-slate-400">
@@ -259,14 +250,14 @@ export default function TeamPage() {
             {TEAM_FAQ.map((faq, index) => (
               <details
                 key={index}
-                className="group rounded-xl border border-white/10 bg-slate-900/60 p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
+                className="group rounded-lg border border-white/10 bg-[#131924] p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-base">
                   <span className="flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                    <HelpCircle className="w-5 h-5 text-[#0CCAB1] flex-shrink-0" aria-hidden="true" />
                     {faq.question}
                   </span>
-                  <ChevronDown className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" />
+                  <ChevronDown className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" aria-hidden="true" />
                 </summary>
                 <p className="mt-4 text-sm text-slate-300 leading-relaxed pl-8">
                   {faq.answer}
@@ -280,20 +271,20 @@ export default function TeamPage() {
       {/* CTA Conversion Banner */}
       <Section className="py-20 relative overflow-hidden">
         <Container size="default">
-          <div className="rounded-3xl border border-blue-500/30 bg-gradient-to-b from-blue-950/60 to-slate-900/80 p-12 text-center space-y-6 backdrop-blur-xl relative overflow-hidden shadow-2xl shadow-blue-500/10">
+          <div className="rounded-2xl border border-white/10 bg-[#131924] p-12 text-center space-y-6 relative overflow-hidden shadow-2xl">
             <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-              <Heading as="h2" variant="display-lg" className="font-extrabold text-white">
+              <Heading as="h2" variant="display-lg" className="font-display font-extrabold text-white">
                 Build Next-Gen AI With NorAI
               </Heading>
               <Text variant="body-lg" className="text-slate-300">
-                Talk to our founding engineering team about your business automation & AI agent requirements.
+                Talk to our founding engineering team about your business automation &amp; AI agent requirements.
               </Text>
             </div>
 
             <div className="relative z-10 pt-2 flex justify-center gap-4">
               <Link href="/contact">
-                <Button variant="primary" size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-10 py-4 rounded-xl shadow-xl shadow-blue-600/40">
-                  Contact Founders <Briefcase className="w-4 h-4 ml-2 inline-block" />
+                <Button variant="primary" size="lg" className="bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-10 py-4 rounded-lg shadow-xl shadow-[#0CCAB1]/20">
+                  Contact Founders <Briefcase className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
                 </Button>
               </Link>
             </div>

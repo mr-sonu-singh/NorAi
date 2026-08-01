@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Bricolage_Grotesque } from 'next/font/google';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { ThemeTokenProvider, MotionProvider, AnalyticsProvider, ToastProvider } from '@/providers';
 import './globals.css';
@@ -16,6 +16,12 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-bricolage',
+  display: 'swap',
+});
+
 export const metadata: Metadata = buildMetadata();
 
 export default function RootLayout({
@@ -24,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${bricolageGrotesque.variable}`}>
       <body className="min-h-screen bg-bg-page text-primary-800 font-sans antialiased">
         <a
           href="#main-content"

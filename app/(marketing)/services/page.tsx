@@ -1,17 +1,15 @@
-import React from 'react';
-import { buildMetadata } from '@/lib/seo';
+'use client';
+
+import React, { useState } from 'react';
 import { Container } from '@/components/foundation/Container';
 import { Section } from '@/components/foundation/Section';
 import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import { TiltCard } from '@/components/molecules/TiltCard';
 import {
   Sparkles,
   Zap,
-  ShieldCheck,
-  CheckCircle2,
   ArrowRight,
   Bot,
   Globe,
@@ -23,69 +21,82 @@ import {
   ChevronDown,
   Clock,
   Lock,
+  Terminal,
+  Activity,
+  CheckCircle2,
 } from 'lucide-react';
-
-export const metadata = buildMetadata({
-  path: '/services',
-  title: 'AI Services & Enterprise Automation — NorAI Technologies',
-  description: 'Explore NorAI AI services: Pre-built micro-SaaS tools, custom AI chatbots, AI web applications, synthetic video ads, and business automation pipelines.',
-});
 
 const MICRO_TOOLS_DATA = [
   {
+    id: 'AGENT_01',
     title: 'AI Resume Shortlister',
     badge: 'Recruitment AI',
     desc: 'Parse, score, and rank candidate resumes against job requirements with automated skill extraction and qualification matching.',
     icon: Sparkles,
-    tag: 'Pre-Built Utility',
+    latency: '< 0.35s',
   },
   {
+    id: 'AGENT_02',
     title: 'Course Note-Taker',
     badge: 'EdTech AI',
     desc: 'Convert YouTube lectures, audio recordings, and slides into structured study notes, flashcards, key takeaways, and quizzes.',
     icon: Zap,
-    tag: 'Pre-Built Utility',
+    latency: '< 0.41s',
   },
   {
+    id: 'AGENT_03',
     title: 'Community Chat Digest',
     badge: 'Community AI',
     desc: 'Digest noisy Telegram, Discord, and Slack channels into executive daily briefs highlighting customer feedback and action items.',
     icon: Cpu,
-    tag: 'Pre-Built Utility',
+    latency: '< 0.28s',
   },
   {
+    id: 'AGENT_04',
     title: 'Smart Dainik News',
     badge: 'Media AI',
     desc: 'Curate hyper-local regional news and market updates filtered by sentiment, relevance, and interest categories.',
     icon: Layers,
-    tag: 'Pre-Built Utility',
+    latency: '< 0.45s',
   },
 ];
 
 const CUSTOM_SERVICES_DATA = [
   {
+    id: 'ENTERPRISE_01',
     title: 'Custom AI Chatbots & Agents',
     badge: 'Enterprise AI',
-    desc: 'Deploy autonomous conversational agents trained on your proprietary docs, CRM records, and internal knowledge bases with strict zero-hallucination boundaries.',
+    featured: true,
+    desc: 'Deploy autonomous conversational agents trained on your proprietary docs, CRM records, and internal knowledge bases with strict RAG context validation and grounded source citations.',
     icon: Bot,
+    highlights: ['Strict RAG Context Validation', 'Enterprise CRM & Vector DB Sync', 'Grounded Source Citations'],
   },
   {
+    id: 'ENTERPRISE_02',
     title: 'AI Web Applications',
     badge: 'Full-Stack Web',
+    featured: false,
     desc: 'Build modern Next.js and React web applications powered by sub-second neural inference, dynamic UI generation, and deterministic workflow engines.',
     icon: Globe,
+    highlights: ['Next.js 15 & React 19 Stack', 'Sub-100ms Inference Endpoints'],
   },
   {
+    id: 'ENTERPRISE_03',
     title: 'AI Video & Product Ads',
     badge: 'Synthetic Media',
+    featured: false,
     desc: 'Generate automated product showcase videos, localized AI voiceovers, and high-converting visual ad creatives at 10x lower cost than traditional studios.',
     icon: Video,
+    highlights: ['Multi-Lingual Voice Synthesis', 'Automated Rendering Pipelines'],
   },
   {
+    id: 'ENTERPRISE_04',
     title: 'Business Automation Pipelines',
     badge: 'Workflow Engineering',
-    desc: 'Automate manual data extraction, ERP entry, compliance auditing, and multi-app sync with fault-tolerant background workers and webhooks.',
+    featured: false,
+    desc: 'Automate manual data entry, ERP ingestion, compliance auditing, and multi-app sync with fault-tolerant background workers and webhooks.',
     icon: Workflow,
+    highlights: ['Fault-Tolerant Worker Queues', 'Webhook & REST Orchestration'],
   },
 ];
 
@@ -127,26 +138,28 @@ const SERVICES_FAQ = [
 ];
 
 export default function ServicesPage() {
+  const [activeCategory, setActiveCategory] = useState<'all' | 'micro' | 'custom'>('all');
+
   return (
-    <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-blue-500 selection:text-white">
+    <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-[#0CCAB1] selection:text-[#0B0F17]">
       {/* Hero Section */}
-      <Section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
+      <Section className="relative pt-12 pb-14 md:pt-20 md:pb-20 overflow-hidden">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-6">
             {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-semibold tracking-wide uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              <span>AI Services & Enterprise Automation</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#0CCAB1]/30 bg-[#0CCAB1]/10 text-[#45F7D6] text-xs font-mono tracking-wide uppercase">
+              <Terminal className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" />
+              <span>Modular AI Solutions & Enterprise Engineering</span>
             </div>
 
             {/* Headline */}
             <Heading
               as="h1"
               variant="display-xl"
-              className="font-extrabold tracking-tight text-white leading-tight"
+              className="font-display font-extrabold tracking-tight text-white leading-tight"
             >
               Modular AI Solutions for{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">
+              <span className="text-[#0CCAB1] underline decoration-[#0CCAB1]/40 underline-offset-8">
                 High-Scale Workflows
               </span>
             </Heading>
@@ -159,12 +172,12 @@ export default function ServicesPage() {
             {/* CTA Buttons */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact" className="w-full sm:w-auto">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/30">
-                  Talk to Us <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                <Button variant="primary" size="lg" className="w-full sm:w-auto bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-8 py-3.5 rounded-lg shadow-lg shadow-[#0CCAB1]/20 transition-all">
+                  Schedule Technical Scope <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
                 </Button>
               </Link>
               <Link href="/pricing" className="w-full sm:w-auto">
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto border-white/20 bg-white/5 hover:bg-white/10 text-white px-8 py-3.5 rounded-xl backdrop-blur-md">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto border-white/10 bg-white/5 hover:bg-white/10 text-white px-8 py-3.5 rounded-lg backdrop-blur-md">
                   View Pricing Tiers
                 </Button>
               </Link>
@@ -173,113 +186,253 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      {/* Pre-Built Micro-SaaS Tools */}
-      <Section className="py-16 bg-slate-950/40 border-y border-white/10">
+      {/* Signature Element: Solution Architecture Selector Bar */}
+      <Section className="py-4 border-y border-white/10 bg-[#131924]/60">
         <Container size="default">
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
-              Pre-Built Micro-SaaS Utilities
-            </Heading>
-            <Text variant="body-md" className="text-slate-400">
-              Instant-deploy AI tools accessible via web dashboards or REST APIs.
-            </Text>
-          </div>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono">
+            <div className="flex items-center gap-2 text-slate-400">
+              <Activity className="w-4 h-4 text-[#0CCAB1]" aria-hidden="true" />
+              <span className="font-bold text-white uppercase tracking-wider">Catalog Filter:</span>
+              <span className="text-[#45F7D6]">● 8 Total Solutions</span>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {MICRO_TOOLS_DATA.map((tool, index) => {
-              const IconComp = tool.icon;
-              return (
-                <TiltCard key={index} className="group flex flex-col justify-between p-8 bg-slate-900/70">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 group-hover:scale-110 transition-transform">
-                        <IconComp className="w-6 h-6" />
-                      </div>
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-800 text-blue-300 border border-blue-400/20">
-                        {tool.badge}
-                      </span>
-                    </div>
-
-                    <Heading as="h3" variant="heading-lg" className="font-bold text-white group-hover:text-blue-400 transition-colors">
-                      {tool.title}
-                    </Heading>
-
-                    <Text variant="body-sm" className="text-slate-300 leading-relaxed">
-                      {tool.desc}
-                    </Text>
-                  </div>
-
-                  <div className="pt-6 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-xs text-slate-400 font-mono flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-blue-400" /> &lt; 1s Latency
-                    </span>
-                    <Link href="/contact" className="inline-flex items-center text-xs font-semibold text-blue-400 group-hover:text-blue-300">
-                      Deploy Tool <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </TiltCard>
-              );
-            })}
+            {/* Filter Segment Buttons */}
+            <div className="flex items-center gap-2" role="tablist" aria-label="Services Catalog Filter">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === 'all'}
+                onClick={() => setActiveCategory('all')}
+                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
+                  activeCategory === 'all'
+                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
+                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
+                }`}
+              >
+                [ALL SOLUTIONS]
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === 'micro'}
+                onClick={() => setActiveCategory('micro')}
+                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
+                  activeCategory === 'micro'
+                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
+                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
+                }`}
+              >
+                [01] MICRO-SAAS (4)
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === 'custom'}
+                onClick={() => setActiveCategory('custom')}
+                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
+                  activeCategory === 'custom'
+                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
+                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
+                }`}
+              >
+                [02] ENTERPRISE (4)
+              </button>
+            </div>
           </div>
         </Container>
       </Section>
 
-      {/* Custom AI Engineering Solutions */}
-      <Section className="py-20">
-        <Container size="default">
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
-              Custom Enterprise AI Services
-            </Heading>
-            <Text variant="body-md" className="text-slate-400">
-              Tailored AI agents, web applications, and automated pipelines engineered for your exact business logic.
-            </Text>
-          </div>
+      {/* Category 1: Pre-Built Micro-SaaS Tools Grid */}
+      {(activeCategory === 'all' || activeCategory === 'micro') && (
+        <Section className="py-16">
+          <Container size="default">
+            <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+              <div className="text-xs font-mono text-[#0CCAB1] uppercase font-bold tracking-widest">
+                Category 01 • Instant Deploy
+              </div>
+              <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
+                Pre-Built Micro-SaaS Utilities
+              </Heading>
+              <Text variant="body-md" className="text-slate-400">
+                Instant-deploy AI agents accessible via web dashboards or REST API endpoints.
+              </Text>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {CUSTOM_SERVICES_DATA.map((srv, index) => {
-              const IconComp = srv.icon;
-              return (
-                <TiltCard key={index} className="group flex flex-col justify-between p-8 bg-slate-900/60 border border-white/10">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
-                        <IconComp className="w-6 h-6" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {MICRO_TOOLS_DATA.map((tool) => {
+                const IconComp = tool.icon;
+                return (
+                  <div
+                    key={tool.id}
+                    className="bg-[#131924] border border-white/10 rounded-xl p-6 flex flex-col justify-between space-y-6 hover:border-[#0CCAB1]/40 transition-all group"
+                  >
+                    <div className="space-y-4">
+                      {/* Top Monospace Header Bar */}
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="text-slate-500 font-bold tracking-wider">{tool.id}</span>
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#0CCAB1]/10 text-[#45F7D6] border border-[#0CCAB1]/20">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#45F7D6] animate-pulse" />
+                          READY TO DEPLOY
+                        </span>
                       </div>
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-800 text-cyan-300 border border-cyan-400/20">
-                        {srv.badge}
+
+                      <div className="flex items-center gap-3">
+                        <div className="p-2.5 rounded-lg bg-[#0CCAB1]/10 border border-[#0CCAB1]/20 text-[#0CCAB1] group-hover:scale-105 transition-transform">
+                          <IconComp className="w-5 h-5" aria-hidden="true" />
+                        </div>
+                        <div>
+                          <Heading as="h3" variant="heading-lg" className="font-display font-bold text-white group-hover:text-[#0CCAB1] transition-colors">
+                            {tool.title}
+                          </Heading>
+                          <span className="text-[11px] font-mono text-slate-400">{tool.badge}</span>
+                        </div>
+                      </div>
+
+                      <Text variant="body-sm" className="text-slate-300 leading-relaxed">
+                        {tool.desc}
+                      </Text>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+                      <span className="text-slate-400 flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> {tool.latency} Latency
+                      </span>
+                      <Link href="/contact" className="inline-flex items-center font-bold text-[#0CCAB1] group-hover:text-[#45F7D6]">
+                        Deploy Tool <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Container>
+        </Section>
+      )}
+
+      {/* Category 2: Custom Enterprise AI Services (Asymmetrical Architecture Matrix) */}
+      {(activeCategory === 'all' || activeCategory === 'custom') && (
+        <Section className="py-16 bg-[#131924]/40 border-t border-white/10">
+          <Container size="default">
+            <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+              <div className="text-xs font-mono text-[#0CCAB1] uppercase font-bold tracking-widest">
+                Category 02 • Bespoke Engineering
+              </div>
+              <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
+                Custom Enterprise AI Services
+              </Heading>
+              <Text variant="body-md" className="text-slate-400">
+                Tailored AI agents, web applications, and automated pipelines engineered for your exact business logic.
+              </Text>
+            </div>
+
+            {/* Asymmetrical Matrix: Featured Hero Card + 3-Card Grid */}
+            <div className="space-y-6">
+              {/* Featured Anchor Card: Custom AI Chatbots & Agents */}
+              {CUSTOM_SERVICES_DATA.filter((s) => s.featured).map((srv) => {
+                const IconComp = srv.icon;
+                return (
+                  <div
+                    key={srv.id}
+                    className="bg-[#131924] border-2 border-[#0CCAB1]/60 rounded-xl p-8 space-y-6 relative overflow-hidden shadow-xl shadow-[#0CCAB1]/10"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-xl bg-[#0CCAB1]/10 border border-[#0CCAB1]/30 text-[#0CCAB1]">
+                          <IconComp className="w-6 h-6" aria-hidden="true" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-mono font-bold text-[#45F7D6] uppercase tracking-wider">{srv.id} • {srv.badge}</span>
+                          <Heading as="h3" variant="heading-xl" className="font-display font-bold text-white">
+                            {srv.title}
+                          </Heading>
+                        </div>
+                      </div>
+                      <span className="px-3 py-1 rounded bg-[#0CCAB1] text-[#0B0F17] text-xs font-mono font-bold uppercase tracking-wider w-fit">
+                        FLAGSHIP ENTERPRISE SOLUTION
                       </span>
                     </div>
 
-                    <Heading as="h3" variant="heading-lg" className="font-bold text-white group-hover:text-cyan-400 transition-colors">
-                      {srv.title}
-                    </Heading>
-
-                    <Text variant="body-sm" className="text-slate-300 leading-relaxed">
+                    <Text variant="body-md" className="text-slate-300 max-w-3xl leading-relaxed">
                       {srv.desc}
                     </Text>
-                  </div>
 
-                  <div className="pt-6 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-xs text-slate-400 font-mono flex items-center gap-1.5">
-                      <Lock className="w-3.5 h-3.5 text-cyan-400" /> Private Data SLA
-                    </span>
-                    <Link href="/contact" className="inline-flex items-center text-xs font-semibold text-cyan-400 group-hover:text-cyan-300">
-                      Scope Solution <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </TiltCard>
-              );
-            })}
-          </div>
-        </Container>
-      </Section>
+                    {/* Architecture Highlights Pill Row */}
+                    <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+                      {srv.highlights.map((h, i) => (
+                        <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0B0F17] border border-white/10 text-slate-300">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> {h}
+                        </span>
+                      ))}
+                    </div>
 
-      {/* Engagement Model / How We Work */}
-      <Section className="py-20 bg-slate-950/60 border-y border-white/10">
+                    <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                      <span className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                        <Lock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> Strict Private Data Isolation SLA
+                      </span>
+                      <Link href="/contact">
+                        <Button variant="primary" size="md" className="bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-6 py-2.5 rounded-lg shadow-md shadow-[#0CCAB1]/20">
+                          Scope Enterprise Solution <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* 3 Secondary Enterprise Solution Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {CUSTOM_SERVICES_DATA.filter((s) => !s.featured).map((srv) => {
+                  const IconComp = srv.icon;
+                  return (
+                    <div
+                      key={srv.id}
+                      className="bg-[#131924] border border-white/10 rounded-xl p-6 flex flex-col justify-between space-y-6 hover:border-[#0CCAB1]/40 transition-all group"
+                    >
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between text-xs font-mono">
+                          <span className="text-slate-500 font-bold">{srv.id}</span>
+                          <span className="px-2 py-0.5 rounded bg-slate-800 text-[#45F7D6] border border-white/10">{srv.badge}</span>
+                        </div>
+
+                        <div className="p-2.5 rounded-lg bg-[#0CCAB1]/10 border border-[#0CCAB1]/20 text-[#0CCAB1] w-fit group-hover:scale-105 transition-transform">
+                          <IconComp className="w-5 h-5" aria-hidden="true" />
+                        </div>
+
+                        <Heading as="h3" variant="heading-lg" className="font-display font-bold text-white group-hover:text-[#0CCAB1] transition-colors">
+                          {srv.title}
+                        </Heading>
+
+                        <Text variant="body-sm" className="text-slate-300 leading-relaxed">
+                          {srv.desc}
+                        </Text>
+                      </div>
+
+                      <div className="pt-4 border-t border-white/5 space-y-3">
+                        <div className="space-y-1">
+                          {srv.highlights.map((h, i) => (
+                            <div key={i} className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
+                              <span className="w-1 h-1 rounded-full bg-[#0CCAB1]" /> {h}
+                            </div>
+                          ))}
+                        </div>
+                        <Link href="/contact" className="inline-flex items-center text-xs font-mono font-bold text-[#0CCAB1] group-hover:text-[#45F7D6]">
+                          Scope Solution <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </Container>
+        </Section>
+      )}
+
+      {/* Engagement Model Section: Connected Horizontal Pipeline */}
+      <Section className="py-20 border-t border-white/10">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
               Our Engagement Model
             </Heading>
             <Text variant="body-md" className="text-slate-400">
@@ -287,29 +440,34 @@ export default function ServicesPage() {
             </Text>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {ENGAGEMENT_STEPS.map((step, index) => (
-              <TiltCard key={index} className="text-center space-y-4 p-8 bg-slate-900/60">
-                <div className="inline-block text-4xl font-extrabold font-mono text-blue-500/40 border-b border-blue-500/20 pb-2 mb-2">
-                  {step.step}
+              <div key={index} className="bg-[#131924] border border-white/10 rounded-xl p-6 space-y-4 hover:border-[#0CCAB1]/40 transition-all">
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl font-extrabold font-mono text-[#0CCAB1] bg-[#0CCAB1]/10 px-3 py-1 rounded border border-[#0CCAB1]/30">
+                    {step.step}
+                  </span>
+                  {index < ENGAGEMENT_STEPS.length - 1 && (
+                    <span className="hidden md:block text-slate-600 font-mono text-xs">PHASE &#8594;</span>
+                  )}
                 </div>
-                <Heading as="h3" variant="heading-md" className="font-bold text-white">
+                <Heading as="h3" variant="heading-md" className="font-display font-bold text-white">
                   {step.title}
                 </Heading>
                 <Text variant="body-sm" className="text-slate-300 leading-relaxed">
                   {step.desc}
                 </Text>
-              </TiltCard>
+              </div>
             ))}
           </div>
         </Container>
       </Section>
 
-      {/* Services FAQ Accordion */}
-      <Section className="py-20">
+      {/* Services FAQ */}
+      <Section className="py-20 bg-[#131924]/40 border-t border-white/10">
         <Container size="narrow">
           <div className="text-center space-y-4 mb-12">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
               Services FAQ
             </Heading>
             <Text variant="body-md" className="text-slate-400">
@@ -321,14 +479,14 @@ export default function ServicesPage() {
             {SERVICES_FAQ.map((faq, index) => (
               <details
                 key={index}
-                className="group rounded-xl border border-white/10 bg-slate-900/60 p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
+                className="group rounded-lg border border-white/10 bg-[#131924] p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-base">
                   <span className="flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                    <HelpCircle className="w-5 h-5 text-[#0CCAB1] flex-shrink-0" aria-hidden="true" />
                     {faq.question}
                   </span>
-                  <ChevronDown className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" />
+                  <ChevronDown className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" aria-hidden="true" />
                 </summary>
                 <p className="mt-4 text-sm text-slate-300 leading-relaxed pl-8">
                   {faq.answer}
@@ -342,9 +500,9 @@ export default function ServicesPage() {
       {/* CTA Conversion Banner */}
       <Section className="py-20 relative overflow-hidden">
         <Container size="default">
-          <div className="rounded-3xl border border-blue-500/30 bg-gradient-to-b from-blue-950/60 to-slate-900/80 p-12 text-center space-y-6 backdrop-blur-xl relative overflow-hidden shadow-2xl shadow-blue-500/10">
+          <div className="rounded-2xl border border-white/10 bg-[#131924] p-12 text-center space-y-6 relative overflow-hidden shadow-2xl">
             <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-              <Heading as="h2" variant="display-lg" className="font-extrabold text-white">
+              <Heading as="h2" variant="display-lg" className="font-display font-extrabold text-white">
                 Ready to Automate Your Business Operations?
               </Heading>
               <Text variant="body-lg" className="text-slate-300">
@@ -354,8 +512,8 @@ export default function ServicesPage() {
 
             <div className="relative z-10 pt-2 flex justify-center gap-4">
               <Link href="/contact">
-                <Button variant="primary" size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-10 py-4 rounded-xl shadow-xl shadow-blue-600/40">
-                  Schedule Free Technical Scope <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                <Button variant="primary" size="lg" className="bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-10 py-4 rounded-lg shadow-xl shadow-[#0CCAB1]/20">
+                  Schedule Free Technical Scope <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
                 </Button>
               </Link>
             </div>

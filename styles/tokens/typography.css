@@ -1,17 +1,18 @@
 :root {
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
 
-  /* Font Sizes & Tracking (DESIGN.md: 3-weight max rule 400/500/600 & negative tracking) */
-  --text-display-xl-size: 3rem; /* 48px */
-  --text-display-xl-line: 3rem; /* 48px */
-  --text-display-xl-weight: 600; /* Semibold max */
-  --text-display-xl-tracking: -2.28px; /* -4.75% tracking */
+  /* Font Sizes & Tracking */
+  --text-display-xl-size: 3.25rem; /* 52px */
+  --text-display-xl-line: 3.5rem;
+  --text-display-xl-weight: 700;
+  --text-display-xl-tracking: -0.03em;
 
-  --text-display-lg-size: 2rem; /* 32px */
-  --text-display-lg-line: 2.5rem; /* 40px */
-  --text-display-lg-weight: 600;
-  --text-display-lg-tracking: -1.28px; /* -4% tracking */
+  --text-display-lg-size: 2.25rem; /* 36px */
+  --text-display-lg-line: 2.75rem;
+  --text-display-lg-weight: 700;
+  --text-display-lg-tracking: -0.025em;
 
   --text-heading-xl-size: 1.5rem; /* 24px */
   --text-heading-xl-line: 2rem;

@@ -1,34 +1,23 @@
 import React from 'react';
-import { buildMetadata } from '@/lib/seo';
 import { Container } from '@/components/foundation/Container';
 import { Section } from '@/components/foundation/Section';
 import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import { TiltCard } from '@/components/molecules/TiltCard';
 import {
-  Sparkles,
   Zap,
   ShieldCheck,
-  CheckCircle2,
   ArrowRight,
   MapPin,
-  Cpu,
   Code2,
   Lock,
-  Layers,
   HelpCircle,
   ChevronDown,
-  Building2,
   Users,
+  Quote,
+  Sparkles,
 } from 'lucide-react';
-
-export const metadata = buildMetadata({
-  path: '/about',
-  title: 'About Us — NorAI Technologies',
-  description: 'Learn about NorAI Technologies: Our regional startup hub in Uttar Pradesh, India, building accessible micro-SaaS utilities and verifiable AI infrastructure.',
-});
 
 const METRICS_DATA = [
   { value: '5+', label: 'Core Micro-Tools', desc: 'Pre-built SaaS agents ready to deploy' },
@@ -62,16 +51,19 @@ const VALUES_DATA = [
 
 const TIMELINE_DATA = [
   {
+    phase: '01',
     year: 'Q1 2024',
     title: 'Startup Foundation in UP, India',
     desc: 'NorAI Technologies was founded with a mission to simplify daily digital workflows using lightweight AI micro-tools.',
   },
   {
+    phase: '02',
     year: 'Q3 2024',
     title: 'Sub-Second LLM Inference Pipeline',
     desc: 'Achieved sub-1s latency benchmark for document parsing, resume shortlisting, and automated text summarization.',
   },
   {
+    phase: '03',
     year: 'Q1 2025',
     title: 'Micro-SaaS Product Suite Launch',
     desc: 'Rolled out AI Resume Shortlister, Course Note-Taker, Community Chat Digest, and Smart Dainik News to business users.',
@@ -112,30 +104,30 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-blue-500 selection:text-white">
+    <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-[#0CCAB1] selection:text-[#0B0F17]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
       />
 
       {/* Hero Section */}
-      <Section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
+      <Section className="relative pt-12 pb-14 md:pt-20 md:pb-20 overflow-hidden">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-6">
-            {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-semibold tracking-wide uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              <span>About NorAI Technologies</span>
+            {/* Signature Element: Editorial Location Credit Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-[#131924] text-slate-300 text-xs font-mono tracking-wide">
+              <MapPin className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" />
+              <span>Founded in Uttar Pradesh, India • Regional AI Innovation</span>
             </div>
 
             {/* Headline */}
             <Heading
               as="h1"
               variant="display-xl"
-              className="font-extrabold tracking-tight text-white leading-tight"
+              className="font-display font-extrabold tracking-tight text-white leading-tight"
             >
               Engineering Accessible,{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">
+              <span className="text-[#0CCAB1] underline decoration-[#0CCAB1]/40 underline-offset-8">
                 Modular AI Infrastructure
               </span>
             </Heading>
@@ -148,12 +140,12 @@ export default function AboutPage() {
             {/* Action Buttons */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/services" className="w-full sm:w-auto">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/30">
-                  Explore AI Services <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                <Button variant="primary" size="lg" className="w-full sm:w-auto bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-8 py-3.5 rounded-lg shadow-lg shadow-[#0CCAB1]/20 transition-all">
+                  Explore AI Services <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
                 </Button>
               </Link>
               <Link href="/team" className="w-full sm:w-auto">
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto border-white/20 bg-white/5 hover:bg-white/10 text-white px-8 py-3.5 rounded-xl backdrop-blur-md">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto border-white/10 bg-white/5 hover:bg-white/10 text-white px-8 py-3.5 rounded-lg backdrop-blur-md">
                   Meet Our Team
                 </Button>
               </Link>
@@ -162,18 +154,18 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      {/* Origin Story & Regional Hub Card */}
-      <Section className="py-16 bg-slate-950/40 border-y border-white/10">
+      {/* Origin Story & Editorial Pull-Quote */}
+      <Section className="py-16 bg-[#131924]/40 border-y border-white/10">
         <Container size="default">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            {/* Story Text Column */}
-            <div className="md:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-blue-400 uppercase tracking-wider">
-                <MapPin className="w-4 h-4 text-blue-400" />
-                <span>Regional Startup Hub • Uttar Pradesh, India</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Authentic Story Column */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#0CCAB1] uppercase tracking-wider">
+                <Sparkles className="w-4 h-4 text-[#0CCAB1]" aria-hidden="true" />
+                <span>Our Regional Startup Story</span>
               </div>
 
-              <Heading as="h2" variant="display-md" className="font-extrabold text-white">
+              <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white leading-tight">
                 High-Frequency AI Utilities for Daily Workflows
               </Heading>
 
@@ -186,49 +178,42 @@ export default function AboutPage() {
               </Text>
 
               <div className="pt-2">
-                <Link href="/contact" className="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300">
-                  Talk to Our Regional Team <ArrowRight className="w-4 h-4 ml-1.5" />
+                <Link href="/contact" className="inline-flex items-center text-sm font-mono font-bold text-[#0CCAB1] hover:text-[#45F7D6]">
+                  Talk to Our Regional Team <ArrowRight className="w-4 h-4 ml-1.5" aria-hidden="true" />
                 </Link>
               </div>
             </div>
 
-            {/* Impact Highlights Card */}
-            <div className="md:col-span-5">
-              <TiltCard className="p-8 space-y-6 bg-slate-900/80 border border-blue-500/30">
-                <Heading as="h3" variant="heading-lg" className="font-bold text-white">
-                  The NorAI Philosophy
-                </Heading>
-                <div className="space-y-4 text-sm text-slate-300 leading-relaxed">
-                  <p>
-                    Every micro-tool we release must save at least <strong className="text-white">10 hours per week</strong> for users while running with sub-second latency.
-                  </p>
-                  <p>
-                    We believe in transparent pricing, clean API contracts, and non-intrusive data privacy standards.
-                  </p>
+            {/* Quiet Editorial Pull-Quote Block */}
+            <div className="lg:col-span-5">
+              <div className="p-8 bg-[#131924] border border-white/10 rounded-xl space-y-6 relative">
+                <Quote className="w-8 h-8 text-[#0CCAB1]/40" aria-hidden="true" />
+                <p className="text-base text-slate-200 leading-relaxed italic font-serif">
+                  &ldquo;Artificial intelligence shouldn&apos;t require complex enterprise contracts or bloated software. Every micro-tool we release must save at least <strong className="text-white font-sans font-semibold not-italic">10 hours per week</strong> for users while running with sub-second latency.&rdquo;
+                </p>
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+                  <span className="font-bold text-white uppercase tracking-wider">— NorAI Founding Team</span>
+                  <span className="text-[#45F7D6]">UP, India</span>
                 </div>
-                <div className="pt-4 border-t border-white/10 flex items-center gap-3 text-xs font-mono text-blue-300">
-                  <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                  <span>100% Verifiable & Automated Pipelines</span>
-                </div>
-              </TiltCard>
+              </div>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* Metrics Section */}
-      <Section className="py-12 border-b border-white/10 bg-slate-950/60">
+      {/* Metrics Row */}
+      <Section className="py-12 border-b border-white/10 bg-[#0B0F17]">
         <Container size="default">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {METRICS_DATA.map((metric, index) => (
-              <div key={index} className="text-center space-y-1">
-                <div className="text-3xl md:text-4xl font-extrabold text-blue-400 font-mono">
+              <div key={index} className="bg-[#131924] border border-white/10 rounded-lg p-5 text-center space-y-1.5">
+                <div className="text-3xl md:text-4xl font-extrabold text-[#0CCAB1] font-mono">
                   {metric.value}
                 </div>
-                <div className="text-sm font-semibold text-white">
+                <div className="text-sm font-display font-bold text-white">
                   {metric.label}
                 </div>
-                <div className="text-xs text-slate-400">
+                <div className="text-xs text-slate-400 font-mono">
                   {metric.desc}
                 </div>
               </div>
@@ -241,7 +226,7 @@ export default function AboutPage() {
       <Section className="py-20">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
               Core Engineering Values
             </Heading>
             <Text variant="body-md" className="text-slate-400">
@@ -253,28 +238,28 @@ export default function AboutPage() {
             {VALUES_DATA.map((val, index) => {
               const IconComp = val.icon;
               return (
-                <TiltCard key={index} className="space-y-4 p-6 bg-slate-900/60">
-                  <div className="p-3 w-fit rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                    <IconComp className="w-6 h-6" />
+                <div key={index} className="bg-[#131924] border border-white/10 rounded-xl p-6 space-y-4 hover:border-[#0CCAB1]/40 transition-all">
+                  <div className="p-3 w-fit rounded-lg bg-[#0CCAB1]/10 border border-[#0CCAB1]/20 text-[#0CCAB1]">
+                    <IconComp className="w-5 h-5" aria-hidden="true" />
                   </div>
-                  <Heading as="h4" variant="heading-md" className="font-bold text-white">
+                  <Heading as="h4" variant="heading-md" className="font-display font-bold text-white">
                     {val.title}
                   </Heading>
                   <Text variant="body-xs" className="text-slate-300 leading-relaxed">
                     {val.desc}
                   </Text>
-                </TiltCard>
+                </div>
               );
             })}
           </div>
         </Container>
       </Section>
 
-      {/* Milestones & Journey Timeline */}
-      <Section className="py-20 bg-slate-950/60 border-y border-white/10">
+      {/* Milestones & Journey Pipeline */}
+      <Section className="py-20 bg-[#131924]/40 border-y border-white/10">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
               NorAI Engineering Journey
             </Heading>
             <Text variant="body-md" className="text-slate-400">
@@ -282,19 +267,22 @@ export default function AboutPage() {
             </Text>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {TIMELINE_DATA.map((item, index) => (
-              <TiltCard key={index} className="space-y-4 p-8 bg-slate-900/70 border border-white/10">
-                <span className="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
-                  {item.year}
-                </span>
-                <Heading as="h3" variant="heading-md" className="font-bold text-white pt-2">
+              <div key={index} className="bg-[#131924] border border-white/10 rounded-xl p-6 space-y-4 hover:border-[#0CCAB1]/40 transition-all">
+                <div className="flex items-center justify-between font-mono text-xs">
+                  <span className="px-2.5 py-1 rounded bg-[#0CCAB1]/10 text-[#45F7D6] border border-[#0CCAB1]/20 font-bold">
+                    {item.year}
+                  </span>
+                  <span className="text-slate-500 font-bold">MILESTONE_{item.phase}</span>
+                </div>
+                <Heading as="h3" variant="heading-md" className="font-display font-bold text-white pt-1">
                   {item.title}
                 </Heading>
                 <Text variant="body-sm" className="text-slate-300 leading-relaxed">
                   {item.desc}
                 </Text>
-              </TiltCard>
+              </div>
             ))}
           </div>
         </Container>
@@ -304,7 +292,7 @@ export default function AboutPage() {
       <Section className="py-20">
         <Container size="narrow">
           <div className="text-center space-y-4 mb-12">
-            <Heading as="h2" variant="display-md" className="font-extrabold text-white">
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
               About NorAI FAQ
             </Heading>
             <Text variant="body-md" className="text-slate-400">
@@ -316,14 +304,14 @@ export default function AboutPage() {
             {ABOUT_FAQ.map((faq, index) => (
               <details
                 key={index}
-                className="group rounded-xl border border-white/10 bg-slate-900/60 p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
+                className="group rounded-lg border border-white/10 bg-[#131924] p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-base">
                   <span className="flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                    <HelpCircle className="w-5 h-5 text-[#0CCAB1] flex-shrink-0" aria-hidden="true" />
                     {faq.question}
                   </span>
-                  <ChevronDown className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" />
+                  <ChevronDown className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" aria-hidden="true" />
                 </summary>
                 <p className="mt-4 text-sm text-slate-300 leading-relaxed pl-8">
                   {faq.answer}
@@ -337,9 +325,9 @@ export default function AboutPage() {
       {/* CTA Conversion Banner */}
       <Section className="py-20 relative overflow-hidden">
         <Container size="default">
-          <div className="rounded-3xl border border-blue-500/30 bg-gradient-to-b from-blue-950/60 to-slate-900/80 p-12 text-center space-y-6 backdrop-blur-xl relative overflow-hidden shadow-2xl shadow-blue-500/10">
+          <div className="rounded-2xl border border-white/10 bg-[#131924] p-12 text-center space-y-6 relative overflow-hidden shadow-2xl">
             <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-              <Heading as="h2" variant="display-lg" className="font-extrabold text-white">
+              <Heading as="h2" variant="display-lg" className="font-display font-extrabold text-white">
                 Want to Build the Future of AI Tools With Us?
               </Heading>
               <Text variant="body-lg" className="text-slate-300">
@@ -349,8 +337,8 @@ export default function AboutPage() {
 
             <div className="relative z-10 pt-2 flex justify-center gap-4">
               <Link href="/team">
-                <Button variant="primary" size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-10 py-4 rounded-xl shadow-xl shadow-blue-600/40">
-                  Meet the Team <Users className="w-4 h-4 ml-2 inline-block" />
+                <Button variant="primary" size="lg" className="bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-10 py-4 rounded-lg shadow-xl shadow-[#0CCAB1]/20">
+                  Meet the Team <Users className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
                 </Button>
               </Link>
             </div>

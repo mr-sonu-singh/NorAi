@@ -1,42 +1,46 @@
 :root {
-  /* Vercel Achromatic Core Scale (DESIGN.md - Dark Mode) */
-  --ds-background-100: #030712; /* Page Canvas Base (Deep Dark Slate) */
-  --ds-background-200: #0b0f19; /* Card / Surface Base */
-  --ds-background-300: #111827; /* Toggle / Recessed Base */
-  --ds-background-400: #1f2937; /* Hover Surface Base */
+  /* Approved Custom Derived Tokens (Obsidian Slate & Electric Viridian) */
+  --ds-background-100: #0B0F17; /* Page Canvas Base (Obsidian Slate) */
+  --ds-background-200: #131924; /* Card / Surface Base */
+  --ds-background-300: #1C2433; /* Toggle / Recessed Base */
+  --ds-background-400: #263145; /* Hover Surface Base */
 
-  --ds-text-100: #ffffff; /* Primary Headings & Text */
-  --ds-text-200: #e2e8f0; /* Secondary Text & Nav Links */
-  --ds-text-300: #94a3b8; /* Muted & Caption Text */
+  --ds-text-100: #F8FAFC; /* Primary Headings & Text */
+  --ds-text-200: #CBD5E1; /* Secondary Text & Nav Links */
+  --ds-text-300: #64748B; /* Muted & Caption Text */
 
-  /* Sole Interactive Accent */
-  --ds-interactive: #3b82f6; /* Primary Interactive Accent */
-  --ds-focus-color: #60a5fa; /* Input & Button Focus Accent */
+  /* Custom Derived Interactive Accents */
+  --ds-interactive: #0CCAB1; /* Electric Viridian-Cyan */
+  --ds-focus-color: #45F7D6; /* Phosphor Mint Glow */
+
+  --accent-primary: #0CCAB1;
+  --accent-mono: #45F7D6;
+  --border-hairline: rgba(255, 255, 255, 0.09);
 
   /* Backward Compatibility Aliases */
-  --primary-50: #0f172a;
-  --primary-100: #1e293b;
-  --primary-200: #334155;
-  --primary-300: #475569;
-  --primary-400: #64748b;
-  --primary-500: #94a3b8;
-  --primary-600: #cbd5e1;
-  --primary-700: #e2e8f0;
-  --primary-800: #f8fafc;
-  --primary-900: #ffffff;
+  --primary-50: #0B0F17;
+  --primary-100: #131924;
+  --primary-200: #1C2433;
+  --primary-300: #263145;
+  --primary-400: #64748B;
+  --primary-500: #94A3B8;
+  --primary-600: #CBD5E1;
+  --primary-700: #E2E8F0;
+  --primary-800: #F8FAFC;
+  --primary-900: #FFFFFF;
 
-  --accent-50: #eff6ff;
-  --accent-100: #dbeafe;
-  --accent-400: #60a5fa;
-  --accent-500: #3b82f6;
-  --accent-600: #2563eb;
-  --accent-700: #1d4ed8;
+  --accent-50: #E6FBF7;
+  --accent-100: #CCF7EF;
+  --accent-400: #45F7D6;
+  --accent-500: #0CCAB1;
+  --accent-600: #0AA893;
+  --accent-700: #088776;
 
-  --bg-page: #030712;
-  --bg-elevated: #0b0f19;
-  --bg-sunken: #111827;
-  --bg-dark: #030712;
-  --bg-dark-elevated: #0b0f19;
+  --bg-page: #0B0F17;
+  --bg-elevated: #131924;
+  --bg-sunken: #1C2433;
+  --bg-dark: #0B0F17;
+  --bg-dark-elevated: #131924;
 
   /* Status Indicator Dot Colors (DESIGN.md - 10px dots only) */
   --status-blue: #0062d1;
