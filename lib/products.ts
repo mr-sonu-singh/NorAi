@@ -1,256 +1,377 @@
 export interface ProductData {
   slug: string;
-  name: string;
-  category: string;
-  summary: string;
-  image: string;
-  headline: string;
-  subhead: string;
-  problemHeading: string;
-  problemBody: string;
-  capabilitiesHeading: string;
-  capabilities: Array<{
+  id: string;
+  title: string;
+  badge: string;
+  tagline: string;
+  excerpt: string;
+  latency: string;
+  iconName: string;
+  problem: string[];
+  solution: string[];
+  features: Array<{
     title: string;
-    description: string;
-    icon: string;
+    desc: string;
   }>;
-  processHeading: string;
-  processSteps: [
-    { icon: string; title: string; description: string },
-    { icon: string; title: string; description: string },
-    { icon: string; title: string; description: string },
-  ];
-  pricingHeading: string;
-  pricingTiers: Array<{
-    name: string;
+  workflow: Array<{
+    step: string;
+    title: string;
+    desc: string;
+  }>;
+  pricing: Array<{
+    tier: string;
     price: string;
-    interval?: string;
-    description?: string;
+    desc: string;
     features: string[];
     highlighted?: boolean;
-    ctaLabel: string;
+  }>;
+  faq: Array<{
+    question: string;
+    answer: string;
   }>;
 }
 
 export const PRODUCTS_DATA: Record<string, ProductData> = {
-  core: {
-    slug: 'core',
-    name: 'NorAI Core',
-    category: 'Compute Platform',
-    summary: 'Sub-10ms deterministic AI inference engine designed for high-throughput enterprise workloads.',
-    image: '/images/products/core.jpg',
-    headline: 'Sub-10ms Deterministic Neural Compute Engine',
-    subhead: 'High-throughput neural workload engine designed for high-scale enterprise computation with zero-knowledge execution SLA.',
-    problemHeading: 'Eliminate Neural Execution Uncertainty',
-    problemBody: 'Legacy AI APIs introduce unpredictable latency spikes and unverifiable neural outputs. NorAI Core enforces deterministic hardware execution with sub-10ms latency SLA guarantees.',
-    capabilitiesHeading: 'Engineered Compute Capabilities',
-    capabilities: [
+  'resume-shortlister': {
+    slug: 'resume-shortlister',
+    id: 'TOOL_01',
+    title: 'AI Resume Shortlister',
+    badge: 'Recruitment Automation',
+    tagline: 'Automated candidate screening and match scoring for high-volume hiring teams.',
+    excerpt: 'Parse PDF/Word resumes, extract core engineering skills, and generate objective qualification scores matched against your job specifications.',
+    latency: '< 0.35s',
+    iconName: 'Sparkles',
+    problem: [
+      'Recruiters waste 15+ hours weekly manually scanning hundreds of unstructured candidate resumes.',
+      'Manual keyword searches miss qualified talent and introduce inconsistent screening standards.',
+    ],
+    solution: [
+      'NorAI parses incoming resumes in memory, extracting verified technical skill vectors and experience timelines.',
+      'Generates a structured JSON score card with weighted qualification rankings and key candidate highlights.',
+    ],
+    features: [
       {
-        title: 'Sub-10ms Execution SLA',
-        description: 'Guaranteed latency upper-bounds for real-time algorithmic decision pipelines.',
-        icon: 'cpu',
+        title: 'Multi-Format Parsing',
+        desc: 'Extract structured candidate profiles from PDF, DOCX, and plain text resumes instantaneously.',
       },
       {
-        title: 'Deterministic State',
-        description: 'Bit-exact reproducible neural model outputs across heterogeneous hardware clusters.',
-        icon: 'layers',
+        title: 'Weighted Skill Scoring',
+        desc: 'Match candidates against specific job descriptions using custom skill weights and experience thresholds.',
       },
       {
-        title: 'Hardware ZK Proofs',
-        description: 'Automatic generation of STARK execution proofs for regulatory auditing.',
-        icon: 'shield-check',
+        title: 'Structured JSON Payload',
+        desc: 'Receive clean, validated JSON outputs ready to sync directly into your ATS or internal HR dashboard.',
       },
       {
-        title: 'High-Throughput Stream',
-        description: 'Parallel stream processing scaling to millions of concurrent inferencing requests.',
-        icon: 'zap',
+        title: 'Zero Permanent Storage',
+        desc: 'Candidate files are processed ephemerally in memory and flushed immediately after scoring.',
       },
     ],
-    processHeading: '3-Step Execution Model',
-    processSteps: [
+    workflow: [
       {
-        icon: 'upload-cloud',
-        title: 'Ingest Payload',
-        description: 'Stream model inputs via high-speed TLS endpoint.',
+        step: '01',
+        title: 'Submit Resume Payload',
+        desc: 'Send resume documents via REST API endpoint or drag-and-drop web dashboard.',
       },
       {
-        icon: 'cpu',
-        title: 'Deterministic Compute',
-        description: 'Execute workload on hardware nodes with ZK tracking.',
+        step: '02',
+        title: 'Neural Skill Extraction',
+        desc: 'NorAI extracts education history, technical skills, and project relevance scores.',
       },
       {
-        icon: 'check-circle',
-        title: 'Verified Output',
-        description: 'Receive bit-exact output payload with cryptographic proof.',
+        step: '03',
+        title: 'Receive Ranked Scoring',
+        desc: 'Get immediate candidate match percentage and qualification summary.',
       },
     ],
-    pricingHeading: 'Flexible Execution Plans',
-    pricingTiers: [
+    pricing: [
       {
-        name: 'Starter',
-        price: '$999',
-        interval: '/mo',
-        description: 'For growing teams requiring deterministic AI SLAs.',
-        features: ['Up to 10M monthly inferences', '10ms latency SLA', 'Standard ZK audit logs', 'Email support'],
-        ctaLabel: 'Get Started',
+        tier: 'Starter',
+        price: '$49/mo',
+        desc: 'Ideal for early-stage startups hiring 5-10 roles per month.',
+        features: ['500 Resume Parses/mo', 'Standard Skill Matching', 'Dashboard Access', 'Email Support'],
       },
       {
-        name: 'Scale',
-        price: '$2,499',
-        interval: '/mo',
-        description: 'For high-scale enterprise production workloads.',
-        features: ['Up to 50M monthly inferences', '5ms latency SLA', 'Real-time ZK proof verification', '24/7 Priority support'],
+        tier: 'Pro',
+        price: '$149/mo',
+        desc: 'For growing teams requiring API access and ATS integration.',
+        features: ['3,000 Resume Parses/mo', 'Custom Skill Weighting', 'REST API Access', 'Priority SLA Support'],
         highlighted: true,
-        ctaLabel: 'Start Scaling',
       },
       {
-        name: 'Enterprise',
-        price: 'Contact Sales',
-        description: 'For mission-critical compute requiring custom SLAs.',
-        features: ['Custom throughput capacity', 'Dedicated hardware clusters', 'Custom ZK circuit compilation', 'Dedicated SLA guarantees'],
-        ctaLabel: 'Contact Sales',
+        tier: 'Scale',
+        price: '$399/mo',
+        desc: 'High-volume recruiting agencies & enterprise HR operations.',
+        features: ['10,000 Resume Parses/mo', 'Private Webhook Queues', 'Dedicated Support', '99.9% Uptime SLA'],
+      },
+    ],
+    faq: [
+      {
+        question: 'What file formats does the AI Resume Shortlister support?',
+        answer: 'The parser supports PDF, Microsoft Word (.doc, .docx), and plain text (.txt) candidate resumes.',
+      },
+      {
+        question: 'Is candidate data stored or used for AI model training?',
+        answer: 'No. All candidate files are processed ephemerally in RAM and flushed immediately upon response completion in accordance with our Zero Persistent Logging security standard.',
+      },
+      {
+        question: 'Can I connect the API to my existing ATS software?',
+        answer: 'Yes! Our REST API returns standard JSON payloads that integrate seamlessly with greenhouse, Lever, Workday, or custom HR portals.',
       },
     ],
   },
-  vision: {
-    slug: 'vision',
-    name: 'NorAI Vision',
-    category: 'Computer Vision',
-    summary: 'Real-time multi-stream neural computer vision processor with hardware-level ZK auditability.',
-    image: '/images/products/vision.jpg',
-    headline: 'Real-Time Multi-Stream Neural Vision Engine',
-    subhead: 'Sub-millisecond frame processing with hardware-level zero-knowledge proof generation for critical vision pipelines.',
-    problemHeading: 'Verifiable Perception at Scale',
-    problemBody: 'Standard vision models fail under high frame rates and lack verifiable auditability. NorAI Vision delivers deterministic multi-camera stream processing with cryptographic proof of visual analysis.',
-    capabilitiesHeading: 'Vision Engine Features',
-    capabilities: [
+
+  'course-note-taker': {
+    slug: 'course-note-taker',
+    id: 'TOOL_02',
+    title: 'AI Course Note-Taker',
+    badge: 'EdTech Summarization',
+    tagline: 'Transform lecture audio, video transcripts, and slides into study briefs & flashcards.',
+    excerpt: 'Convert hours of educational content into structured chapter summaries, interactive flashcards, key takeaways, and self-assessment quizzes.',
+    latency: '< 0.41s',
+    iconName: 'Zap',
+    problem: [
+      'Students and researchers struggle to retain key concepts from long 2-hour lecture video recordings.',
+      'Manual note-taking takes hours away from active learning, problem solving, and concept revision.',
+    ],
+    solution: [
+      'NorAI processes video transcripts and audio tracks into organized, high-density study outlines.',
+      'Automatically generates interactive digital flashcards and chapter quizzes for rapid concept mastery.',
+    ],
+    features: [
       {
-        title: 'Multi-Stream Ingestion',
-        description: 'Concurrent processing of up to 64 ultra-high-definition video feeds per node.',
-        icon: 'video',
+        title: 'Chapter Segmentation',
+        desc: 'Automatically break long transcripts into logical topic sections with timestamped headings.',
       },
       {
-        title: 'Hardware Edge Proofs',
-        description: 'Real-time ZK proof generation directly on edge inference accelerators.',
-        icon: 'shield-check',
+        title: 'Flashcard Generation',
+        desc: 'Extract key formulas, definitions, and core concepts into study-ready Q&A flashcard decks.',
       },
       {
-        title: 'Sub-Millisecond Tracking',
-        description: 'Ultra-low latency frame detection and object trajectory calculation.',
-        icon: 'activity',
+        title: 'Multi-Lingual Support',
+        desc: 'Summarize lectures recorded in English, Hindi, and regional languages with high accuracy.',
       },
       {
-        title: 'Tamper-Proof Audit',
-        description: 'Cryptographic hash chain verifying frame integrity and neural bounding boxes.',
-        icon: 'lock',
+        title: 'Export Formats',
+        desc: 'Download generated study guides in Markdown, Notion, PDF, or JSON formats.',
       },
     ],
-    processHeading: 'Visual Verification Pipeline',
-    processSteps: [
+    workflow: [
       {
-        icon: 'upload-cloud',
-        title: 'Video Feed Stream',
-        description: 'Ingest multi-camera video streams with hardware timestamping.',
+        step: '01',
+        title: 'Upload Transcript or Audio',
+        desc: 'Paste a video URL, transcript text, or audio file into the processing console.',
       },
       {
-        icon: 'cpu',
-        title: 'Neural Frame Analysis',
-        description: 'Process frame batches through vision models on ZK nodes.',
+        step: '02',
+        title: 'Intelligent Digesting',
+        desc: 'NorAI identifies core thesis points, key formulas, and main definitions.',
       },
       {
-        icon: 'check-circle',
-        title: 'Audited Frame Output',
-        description: 'Output detection metadata accompanied by STARK verification proofs.',
+        step: '03',
+        title: 'Study Guide & Flashcards',
+        desc: 'Export structured chapter briefs and interactive flashcard decks instantly.',
       },
     ],
-    pricingHeading: 'Vision Processing Plans',
-    pricingTiers: [
+    pricing: [
       {
-        name: 'Pro Vision',
-        price: '$1,499',
-        interval: '/mo',
-        description: 'For multi-camera automated monitoring pipelines.',
-        features: ['Up to 16 concurrent video streams', 'Real-time object detection', 'Standard STARK proofs', '99.9% Uptime SLA'],
-        ctaLabel: 'Get Started',
+        tier: 'Starter',
+        price: '$29/mo',
+        desc: 'Perfect for individual students and self-learners.',
+        features: ['30 Hours Lecture Processing/mo', 'Markdown & PDF Exports', 'Flashcard Generator', 'Community Support'],
       },
       {
-        name: 'Enterprise Vision',
-        price: 'Contact Sales',
-        description: 'For industrial and security infrastructure.',
-        features: ['Unlimited video stream capacity', 'Custom edge node deployments', 'Dedicated cryptographic pipeline', '24/7 On-call engineering'],
+        tier: 'Educator',
+        price: '$99/mo',
+        desc: 'Designed for course creators and university teaching assistants.',
+        features: ['150 Hours Processing/mo', 'Quiz Generator', 'API & Webhook Access', 'Priority Support'],
         highlighted: true,
-        ctaLabel: 'Contact Sales',
+      },
+      {
+        tier: 'Institutional',
+        price: '$299/mo',
+        desc: 'For universities, LMS platforms, and online academies.',
+        features: ['500 Hours Processing/mo', 'LMS Integration', 'Custom Branding', '99.9% Uptime SLA'],
+      },
+    ],
+    faq: [
+      {
+        question: 'Can I upload video files directly or do I need a transcript?',
+        answer: 'You can provide video transcript text, YouTube links, or standard MP3/WAV audio files for automated processing.',
+      },
+      {
+        question: 'Are flashcards exportable to study apps like Anki?',
+        answer: 'Yes! Generated flashcards can be exported as CSV, JSON, or text formats compatible with Anki and Quizlet.',
       },
     ],
   },
-  security: {
-    slug: 'security',
-    name: 'NorAI Security',
-    category: 'ZK Cryptography',
-    summary: 'Cryptographic zero-knowledge proof generator for privacy-preserving neural inference.',
-    image: '/images/products/security.jpg',
-    headline: 'Cryptographic ZK Engine for Neural Compute',
-    subhead: 'Mathematical zero-knowledge proof engine enforcing privacy and execution integrity across enterprise AI workloads.',
-    problemHeading: 'Zero-Knowledge Trust for AI Workloads',
-    problemBody: 'Enterprise data privacy demands verifiable neural compute without exposing proprietary model weights or sensitive dataset payloads.',
-    capabilitiesHeading: 'Security & Cryptographic Primitives',
-    capabilities: [
+
+  'chat-digest': {
+    slug: 'chat-digest',
+    id: 'TOOL_03',
+    title: 'Chat Digest & Newsletter AI',
+    badge: 'Community Summarization',
+    tagline: 'Digest noisy community chat channels into daily executive briefs & newsletters.',
+    excerpt: 'Extract actionable feedback, sentiment trends, product bugs, and top discussion topics from Telegram, Discord, and Slack channels.',
+    latency: '< 0.28s',
+    iconName: 'Cpu',
+    problem: [
+      'Community managers and founders miss critical user feedback hidden inside thousands of daily chat messages.',
+      'Manually writing community newsletters and weekly updates requires tedious message scanning.',
+    ],
+    solution: [
+      'NorAI aggregates daily channel exports, filtering out spam and casual banter to isolate high-signal discussions.',
+      'Delivers an executive daily brief highlighting top bug reports, feature requests, and newsletter highlights.',
+    ],
+    features: [
       {
-        title: 'ZK-STARK Generation',
-        description: 'Ultra-fast proof generation eliminating trusted setup security vulnerabilities.',
-        icon: 'shield-check',
+        title: 'Noise & Spam Filtering',
+        desc: 'Automatically filter out casual banter, memes, and spam to focus on high-value community insights.',
       },
       {
-        title: 'Model Weight Privacy',
-        description: 'Execute neural models while keeping proprietary weights fully encrypted.',
-        icon: 'lock',
+        title: 'Action Item Extraction',
+        desc: 'Identify reported software bugs, customer questions, and product feature requests.',
       },
       {
-        title: 'Dataset Protection',
-        description: 'Verify inference correctness without revealing underlying user inputs.',
-        icon: 'database',
+        title: 'Automated Newsletter Generation',
+        desc: 'Format top community discussions into ready-to-send email newsletter drafts.',
       },
       {
-        title: 'Auditor Verification',
-        description: 'Lightweight client-side verification runnable in any browser environment.',
-        icon: 'check-circle',
+        title: 'Multi-Channel Support',
+        desc: 'Connect Telegram channels, Discord servers, and Slack workspaces seamlessly.',
       },
     ],
-    processHeading: 'Zero-Knowledge Audit Workflow',
-    processSteps: [
+    workflow: [
       {
-        icon: 'upload-cloud',
-        title: 'Payload Encryption',
-        description: 'Encrypt sensitive input payload using ZK-friendly cryptographic scheme.',
+        step: '01',
+        title: 'Connect Channel Export',
+        desc: 'Sync channel webhooks or paste chat transcript exports.',
       },
       {
-        icon: 'cpu',
-        title: 'STARK Proof Generation',
-        description: 'Generate cryptographic proof during neural model execution.',
+        step: '02',
+        title: 'Signal Extraction',
+        desc: 'NorAI categorizes messages by sentiment, feature requests, and support queries.',
       },
       {
-        icon: 'check-circle',
-        title: 'Verifiable Certification',
-        description: 'Publish lightweight proof for instant third-party audit verification.',
+        step: '03',
+        title: 'Daily Executive Digest',
+        desc: 'Receive curated daily digests via email or Slack notification.',
       },
     ],
-    pricingHeading: 'Cryptographic Security Plans',
-    pricingTiers: [
+    pricing: [
       {
-        name: 'Pro Cryptography',
-        price: '$1,999',
-        interval: '/mo',
-        description: 'For privacy-critical financial and health AI models.',
-        features: ['Full ZK-STARK proof generation', 'Standard neural circuit library', 'Client verification SDK', 'Priority support'],
-        ctaLabel: 'Get Started',
+        tier: 'Community',
+        price: '$39/mo',
+        desc: 'For indie creators & single community channels.',
+        features: ['2 Channels Connected', 'Daily Digest Briefs', 'Spam Filtering', 'Email Support'],
       },
       {
-        name: 'Enterprise Security',
-        price: 'Contact Sales',
-        description: 'For defense and regulated banking infrastructure.',
-        features: ['Custom ZK circuit compilation', 'Dedicated audit reporting', 'On-premise proof generation', 'Custom SLA & compliance'],
+        tier: 'Pro Manager',
+        price: '$119/mo',
+        desc: 'For active Web3, SaaS, and open-source communities.',
+        features: ['10 Channels Connected', 'Newsletter Generator', 'Webhook Notifications', 'Priority Support'],
         highlighted: true,
-        ctaLabel: 'Contact Sales',
+      },
+      {
+        tier: 'Enterprise',
+        price: '$299/mo',
+        desc: 'For multi-brand organizations with large community operations.',
+        features: ['Unlimited Channels', 'Custom Sentiment Models', 'Dedicated Account Manager', 'SLA Guarantees'],
+      },
+    ],
+    faq: [
+      {
+        question: 'Does the tool read private messages or user data?',
+        answer: 'No. The bot only accesses public messages in channels where it is explicitly installed or text transcripts provided via API.',
+      },
+      {
+        question: 'Can I schedule automated daily email digests?',
+        answer: 'Yes! You can configure automated daily or weekly email dispatches sent to your team at designated times.',
+      },
+    ],
+  },
+
+  'news-aggregator': {
+    slug: 'news-aggregator',
+    id: 'TOOL_04',
+    title: 'Smart News Aggregator',
+    badge: 'Media Intelligence',
+    tagline: 'Hyper-local regional news curation & topic tracking with sentiment briefings.',
+    excerpt: 'Track sector trends, local news events, and market intelligence categorized by geographic relevance and sentiment metrics.',
+    latency: '< 0.45s',
+    iconName: 'Layers',
+    problem: [
+      'Media teams and market analysts drown in uncurated news feeds and duplicate press releases.',
+      'Regional and local language news often lacks structured metadata and automated sentiment tagging.',
+    ],
+    solution: [
+      'NorAI aggregates RSS feeds, regional news API sources, and web publications into categorized briefings.',
+      'Applies sentiment analysis, entity extraction, and deduplication to produce clean media digests.',
+    ],
+    features: [
+      {
+        title: 'Regional Curation',
+        desc: 'Filter news updates by specific state, district, or industry sector.',
+      },
+      {
+        title: 'Sentiment & Entity Tagging',
+        desc: 'Automatically tag articles with company names, key figures, and positive/negative sentiment scores.',
+      },
+      {
+        title: 'Duplicate Removal',
+        desc: 'Group syndicated articles and press releases into single topic story clusters.',
+      },
+      {
+        title: 'Custom RSS & Webhook Feeds',
+        desc: 'Export curated news briefings to custom webhooks or JSON feeds.',
+      },
+    ],
+    workflow: [
+      {
+        step: '01',
+        title: 'Define Topics & Regions',
+        desc: 'Specify industry keywords, region preferences, and tracking topics.',
+      },
+      {
+        step: '02',
+        title: 'Aggregation & Tagging',
+        desc: 'NorAI deduplicates incoming news stories and applies sentiment metadata.',
+      },
+      {
+        step: '03',
+        title: 'Curated Briefings',
+        desc: 'Access real-time JSON feeds or receive daily executive news dispatches.',
+      },
+    ],
+    pricing: [
+      {
+        tier: 'Analyst',
+        price: '$59/mo',
+        desc: 'For researchers and independent media analysts.',
+        features: ['5 Keyword Trackers', 'Daily News Briefings', 'Basic Sentiment Analysis', 'Email Support'],
+      },
+      {
+        tier: 'Media Hub',
+        price: '$179/mo',
+        desc: 'For regional newsrooms and corporate PR teams.',
+        features: ['25 Keyword Trackers', 'Real-Time Webhooks', 'Advanced Entity Extraction', 'Priority Support'],
+        highlighted: true,
+      },
+      {
+        tier: 'Enterprise',
+        price: '$449/mo',
+        desc: 'For large media networks and institutional market intelligence.',
+        features: ['Unlimited Trackers', 'Custom NLP Models', 'Dedicated Data Pipeline', '99.9% Uptime SLA'],
+      },
+    ],
+    faq: [
+      {
+        question: 'Which regional languages are supported?',
+        answer: 'The news aggregator supports English, Hindi, and major Indian regional language news feeds.',
+      },
+      {
+        question: 'Can I export news data via REST API?',
+        answer: 'Yes! All curated news clusters and sentiment metrics are accessible via REST API endpoints.',
       },
     ],
   },

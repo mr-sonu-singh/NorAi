@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
 import { Container } from '@/components/foundation/Container';
 import { Section } from '@/components/foundation/Section';
 import { Heading } from '@/components/foundation/Heading';
@@ -8,58 +6,19 @@ import { Text } from '@/components/foundation/Text';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
 import {
-  Sparkles,
-  Zap,
   ArrowRight,
   Bot,
   Globe,
   Video,
   Workflow,
-  Cpu,
-  Layers,
   HelpCircle,
   ChevronDown,
-  Clock,
   Lock,
   Terminal,
   Activity,
   CheckCircle2,
+  Package,
 } from 'lucide-react';
-
-const MICRO_TOOLS_DATA = [
-  {
-    id: 'AGENT_01',
-    title: 'AI Resume Shortlister',
-    badge: 'Recruitment AI',
-    desc: 'Parse, score, and rank candidate resumes against job requirements with automated skill extraction and qualification matching.',
-    icon: Sparkles,
-    latency: '< 0.35s',
-  },
-  {
-    id: 'AGENT_02',
-    title: 'Course Note-Taker',
-    badge: 'EdTech AI',
-    desc: 'Convert YouTube lectures, audio recordings, and slides into structured study notes, flashcards, key takeaways, and quizzes.',
-    icon: Zap,
-    latency: '< 0.41s',
-  },
-  {
-    id: 'AGENT_03',
-    title: 'Community Chat Digest',
-    badge: 'Community AI',
-    desc: 'Digest noisy Telegram, Discord, and Slack channels into executive daily briefs highlighting customer feedback and action items.',
-    icon: Cpu,
-    latency: '< 0.28s',
-  },
-  {
-    id: 'AGENT_04',
-    title: 'Smart Dainik News',
-    badge: 'Media AI',
-    desc: 'Curate hyper-local regional news and market updates filtered by sentiment, relevance, and interest categories.',
-    icon: Layers,
-    latency: '< 0.45s',
-  },
-];
 
 const CUSTOM_SERVICES_DATA = [
   {
@@ -120,8 +79,8 @@ const ENGAGEMENT_STEPS = [
 
 const SERVICES_FAQ = [
   {
-    question: 'What is the difference between your pre-built micro-tools and custom services?',
-    answer: 'Pre-built micro-tools (Resume Shortlister, Note-Taker, Chat Digest, Smart News) are ready to use immediately via API or dashboard. Custom services involve engineering bespoke AI pipelines, agents, or web applications tailored to your proprietary data.',
+    question: 'What is the difference between your self-serve products and enterprise services?',
+    answer: 'Our self-serve products (available on our Products page) are ready-to-deploy tools accessible via instant sign-up. Custom enterprise services on this page involve engineering bespoke AI pipelines, agents, or full-stack applications tailored to your exact business logic and security policies.',
   },
   {
     question: 'How fast can a custom AI service be deployed?',
@@ -138,18 +97,16 @@ const SERVICES_FAQ = [
 ];
 
 export default function ServicesPage() {
-  const [activeCategory, setActiveCategory] = useState<'all' | 'micro' | 'custom'>('all');
-
   return (
     <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-[#0CCAB1] selection:text-[#0B0F17]">
       {/* Hero Section */}
-      <Section className="relative pt-12 pb-14 md:pt-20 md:pb-20 overflow-hidden">
+      <Section className="relative pt-12 pb-14 md:pt-20 md:pb-16 overflow-hidden">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-6">
             {/* Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#0CCAB1]/30 bg-[#0CCAB1]/10 text-[#45F7D6] text-xs font-mono tracking-wide uppercase">
               <Terminal className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" />
-              <span>Modular AI Solutions & Enterprise Engineering</span>
+              <span>Enterprise AI Architecture &amp; Custom Engineering</span>
             </div>
 
             {/* Headline */}
@@ -158,15 +115,15 @@ export default function ServicesPage() {
               variant="display-xl"
               className="font-display font-extrabold tracking-tight text-white leading-tight"
             >
-              Modular AI Solutions for{' '}
+              Bespoke AI Services for{' '}
               <span className="text-[#0CCAB1] underline decoration-[#0CCAB1]/40 underline-offset-8">
-                High-Scale Workflows
+                Enterprise Workflows
               </span>
             </Heading>
 
             {/* Subhead */}
             <Text variant="body-lg" className="text-slate-300 font-normal leading-relaxed">
-              Whether you need pre-configured micro-SaaS utilities or bespoke AI pipeline engineering, NorAI delivers sub-second intelligence tailored to your business goals.
+              We design, build, and deploy custom conversational agents, full-stack web applications, synthetic media engines, and automated backend pipelines tailored to your proprietary data.
             </Text>
 
             {/* CTA Buttons */}
@@ -182,254 +139,160 @@ export default function ServicesPage() {
                 </Button>
               </Link>
             </div>
+
+            {/* Quiet Teaser Linking to /products */}
+            <div className="pt-2">
+              <Link href="/products" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-[#131924]/60 text-slate-300 hover:text-white hover:border-[#0CCAB1]/40 transition-all text-xs font-mono group">
+                <Package className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" />
+                <span>Looking for ready-to-deploy tools instead?</span>
+                <span className="text-[#0CCAB1] font-bold group-hover:translate-x-0.5 transition-transform">
+                  Explore NorAI Products &rarr;
+                </span>
+              </Link>
+            </div>
           </div>
         </Container>
       </Section>
 
-      {/* Signature Element: Solution Architecture Selector Bar */}
+      {/* Signature Element: Solution Architecture Selector / Telemetry Bar */}
       <Section className="py-4 border-y border-white/10 bg-[#131924]/60">
         <Container size="default">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono">
             <div className="flex items-center gap-2 text-slate-400">
               <Activity className="w-4 h-4 text-[#0CCAB1]" aria-hidden="true" />
-              <span className="font-bold text-white uppercase tracking-wider">Catalog Filter:</span>
-              <span className="text-[#45F7D6]">● 8 Total Solutions</span>
+              <span className="font-bold text-white uppercase tracking-wider">Catalog Scope:</span>
+              <span className="text-[#45F7D6]">● 4 Enterprise Consultative Solutions</span>
             </div>
 
-            {/* Filter Segment Buttons */}
-            <div className="flex items-center gap-2" role="tablist" aria-label="Services Catalog Filter">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'all'}
-                onClick={() => setActiveCategory('all')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
-                  activeCategory === 'all'
-                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
-                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
-                }`}
-              >
-                [ALL SOLUTIONS]
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'micro'}
-                onClick={() => setActiveCategory('micro')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
-                  activeCategory === 'micro'
-                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
-                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
-                }`}
-              >
-                [01] MICRO-SAAS (4)
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'custom'}
-                onClick={() => setActiveCategory('custom')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
-                  activeCategory === 'custom'
-                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
-                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
-                }`}
-              >
-                [02] ENTERPRISE (4)
-              </button>
+            <div className="flex items-center gap-2 text-slate-400">
+              <span className="inline-flex items-center gap-1.5 text-xs text-[#45F7D6] bg-[#0B0F17] px-3 py-1 rounded border border-white/10">
+                <Lock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" />
+                BESPOKE AI PIPELINE &amp; FULL-STACK ENGINEERING
+              </span>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* Category 1: Pre-Built Micro-SaaS Tools Grid */}
-      {(activeCategory === 'all' || activeCategory === 'micro') && (
-        <Section className="py-16">
-          <Container size="default">
-            <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-              <div className="text-xs font-mono text-[#0CCAB1] uppercase font-bold tracking-widest">
-                Category 01 • Instant Deploy
-              </div>
-              <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
-                Pre-Built Micro-SaaS Utilities
-              </Heading>
-              <Text variant="body-md" className="text-slate-400">
-                Instant-deploy AI agents accessible via web dashboards or REST API endpoints.
-              </Text>
+      {/* Custom Enterprise AI Services (Asymmetrical Architecture Matrix) */}
+      <Section className="py-16">
+        <Container size="default">
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+            <div className="text-xs font-mono text-[#0CCAB1] uppercase font-bold tracking-widest">
+              Consultative Offerings • Bespoke Engineering
             </div>
+            <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
+              Enterprise AI Solution Matrix
+            </Heading>
+            <Text variant="body-md" className="text-slate-400">
+              Tailored AI agents, web applications, and automated pipelines engineered for your exact business logic.
+            </Text>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {MICRO_TOOLS_DATA.map((tool) => {
-                const IconComp = tool.icon;
-                return (
-                  <div
-                    key={tool.id}
-                    className="bg-[#131924] border border-white/10 rounded-xl p-6 flex flex-col justify-between space-y-6 hover:border-[#0CCAB1]/40 transition-all group"
-                  >
-                    <div className="space-y-4">
-                      {/* Top Monospace Header Bar */}
-                      <div className="flex items-center justify-between text-xs font-mono">
-                        <span className="text-slate-500 font-bold tracking-wider">{tool.id}</span>
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#0CCAB1]/10 text-[#45F7D6] border border-[#0CCAB1]/20">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#45F7D6] animate-pulse" />
-                          READY TO DEPLOY
-                        </span>
+          {/* Asymmetrical Matrix: Featured Hero Card + 3-Card Grid */}
+          <div className="space-y-6">
+            {/* Featured Anchor Card: Custom AI Chatbots & Agents */}
+            {CUSTOM_SERVICES_DATA.filter((s) => s.featured).map((srv) => {
+              const IconComp = srv.icon;
+              return (
+                <div
+                  key={srv.id}
+                  className="bg-[#131924] border-2 border-[#0CCAB1]/60 rounded-xl p-8 space-y-6 relative overflow-hidden shadow-xl shadow-[#0CCAB1]/10"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 rounded-xl bg-[#0CCAB1]/10 border border-[#0CCAB1]/30 text-[#0CCAB1]">
+                        <IconComp className="w-6 h-6" aria-hidden="true" />
                       </div>
-
-                      <div className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-lg bg-[#0CCAB1]/10 border border-[#0CCAB1]/20 text-[#0CCAB1] group-hover:scale-105 transition-transform">
-                          <IconComp className="w-5 h-5" aria-hidden="true" />
-                        </div>
-                        <div>
-                          <Heading as="h3" variant="heading-lg" className="font-display font-bold text-white group-hover:text-[#0CCAB1] transition-colors">
-                            {tool.title}
-                          </Heading>
-                          <span className="text-[11px] font-mono text-slate-400">{tool.badge}</span>
-                        </div>
+                      <div>
+                        <span className="text-xs font-mono font-bold text-[#45F7D6] uppercase tracking-wider">{srv.id} • {srv.badge}</span>
+                        <Heading as="h3" variant="heading-xl" className="font-display font-bold text-white">
+                          {srv.title}
+                        </Heading>
                       </div>
-
-                      <Text variant="body-sm" className="text-slate-300 leading-relaxed">
-                        {tool.desc}
-                      </Text>
                     </div>
-
-                    <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
-                      <span className="text-slate-400 flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> {tool.latency} Latency
-                      </span>
-                      <Link href="/contact" className="inline-flex items-center font-bold text-[#0CCAB1] group-hover:text-[#45F7D6]">
-                        Deploy Tool <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                      </Link>
-                    </div>
+                    <span className="px-3 py-1 rounded bg-[#0CCAB1] text-[#0B0F17] text-xs font-mono font-bold uppercase tracking-wider w-fit">
+                      FLAGSHIP ENTERPRISE SOLUTION
+                    </span>
                   </div>
-                );
-              })}
-            </div>
-          </Container>
-        </Section>
-      )}
 
-      {/* Category 2: Custom Enterprise AI Services (Asymmetrical Architecture Matrix) */}
-      {(activeCategory === 'all' || activeCategory === 'custom') && (
-        <Section className="py-16 bg-[#131924]/40 border-t border-white/10">
-          <Container size="default">
-            <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-              <div className="text-xs font-mono text-[#0CCAB1] uppercase font-bold tracking-widest">
-                Category 02 • Bespoke Engineering
-              </div>
-              <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
-                Custom Enterprise AI Services
-              </Heading>
-              <Text variant="body-md" className="text-slate-400">
-                Tailored AI agents, web applications, and automated pipelines engineered for your exact business logic.
-              </Text>
-            </div>
+                  <Text variant="body-md" className="text-slate-300 max-w-3xl leading-relaxed">
+                    {srv.desc}
+                  </Text>
 
-            {/* Asymmetrical Matrix: Featured Hero Card + 3-Card Grid */}
-            <div className="space-y-6">
-              {/* Featured Anchor Card: Custom AI Chatbots & Agents */}
-              {CUSTOM_SERVICES_DATA.filter((s) => s.featured).map((srv) => {
+                  {/* Architecture Highlights Pill Row */}
+                  <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+                    {srv.highlights.map((h, i) => (
+                      <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0B0F17] border border-white/10 text-slate-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> {h}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                      <Lock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> Strict Private Data Isolation SLA
+                    </span>
+                    <Link href="/contact">
+                      <Button variant="primary" size="md" className="bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-6 py-2.5 rounded-lg shadow-md shadow-[#0CCAB1]/20">
+                        Scope Enterprise Solution <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* 3 Secondary Enterprise Solution Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {CUSTOM_SERVICES_DATA.filter((s) => !s.featured).map((srv) => {
                 const IconComp = srv.icon;
                 return (
                   <div
                     key={srv.id}
-                    className="bg-[#131924] border-2 border-[#0CCAB1]/60 rounded-xl p-8 space-y-6 relative overflow-hidden shadow-xl shadow-[#0CCAB1]/10"
+                    className="bg-[#131924] border border-white/10 rounded-xl p-6 flex flex-col justify-between space-y-6 hover:border-[#0CCAB1]/40 transition-all group"
                   >
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <div className="p-3 rounded-xl bg-[#0CCAB1]/10 border border-[#0CCAB1]/30 text-[#0CCAB1]">
-                          <IconComp className="w-6 h-6" aria-hidden="true" />
-                        </div>
-                        <div>
-                          <span className="text-xs font-mono font-bold text-[#45F7D6] uppercase tracking-wider">{srv.id} • {srv.badge}</span>
-                          <Heading as="h3" variant="heading-xl" className="font-display font-bold text-white">
-                            {srv.title}
-                          </Heading>
-                        </div>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="text-slate-500 font-bold">{srv.id}</span>
+                        <span className="px-2 py-0.5 rounded bg-slate-800 text-[#45F7D6] border border-white/10">{srv.badge}</span>
                       </div>
-                      <span className="px-3 py-1 rounded bg-[#0CCAB1] text-[#0B0F17] text-xs font-mono font-bold uppercase tracking-wider w-fit">
-                        FLAGSHIP ENTERPRISE SOLUTION
-                      </span>
+
+                      <div className="p-2.5 rounded-lg bg-[#0CCAB1]/10 border border-[#0CCAB1]/20 text-[#0CCAB1] w-fit group-hover:scale-105 transition-transform">
+                        <IconComp className="w-5 h-5" aria-hidden="true" />
+                      </div>
+
+                      <Heading as="h3" variant="heading-lg" className="font-display font-bold text-white group-hover:text-[#0CCAB1] transition-colors">
+                        {srv.title}
+                      </Heading>
+
+                      <Text variant="body-sm" className="text-slate-300 leading-relaxed">
+                        {srv.desc}
+                      </Text>
                     </div>
 
-                    <Text variant="body-md" className="text-slate-300 max-w-3xl leading-relaxed">
-                      {srv.desc}
-                    </Text>
-
-                    {/* Architecture Highlights Pill Row */}
-                    <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
-                      {srv.highlights.map((h, i) => (
-                        <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0B0F17] border border-white/10 text-slate-300">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> {h}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                      <span className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-                        <Lock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> Strict Private Data Isolation SLA
-                      </span>
-                      <Link href="/contact">
-                        <Button variant="primary" size="md" className="bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-6 py-2.5 rounded-lg shadow-md shadow-[#0CCAB1]/20">
-                          Scope Enterprise Solution <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
-                        </Button>
+                    <div className="pt-4 border-t border-white/5 space-y-3">
+                      <div className="space-y-1">
+                        {srv.highlights.map((h, i) => (
+                          <div key={i} className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
+                            <span className="w-1 h-1 rounded-full bg-[#0CCAB1]" /> {h}
+                          </div>
+                        ))}
+                      </div>
+                      <Link href="/contact" className="inline-flex items-center text-xs font-mono font-bold text-[#0CCAB1] group-hover:text-[#45F7D6]">
+                        Scope Solution <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                       </Link>
                     </div>
                   </div>
                 );
               })}
-
-              {/* 3 Secondary Enterprise Solution Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {CUSTOM_SERVICES_DATA.filter((s) => !s.featured).map((srv) => {
-                  const IconComp = srv.icon;
-                  return (
-                    <div
-                      key={srv.id}
-                      className="bg-[#131924] border border-white/10 rounded-xl p-6 flex flex-col justify-between space-y-6 hover:border-[#0CCAB1]/40 transition-all group"
-                    >
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between text-xs font-mono">
-                          <span className="text-slate-500 font-bold">{srv.id}</span>
-                          <span className="px-2 py-0.5 rounded bg-slate-800 text-[#45F7D6] border border-white/10">{srv.badge}</span>
-                        </div>
-
-                        <div className="p-2.5 rounded-lg bg-[#0CCAB1]/10 border border-[#0CCAB1]/20 text-[#0CCAB1] w-fit group-hover:scale-105 transition-transform">
-                          <IconComp className="w-5 h-5" aria-hidden="true" />
-                        </div>
-
-                        <Heading as="h3" variant="heading-lg" className="font-display font-bold text-white group-hover:text-[#0CCAB1] transition-colors">
-                          {srv.title}
-                        </Heading>
-
-                        <Text variant="body-sm" className="text-slate-300 leading-relaxed">
-                          {srv.desc}
-                        </Text>
-                      </div>
-
-                      <div className="pt-4 border-t border-white/5 space-y-3">
-                        <div className="space-y-1">
-                          {srv.highlights.map((h, i) => (
-                            <div key={i} className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
-                              <span className="w-1 h-1 rounded-full bg-[#0CCAB1]" /> {h}
-                            </div>
-                          ))}
-                        </div>
-                        <Link href="/contact" className="inline-flex items-center text-xs font-mono font-bold text-[#0CCAB1] group-hover:text-[#45F7D6]">
-                          Scope Solution <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                        </Link>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
-          </Container>
-        </Section>
-      )}
+          </div>
+        </Container>
+      </Section>
 
       {/* Engagement Model Section: Connected Horizontal Pipeline */}
-      <Section className="py-20 border-t border-white/10">
+      <Section className="py-20 border-t border-white/10 bg-[#131924]/40">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
@@ -464,7 +327,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* Services FAQ */}
-      <Section className="py-20 bg-[#131924]/40 border-t border-white/10">
+      <Section className="py-20 border-t border-white/10">
         <Container size="narrow">
           <div className="text-center space-y-4 mb-12">
             <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">

@@ -20,8 +20,9 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Products',
     links: [
-      { label: 'NorAI Core', href: '/products/core' },
-      { label: 'NorAI Vision', href: '/products/vision' },
+      { label: 'All Products', href: '/products' },
+      { label: 'Resume Shortlister', href: '/products/resume-shortlister' },
+      { label: 'Course Note-Taker', href: '/products/course-note-taker' },
       { label: 'Pricing', href: '/pricing' },
     ],
   },
