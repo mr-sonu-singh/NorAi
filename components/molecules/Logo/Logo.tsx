@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { Link } from '@/components/atoms/Link';
 import { VisuallyHidden } from '@/components/foundation/VisuallyHidden';
-import { Text } from '@/components/foundation/Text';
 import { cn } from '@/lib/utils';
 import { LogoProps, LogoSize } from './Logo.types';
 
@@ -9,17 +8,17 @@ const sizeMap: Record<LogoSize, { container: string; symbol: string; text: strin
   S: {
     container: 'h-6 gap-2',
     symbol: 'w-6 h-6',
-    text: 'text-body-sm font-bold tracking-tight',
+    text: 'text-lg font-display font-extrabold tracking-tight',
   },
   M: {
     container: 'h-8 gap-2.5',
-    symbol: 'w-8 h-8',
-    text: 'text-body-md font-bold tracking-tight',
+    symbol: 'w-7 h-7 md:w-8 md:h-8',
+    text: 'text-xl font-display font-extrabold tracking-tight',
   },
   L: {
     container: 'h-10 gap-3',
-    symbol: 'w-10 h-10',
-    text: 'text-body-lg font-bold tracking-tight',
+    symbol: 'w-9 h-9 md:w-10 md:h-10',
+    text: 'text-2xl font-display font-extrabold tracking-tight',
   },
 };
 
@@ -32,29 +31,61 @@ export function Logo({
   ...props
 }: LogoProps) {
   const { container, symbol, text } = sizeMap[size];
+  const rawId = useId();
+  const gradientId = `norai-logo-grad-${rawId.replace(/:/g, '')}`;
 
   const renderSymbol = () => (
     <svg
-      className={cn('inline-block shrink-0 fill-current text-accent', symbol)}
-      viewBox="0 0 32 32"
+      className={cn('inline-block shrink-0', symbol)}
+      viewBox="0 0 36 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
+      <defs>
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#45F7D6" />
+          <stop offset="50%" stopColor="#0CCAB1" />
+          <stop offset="100%" stopColor="#38BDF8" />
+        </linearGradient>
+      </defs>
+
+      {/* Hexagonal Circuit Outer Frame */}
       <path
-        d="M16 2L4 9V23L16 30L28 23V9L16 2Z"
-        className="stroke-accent"
-        strokeWidth="2.5"
+        d="M18 3.5 L31 10.5 V25.5 L18 32.5 L5 25.5 V10.5 Z"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="2.4"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="16" cy="16" r="5" className="fill-accent" />
+
+      {/* Integrated Circuit N */}
+      <path
+        d="M11 25.5 V10.5 L25 25.5 V13.5"
+        stroke={`url(#${gradientId})`}
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Top-Right Circuit Node */}
+      <circle cx="31" cy="10.5" r="2.5" fill={`url(#${gradientId})`} />
+
+      {/* Bottom-Left Circuit Node */}
+      <circle cx="5" cy="25.5" r="2.5" fill={`url(#${gradientId})`} />
+
+      {/* N Right Arm Circuit Node */}
+      <circle cx="25" cy="13.5" r="2.2" fill={`url(#${gradientId})`} />
     </svg>
   );
 
   const renderWordmark = () => (
-    <Text as="span" className={cn('text-white font-mono select-none', text)}>
-      Nor<span className="text-blue-400">AI</span>
-    </Text>
+    <span className={cn('select-none flex items-center leading-none', text)}>
+      <span className="text-white">Nor</span>
+      <span className="bg-gradient-to-r from-[#0CCAB1] via-[#38BDF8] to-[#45F7D6] bg-clip-text text-transparent">
+        AI
+      </span>
+    </span>
   );
 
   return (
@@ -63,7 +94,7 @@ export function Logo({
       variant="unstyled"
       aria-label={ariaLabel}
       className={cn(
-        'inline-flex items-center hover:opacity-90 transition-opacity duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm',
+        'inline-flex items-center hover:opacity-90 transition-opacity duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] focus-visible:ring-offset-2 rounded-sm',
         container,
         className,
       )}
@@ -86,3 +117,4 @@ export function Logo({
     </Link>
   );
 }
+
