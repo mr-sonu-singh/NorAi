@@ -14,7 +14,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
   children,
   className,
   maxTiltDegrees = 8,
-  glowColor = 'rgba(96, 165, 250, 0.4)',
+  glowColor: _glowColor = 'rgba(96, 165, 250, 0.4)',
   ...props
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);

@@ -409,7 +409,7 @@ export default function HomePage() {
             {TESTIMONIALS_DATA.map((t, index) => (
               <div key={index} className="tilt-card p-6 flex flex-col justify-between space-y-6">
                 <Text variant="body-sm" className="text-slate-300 italic leading-relaxed">
-                  "{t.quote}"
+                  &ldquo;{t.quote}&rdquo;
                 </Text>
                 <div className="pt-4 border-t border-white/5">
                   <div className="font-display font-bold text-white text-sm">{t.author}</div>

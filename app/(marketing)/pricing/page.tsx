@@ -10,7 +10,6 @@ import { Link } from '@/components/atoms/Link';
 import {
   Check,
   Minus,
-  Sparkles,
   ArrowRight,
   HelpCircle,
   ChevronDown,
