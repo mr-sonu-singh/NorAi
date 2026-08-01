@@ -228,7 +228,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                     {wf.step}
                   </span>
                   {idx < product.workflow.length - 1 && (
-                    <span className="hidden md:block text-slate-600 font-mono text-xs">STEP &rarr;</span>
+                    <span className="hidden md:block text-slate-400 font-mono text-xs">STEP &rarr;</span>
                   )}
                 </div>
                 <Heading as="h3" variant="heading-md" className="font-display font-bold text-white">

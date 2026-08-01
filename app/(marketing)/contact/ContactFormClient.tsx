@@ -92,14 +92,21 @@ export function ContactFormClient() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          <p className="text-xs font-mono text-slate-400">
+            Fields marked with <span className="text-[#0CCAB1] font-bold">*</span> are required.
+          </p>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
-                Full Name *
+              <label htmlFor="contact-name" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
+                Full Name <span className="text-[#0CCAB1]" aria-hidden="true">*</span>
               </label>
               <input
+                id="contact-name"
+                name="name"
                 type="text"
                 required
+                aria-required="true"
                 placeholder="Dhruw Singh"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -108,12 +115,15 @@ export function ContactFormClient() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
-                Work Email *
+              <label htmlFor="contact-email" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
+                Work Email <span className="text-[#0CCAB1]" aria-hidden="true">*</span>
               </label>
               <input
+                id="contact-email"
+                name="email"
                 type="email"
                 required
+                aria-required="true"
                 placeholder="name@company.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -124,10 +134,12 @@ export function ContactFormClient() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
+              <label htmlFor="contact-company" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
                 Company / Organization
               </label>
               <input
+                id="contact-company"
+                name="company"
                 type="text"
                 placeholder="TechCorp Global"
                 value={formData.company}
@@ -137,10 +149,12 @@ export function ContactFormClient() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
-                Service Interest *
+              <label htmlFor="contact-service" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
+                Service Interest <span className="text-[#0CCAB1]" aria-hidden="true">*</span>
               </label>
               <select
+                id="contact-service"
+                name="service"
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-mono cursor-pointer"
@@ -155,11 +169,14 @@ export function ContactFormClient() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
-              Project / Scoping Details *
+            <label htmlFor="contact-message" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
+              Project / Scoping Details <span className="text-[#0CCAB1]" aria-hidden="true">*</span>
             </label>
             <textarea
+              id="contact-message"
+              name="message"
               required
+              aria-required="true"
               rows={4}
               placeholder="Tell us about your data bottleneck, request volume, or AI automation goals..."
               value={formData.message}

@@ -18,9 +18,22 @@ import {
   Activity,
   CheckCircle2,
   Package,
+  Database,
+  Server,
+  BarChart2,
+  Sparkles,
+  Construction,
+  FlaskConical,
 } from 'lucide-react';
+import { buildMetadata } from '@/lib/seo';
 
-const CUSTOM_SERVICES_DATA = [
+export const metadata = buildMetadata({
+  path: '/services',
+  title: 'Enterprise AI Services & Readiness Matrix — NorAI Technologies',
+  description: 'Bespoke AI agent orchestration, custom RAG vector search, MCP tool servers, and automated pipelines across 3 visual confidence tiers.',
+});
+
+const TIER_1_ACTIVE_SERVICES = [
   {
     id: 'ENTERPRISE_01',
     title: 'Custom AI Chatbots & Agents',
@@ -32,6 +45,33 @@ const CUSTOM_SERVICES_DATA = [
   },
   {
     id: 'ENTERPRISE_02',
+    title: 'RAG Systems',
+    badge: 'Knowledge Retrieval',
+    featured: false,
+    desc: 'Build enterprise vector search pipelines, hybrid retrieval-augmented generation (RAG), and multi-document indexing engines for high-accuracy knowledge retrieval.',
+    icon: Database,
+    highlights: ['Vector DB & Hybrid Search', 'Document Chunking & Embeddings', 'Grounded Context Verification'],
+  },
+  {
+    id: 'ENTERPRISE_03',
+    title: 'MCP Integration',
+    badge: 'Protocol Tooling',
+    featured: false,
+    desc: 'Implement Model Context Protocol (MCP) tool servers connecting Claude and AI assistants directly to your databases, internal APIs, and developer tooling.',
+    icon: Server,
+    highlights: ['Standardized MCP Protocol', 'Custom Tool & Resource Servers', 'Secure Execution Handlers'],
+  },
+  {
+    id: 'ENTERPRISE_04',
+    title: 'LLM Consulting & Auditing',
+    badge: 'Model Optimization',
+    featured: false,
+    desc: 'Evaluate model performance, optimize prompt engineering pipelines, audit token consumption costs, and implement latency benchmarks across your LLM stack.',
+    icon: BarChart2,
+    highlights: ['Token & Cost Optimization', 'Latency & Benchmark Audits', 'Prompt & Model Evaluation'],
+  },
+  {
+    id: 'ENTERPRISE_05',
     title: 'AI Web Applications',
     badge: 'Full-Stack Web',
     featured: false,
@@ -40,7 +80,7 @@ const CUSTOM_SERVICES_DATA = [
     highlights: ['Next.js 15 & React 19 Stack', 'Sub-100ms Inference Endpoints'],
   },
   {
-    id: 'ENTERPRISE_03',
+    id: 'ENTERPRISE_06',
     title: 'AI Video & Product Ads',
     badge: 'Synthetic Media',
     featured: false,
@@ -49,7 +89,7 @@ const CUSTOM_SERVICES_DATA = [
     highlights: ['Multi-Lingual Voice Synthesis', 'Automated Rendering Pipelines'],
   },
   {
-    id: 'ENTERPRISE_04',
+    id: 'ENTERPRISE_07',
     title: 'Business Automation Pipelines',
     badge: 'Workflow Engineering',
     featured: false,
@@ -58,6 +98,23 @@ const CUSTOM_SERVICES_DATA = [
     highlights: ['Fault-Tolerant Worker Queues', 'Webhook & REST Orchestration'],
   },
 ];
+
+const TIER_2_EARLY_ACCESS_SERVICE = {
+  id: 'EARLY_01',
+  title: 'Enterprise AI Transformation',
+  badge: 'Early Access Practice',
+  desc: 'Comprehensive technical audit and modernization roadmap to integrate AI workflows into legacy enterprise software and operational pipelines. We are currently onboarding select enterprise pilot partners.',
+  icon: Sparkles,
+  highlights: ['Legacy System Audit', 'Early Access Onboarding', 'Architecture Modernization'],
+};
+
+const TIER_3_SCAFFOLD_ITEM = {
+  id: 'SCAFFOLD_01',
+  title: 'Agent Development (Multi-Agent Orchestration)',
+  badge: 'Provisional R&D Scaffold',
+  desc: 'Architectural research blueprint for multi-agent autonomous orchestration, task decomposition, and inter-agent communication protocols. This represents future backend engineering research and is not currently offered for commercial client scoping.',
+  icon: Construction,
+};
 
 const ENGAGEMENT_STEPS = [
   {
@@ -79,6 +136,10 @@ const ENGAGEMENT_STEPS = [
 
 const SERVICES_FAQ = [
   {
+    question: 'How do service readiness tiers work (Active vs. Early Access vs. Scaffold)?',
+    answer: 'Active Core Services (Chatbots, RAG, MCP, LLM Auditing, Web Apps, Video, Pipelines) are shipped commercial offerings. Early Access Practices (Enterprise Transformation) are active programs currently onboarding select pilot clients. Scaffold items (Agent Development) represent internal R&D research blueprints not currently open for commercial scoping.',
+  },
+  {
     question: 'What is the difference between your self-serve products and enterprise services?',
     answer: 'Our self-serve products (available on our Products page) are ready-to-deploy tools accessible via instant sign-up. Custom enterprise services on this page involve engineering bespoke AI pipelines, agents, or full-stack applications tailored to your exact business logic and security policies.',
   },
@@ -97,6 +158,9 @@ const SERVICES_FAQ = [
 ];
 
 export default function ServicesPage() {
+  const flagshipService = TIER_1_ACTIVE_SERVICES.find((s) => s.featured);
+  const secondaryServices = TIER_1_ACTIVE_SERVICES.filter((s) => !s.featured);
+
   return (
     <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-[#0CCAB1] selection:text-[#0B0F17]">
       {/* Hero Section */}
@@ -123,7 +187,7 @@ export default function ServicesPage() {
 
             {/* Subhead */}
             <Text variant="body-lg" className="text-slate-300 font-normal leading-relaxed">
-              We design, build, and deploy custom conversational agents, full-stack web applications, synthetic media engines, and automated backend pipelines tailored to your proprietary data.
+              We design, build, and deploy custom conversational agents, RAG search systems, MCP tool servers, full-stack web applications, synthetic media engines, and automated backend pipelines.
             </Text>
 
             {/* CTA Buttons */}
@@ -154,98 +218,93 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      {/* Signature Element: Solution Architecture Selector / Telemetry Bar */}
+      {/* Signature Element: Telemetry Bar */}
       <Section className="py-4 border-y border-white/10 bg-[#131924]/60">
         <Container size="default">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono">
             <div className="flex items-center gap-2 text-slate-400">
               <Activity className="w-4 h-4 text-[#0CCAB1]" aria-hidden="true" />
               <span className="font-bold text-white uppercase tracking-wider">Catalog Scope:</span>
-              <span className="text-[#45F7D6]">● 4 Enterprise Consultative Solutions</span>
+              <span className="text-[#45F7D6]">● 7 Active Services | 1 Early Access | 1 R&amp;D Scaffold</span>
             </div>
 
             <div className="flex items-center gap-2 text-slate-400">
               <span className="inline-flex items-center gap-1.5 text-xs text-[#45F7D6] bg-[#0B0F17] px-3 py-1 rounded border border-white/10">
                 <Lock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" />
-                BESPOKE AI PIPELINE &amp; FULL-STACK ENGINEERING
+                TRANSPARENT SERVICE MATURITY MATRIX
               </span>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* Custom Enterprise AI Services (Asymmetrical Architecture Matrix) */}
+      {/* TIER 1: ACTIVE CORE ENTERPRISE SERVICES */}
       <Section className="py-16">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
             <div className="text-xs font-mono text-[#0CCAB1] uppercase font-bold tracking-widest">
-              Consultative Offerings • Bespoke Engineering
+              Tier 01 • Active Shipped Services
             </div>
             <Heading as="h2" variant="display-md" className="font-display font-extrabold text-white">
-              Enterprise AI Solution Matrix
+              Core Consultative Services
             </Heading>
             <Text variant="body-md" className="text-slate-400">
-              Tailored AI agents, web applications, and automated pipelines engineered for your exact business logic.
+              Fully active, commercial offerings ready for enterprise scoping and production deployment.
             </Text>
           </div>
 
-          {/* Asymmetrical Matrix: Featured Hero Card + 3-Card Grid */}
           <div className="space-y-6">
-            {/* Featured Anchor Card: Custom AI Chatbots & Agents */}
-            {CUSTOM_SERVICES_DATA.filter((s) => s.featured).map((srv) => {
-              const IconComp = srv.icon;
-              return (
-                <div
-                  key={srv.id}
-                  className="bg-[#131924] border-2 border-[#0CCAB1]/60 rounded-xl p-8 space-y-6 relative overflow-hidden shadow-xl shadow-[#0CCAB1]/10"
-                >
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 rounded-xl bg-[#0CCAB1]/10 border border-[#0CCAB1]/30 text-[#0CCAB1]">
-                        <IconComp className="w-6 h-6" aria-hidden="true" />
-                      </div>
-                      <div>
-                        <span className="text-xs font-mono font-bold text-[#45F7D6] uppercase tracking-wider">{srv.id} • {srv.badge}</span>
-                        <Heading as="h3" variant="heading-xl" className="font-display font-bold text-white">
-                          {srv.title}
-                        </Heading>
-                      </div>
+            {/* Flagship Hero Card: Custom AI Chatbots & Agents */}
+            {flagshipService && (
+              <div
+                key={flagshipService.id}
+                className="bg-[#131924] border-2 border-[#0CCAB1]/60 rounded-xl p-8 space-y-6 relative overflow-hidden shadow-xl shadow-[#0CCAB1]/10"
+              >
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 rounded-xl bg-[#0CCAB1]/10 border border-[#0CCAB1]/30 text-[#0CCAB1]">
+                      <Bot className="w-6 h-6" aria-hidden="true" />
                     </div>
-                    <span className="px-3 py-1 rounded bg-[#0CCAB1] text-[#0B0F17] text-xs font-mono font-bold uppercase tracking-wider w-fit">
-                      FLAGSHIP ENTERPRISE SOLUTION
-                    </span>
+                    <div>
+                      <span className="text-xs font-mono font-bold text-[#45F7D6] uppercase tracking-wider">{flagshipService.id} • {flagshipService.badge}</span>
+                      <Heading as="h3" variant="heading-xl" className="font-display font-bold text-white">
+                        {flagshipService.title}
+                      </Heading>
+                    </div>
                   </div>
-
-                  <Text variant="body-md" className="text-slate-300 max-w-3xl leading-relaxed">
-                    {srv.desc}
-                  </Text>
-
-                  {/* Architecture Highlights Pill Row */}
-                  <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
-                    {srv.highlights.map((h, i) => (
-                      <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0B0F17] border border-white/10 text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> {h}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                    <span className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-                      <Lock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> Strict Private Data Isolation SLA
-                    </span>
-                    <Link href="/contact">
-                      <Button variant="primary" size="md" className="bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-6 py-2.5 rounded-lg shadow-md shadow-[#0CCAB1]/20">
-                        Scope Enterprise Solution <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
-                      </Button>
-                    </Link>
-                  </div>
+                  <span className="px-3 py-1 rounded bg-[#0CCAB1] text-[#0B0F17] text-xs font-mono font-bold uppercase tracking-wider w-fit">
+                    FLAGSHIP ENTERPRISE SOLUTION
+                  </span>
                 </div>
-              );
-            })}
 
-            {/* 3 Secondary Enterprise Solution Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {CUSTOM_SERVICES_DATA.filter((s) => !s.featured).map((srv) => {
+                <Text variant="body-md" className="text-slate-300 max-w-3xl leading-relaxed">
+                  {flagshipService.desc}
+                </Text>
+
+                <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+                  {flagshipService.highlights.map((h, i) => (
+                    <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0B0F17] border border-white/10 text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> {h}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                    <Lock className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> Strict Private Data Isolation SLA
+                  </span>
+                  <Link href="/contact">
+                    <Button variant="primary" size="md" className="bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold px-6 py-2.5 rounded-lg shadow-md shadow-[#0CCAB1]/20">
+                      Scope Enterprise Solution <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            {/* 6 Active Secondary Solution Cards Grid (2x3) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {secondaryServices.map((srv) => {
                 const IconComp = srv.icon;
                 return (
                   <div
@@ -291,7 +350,113 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      {/* Engagement Model Section: Connected Horizontal Pipeline */}
+      {/* TIER 2: EARLY ACCESS / EMERGING PRACTICE */}
+      <Section className="py-12 border-t border-white/10 bg-[#131924]/30">
+        <Container size="default">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-8">
+            <div className="text-xs font-mono text-[#45F7D6] uppercase font-bold tracking-widest">
+              Tier 02 • Early Access Practice
+            </div>
+            <Heading as="h2" variant="heading-xl" className="font-display font-extrabold text-white">
+              Emerging Enterprise Programs
+            </Heading>
+          </div>
+
+          <div className="max-w-4xl mx-auto bg-[#131924] border border-[#0CCAB1]/40 rounded-xl p-8 space-y-6 relative overflow-hidden shadow-lg shadow-[#0CCAB1]/5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-xl bg-[#0CCAB1]/10 border border-[#0CCAB1]/30 text-[#0CCAB1]">
+                  <Sparkles className="w-6 h-6" aria-hidden="true" />
+                </div>
+                <div>
+                  <span className="text-xs font-mono font-bold text-[#45F7D6] uppercase tracking-wider">
+                    {TIER_2_EARLY_ACCESS_SERVICE.id} • {TIER_2_EARLY_ACCESS_SERVICE.badge}
+                  </span>
+                  <Heading as="h3" variant="heading-xl" className="font-display font-bold text-white">
+                    {TIER_2_EARLY_ACCESS_SERVICE.title}
+                  </Heading>
+                </div>
+              </div>
+              <span className="px-3 py-1 rounded bg-[#45F7D6]/10 text-[#45F7D6] border border-[#45F7D6]/30 text-xs font-mono font-bold uppercase tracking-wider w-fit">
+                EARLY ACCESS PILOT PROGRAM
+              </span>
+            </div>
+
+            <Text variant="body-md" className="text-slate-300 leading-relaxed">
+              {TIER_2_EARLY_ACCESS_SERVICE.desc}
+            </Text>
+
+            <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+              {TIER_2_EARLY_ACCESS_SERVICE.highlights.map((h, i) => (
+                <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0B0F17] border border-white/10 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#45F7D6]" aria-hidden="true" /> {h}
+                </span>
+              ))}
+            </div>
+
+            <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <span className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                <FlaskConical className="w-3.5 h-3.5 text-[#45F7D6]" aria-hidden="true" /> Active Early Access Program — Onboarding Pilot Partners
+              </span>
+              <Link href="/contact">
+                <Button variant="secondary" size="md" className="border-[#0CCAB1]/40 bg-[#0CCAB1]/10 text-[#45F7D6] hover:bg-[#0CCAB1]/20 font-semibold px-6 py-2 rounded-lg">
+                  Inquire for Pilot Scope &rarr;
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* TIER 3: PROVISIONAL R&D SCAFFOLD */}
+      <Section className="py-12 border-t border-white/10 bg-[#0B0F17]/60">
+        <Container size="default">
+          <div className="text-center max-w-2xl mx-auto space-y-3 mb-8">
+            <div className="text-xs font-mono text-amber-400 uppercase font-bold tracking-widest">
+              Tier 03 • Provisional R&amp;D Scaffold
+            </div>
+            <Heading as="h2" variant="heading-xl" className="font-display font-extrabold text-white">
+              Architecture Roadmap
+            </Heading>
+          </div>
+
+          <div className="max-w-4xl mx-auto bg-[#0B0F17]/80 border-2 border-dashed border-slate-700/80 rounded-xl p-8 space-y-6 relative overflow-hidden opacity-85">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400">
+                  <Construction className="w-6 h-6" aria-hidden="true" />
+                </div>
+                <div>
+                  <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
+                    {TIER_3_SCAFFOLD_ITEM.id} • {TIER_3_SCAFFOLD_ITEM.badge}
+                  </span>
+                  <Heading as="h3" variant="heading-xl" className="font-display font-bold text-slate-200">
+                    {TIER_3_SCAFFOLD_ITEM.title}
+                  </Heading>
+                </div>
+              </div>
+              <span className="px-3 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-mono font-bold uppercase tracking-wider w-fit">
+                UNDER ACTIVE R&amp;D
+              </span>
+            </div>
+
+            <Text variant="body-md" className="text-slate-400 leading-relaxed">
+              {TIER_3_SCAFFOLD_ITEM.desc}
+            </Text>
+
+            <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+              <span className="text-amber-400/90 flex items-center gap-1.5">
+                <Construction className="w-3.5 h-3.5 text-amber-400" aria-hidden="true" /> PROVISIONAL SCAFFOLD — NOT OFFERED FOR COMMERCIAL SCOPING
+              </span>
+              <div className="px-4 py-2 rounded bg-slate-900 border border-slate-800 text-slate-500 font-bold uppercase tracking-wider cursor-not-allowed">
+                [IN DEVELOPMENT • NO ACTIVE INQUIRIES]
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Engagement Model Section */}
       <Section className="py-20 border-t border-white/10 bg-[#131924]/40">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
@@ -311,7 +476,7 @@ export default function ServicesPage() {
                     {step.step}
                   </span>
                   {index < ENGAGEMENT_STEPS.length - 1 && (
-                    <span className="hidden md:block text-slate-600 font-mono text-xs">PHASE &#8594;</span>
+                    <span className="hidden md:block text-slate-400 font-mono text-xs">PHASE &rarr;</span>
                   )}
                 </div>
                 <Heading as="h3" variant="heading-md" className="font-display font-bold text-white">
@@ -334,7 +499,7 @@ export default function ServicesPage() {
               Services FAQ
             </Heading>
             <Text variant="body-md" className="text-slate-400">
-              Common questions about integration, data security, and service delivery.
+              Common questions about service maturity, integration, data security, and delivery.
             </Text>
           </div>
 

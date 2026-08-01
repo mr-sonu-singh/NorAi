@@ -17,6 +17,13 @@ import {
   Activity,
   ShieldCheck,
 } from 'lucide-react';
+import { buildMetadata } from '@/lib/seo';
+
+export const metadata = buildMetadata({
+  path: '/contact',
+  title: 'Contact & Technical Scoping — NorAI Technologies',
+  description: 'Connect with NorAI Technologies founding engineers for micro-SaaS deployment, custom AI agent orchestration, or enterprise consultations.',
+});
 
 export default function ContactPage() {
   const contactJsonLd = {

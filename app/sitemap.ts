@@ -7,7 +7,18 @@ import { LEGAL_POLICIES } from '@/lib/legal';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
 
-  const staticRoutes = ['', '/products', '/about', '/team', '/careers', '/contact', '/blog'];
+  const staticRoutes = [
+    '',
+    '/products',
+    '/services',
+    '/pricing',
+    '/about',
+    '/team',
+    '/blog',
+    '/docs',
+    '/faq',
+    '/contact',
+  ];
   const productRoutes = Object.keys(PRODUCTS_DATA).map((slug) => `/products/${slug}`);
   const blogRoutes = Object.keys(BLOG_POSTS).map((slug) => `/blog/${slug}`);
   const legalRoutes = Object.keys(LEGAL_POLICIES).map((policy) => `/${policy}`);
@@ -18,6 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
-    priority: route === '' ? 1.0 : route.startsWith('/products') ? 0.9 : 0.8,
+    priority: route === '' ? 1.0 : route.startsWith('/products') || route === '/services' ? 0.9 : 0.8,
   }));
 }

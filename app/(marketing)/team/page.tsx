@@ -17,6 +17,13 @@ import {
   Briefcase,
   Users,
 } from 'lucide-react';
+import { buildMetadata } from '@/lib/seo';
+
+export const metadata = buildMetadata({
+  path: '/team',
+  title: 'Founding Leadership & Technical Team — NorAI Technologies',
+  description: 'Meet the founding engineers and operational leadership driving NorAI Technologies from Uttar Pradesh, India.',
+});
 
 const FOUNDING_TEAM = [
   {

@@ -18,6 +18,13 @@ import {
   Quote,
   Sparkles,
 } from 'lucide-react';
+import { buildMetadata } from '@/lib/seo';
+
+export const metadata = buildMetadata({
+  path: '/about',
+  title: 'About Us & Regional AI Engineering Hub — NorAI Technologies',
+  description: 'Operating out of Uttar Pradesh, India, NorAI Technologies builds accessible, modular AI infrastructure and high-frequency micro-SaaS utilities.',
+});
 
 const METRICS_DATA = [
   { value: '5+', label: 'Core Micro-Tools', desc: 'Pre-built SaaS agents ready to deploy' },

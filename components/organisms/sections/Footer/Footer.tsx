@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Container } from '@/components/foundation/Container';
-import { Grid } from '@/components/foundation/Grid';
 import { Stack } from '@/components/foundation/Stack';
 import { Text } from '@/components/foundation/Text';
 import { Heading } from '@/components/foundation/Heading';
@@ -23,13 +22,21 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
       { label: 'All Products', href: '/products' },
       { label: 'Resume Shortlister', href: '/products/resume-shortlister' },
       { label: 'Course Note-Taker', href: '/products/course-note-taker' },
+      { label: 'Chat Digest AI', href: '/products/chat-digest' },
+      { label: 'Smart News AI', href: '/products/news-aggregator' },
       { label: 'Pricing', href: '/pricing' },
+    ],
+  },
+  {
+    title: 'Services',
+    links: [
+      { label: 'Enterprise Services', href: '/services' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About', href: '/about' },
+      { label: 'About Us', href: '/about' },
       { label: 'Team', href: '/team' },
       { label: 'Careers', href: '/careers' },
       { label: 'Contact', href: '/contact' },
@@ -39,8 +46,6 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Resources',
     links: [
       { label: 'Blog', href: '/blog' },
-      { label: 'Documentation', href: '/docs' },
-      { label: 'FAQ', href: '/faq' },
     ],
   },
   {
@@ -102,7 +107,7 @@ export function Footer({
 
           {/* Navigation Columns Grid */}
           <div className="grow">
-            <Grid cols={4} gap="8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
               {columns.map((column) => (
                 <Stack key={column.title} direction="col" gap="3" align="start">
                   <Heading as="h3" variant="heading-xs" className="text-primary-900 font-semibold">
@@ -115,7 +120,7 @@ export function Footer({
                   />
                 </Stack>
               ))}
-            </Grid>
+            </div>
           </div>
         </div>
 
