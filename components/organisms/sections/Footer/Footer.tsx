@@ -95,9 +95,6 @@ export function Footer({
           {/* Brand & Social Column */}
           <div className="space-y-5 max-w-xs shrink-0">
             <Logo variant={logoVariant} href="/" />
-            <Text variant="body-sm" className="text-primary-500 leading-relaxed">
-              Empowering next-generation artificial intelligence with verifiable and scalable infrastructure.
-            </Text>
             {socialLinks && socialLinks.length > 0 && (
               <div className="pt-1">
                 <SocialLinks
