@@ -73,3 +73,12 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 *:Zone.Identifier
+
+# Vercel
+.vercel/
+
+# Sentry / source maps (if used)
+.sentry-build-plugin/
+
+# Misc
+*.orig
