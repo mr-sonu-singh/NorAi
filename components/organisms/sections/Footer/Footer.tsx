@@ -8,7 +8,6 @@ import { Heading } from '@/components/foundation/Heading';
 import { Logo } from '@/components/molecules/Logo';
 import { NavigationGroup } from '@/components/molecules/NavigationGroup';
 import { SocialLinks } from '@/components/molecules/SocialLinks';
-import { Divider } from '@/components/atoms/Divider';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
@@ -28,17 +27,12 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
     ],
   },
   {
-    title: 'Services',
-    links: [
-      { label: 'Enterprise Services', href: '/services' },
-    ],
-  },
-  {
     title: 'Company',
     links: [
       { label: 'About Us', href: '/about' },
       { label: 'Team', href: '/team' },
       { label: 'Careers', href: '/careers' },
+      { label: 'Enterprise Services', href: '/services' },
       { label: 'Contact', href: '/contact' },
     ],
   },
@@ -46,11 +40,6 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Resources',
     links: [
       { label: 'Blog', href: '/blog' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
       { label: 'Privacy Policy', href: '/privacy' },
       { label: 'Terms of Service', href: '/terms' },
     ],
@@ -74,7 +63,6 @@ export function Footer({
 }: FooterProps) {
   const { ref, isRevealed } = useScrollReveal<HTMLElement>();
   const prefersReducedMotion = usePrefersReducedMotion();
-
   const shouldAnimate = !prefersReducedMotion;
 
   return (
@@ -82,7 +70,7 @@ export function Footer({
       ref={ref}
       aria-label="Site Footer"
       className={cn(
-        'w-full bg-background border-t border-primary-200 py-12 lg:py-16 transition-all duration-normal',
+        'relative w-full bg-background pt-16 pb-10 lg:pt-20 lg:pb-12 transition-all duration-normal overflow-hidden',
         shouldAnimate && !isRevealed && 'opacity-0 translate-y-4',
         shouldAnimate && isRevealed && 'opacity-100 translate-y-0',
         className,
@@ -90,47 +78,78 @@ export function Footer({
       data-testid="footer-organism"
       data-revealed={isRevealed}
     >
-      <Container size="default">
-        <div className="flex flex-col lg:flex-row gap-12 justify-between mb-12">
+      {/* Gradient hairline instead of a flat border — softer, on-brand with the teal mark */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/50 to-transparent"
+      />
+
+      {/* Faint ambient glow behind the brand column — quiet, not decorative noise */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-teal-400/[0.06] blur-3xl"
+      />
+
+      <Container size="default" className="relative">
+        <div className="flex flex-col lg:flex-row gap-14 lg:gap-10 justify-between mb-14">
           {/* Brand & Social Column */}
-          <div className="space-y-4 max-w-sm shrink-0">
+          <div className="space-y-5 max-w-xs shrink-0">
             <Logo variant={logoVariant} href="/" />
-            <Text variant="body-sm" className="text-primary-600">
+            <Text variant="body-sm" className="text-primary-500 leading-relaxed">
               Empowering next-generation artificial intelligence with verifiable and scalable infrastructure.
             </Text>
             {socialLinks && socialLinks.length > 0 && (
-              <div className="pt-2">
-                <SocialLinks links={socialLinks} size="md" orientation="horizontal" />
+              <div className="pt-1">
+                <SocialLinks
+                  links={socialLinks}
+                  size="md"
+                  orientation="horizontal"
+                  className="[&_a]:h-9 [&_a]:w-9 [&_a]:rounded-full [&_a]:border [&_a]:border-primary-200/60 [&_a]:flex [&_a]:items-center [&_a]:justify-center [&_a]:text-primary-500 [&_a]:transition-all [&_a]:duration-200 [&_a:hover]:border-teal-400/60 [&_a:hover]:text-teal-300 [&_a:hover]:-translate-y-0.5"
+                />
               </div>
             )}
           </div>
 
-          {/* Navigation Columns Grid */}
-          <div className="grow">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-              {columns.map((column) => (
-                <Stack key={column.title} direction="col" gap="3" align="start">
-                  <Heading as="h3" variant="heading-xs" className="text-primary-900 font-semibold">
-                    {column.title}
-                  </Heading>
-                  <NavigationGroup
-                    items={column.links}
-                    orientation="vertical"
-                    collapsible={false}
-                  />
-                </Stack>
-              ))}
-            </div>
+          {/* Navigation Columns — flex-wrap so a short column (e.g. Resources)
+              doesn't stretch into an awkward grid cell full of empty space */}
+          <div className="flex flex-wrap gap-x-16 gap-y-10">
+            {columns.map((column) => (
+              <Stack key={column.title} direction="col" gap="4" align="start" className="min-w-[9rem]">
+                <Heading
+                  as="h3"
+                  variant="heading-xs"
+                  className="text-primary-400 font-semibold uppercase tracking-wider text-xs"
+                >
+                  {column.title}
+                </Heading>
+                <NavigationGroup
+                  items={column.links}
+                  orientation="vertical"
+                  collapsible={false}
+                  className="[&_a]:text-primary-300 [&_a]:text-sm [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-teal-300"
+                />
+              </Stack>
+            ))}
           </div>
         </div>
 
-        <Divider className="my-8" />
+        {/* Divider replaced with the same soft gradient treatment as the top hairline */}
+        <div className="h-px w-full bg-gradient-to-r from-primary-200/0 via-primary-200/40 to-primary-200/0 mb-8" />
 
-        {/* Legal Line */}
+        {/* Legal Line + signature status element */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <Text variant="body-xs" className="text-primary-500">
             {legalText}
           </Text>
+          <div className="flex items-center gap-2 text-primary-500">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-400" />
+            </span>
+            <Text variant="body-xs" className="text-primary-500 tracking-wide">
+              Uttar Pradesh, India
+            </Text>
+          </div>
         </div>
       </Container>
     </footer>
