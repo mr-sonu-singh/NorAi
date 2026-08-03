@@ -119,6 +119,7 @@ export function Header({
               size={isMobileLayout ? 'md' : 'sm'}
               fullWidth={isMobileLayout}
               onClick={secondaryCta.onClick}
+              className="border-white/15 text-primary-200 hover:border-teal-400/50 hover:text-teal-300 hover:bg-white/5"
             >
               {secondaryCta.label}
             </Button>
@@ -131,7 +132,7 @@ export function Header({
               size={isMobileLayout ? 'md' : 'sm'}
               fullWidth={isMobileLayout}
               onClick={primaryCta.onClick}
-              className="bg-blue-600 hover:bg-blue-500 text-white border-none shadow-md shadow-blue-600/30 font-semibold"
+              className="bg-teal-400 hover:bg-teal-300 text-slate-950 border-none shadow-md shadow-teal-400/20 font-semibold transition-all hover:-translate-y-0.5"
             >
               {primaryCta.label}
             </Button>
@@ -144,15 +145,26 @@ export function Header({
   return (
     <header
       className={cn(
-        'w-full bg-slate-950/90 backdrop-blur-xl border-b border-white/10 text-white transition-all duration-300 z-50',
+        'relative w-full bg-background/90 backdrop-blur-xl text-white transition-all duration-300 z-50',
         sticky && 'sticky top-0',
-        sticky && isScrolled && 'shadow-lg shadow-blue-500/10 bg-slate-950/95 backdrop-blur-2xl',
+        sticky && isScrolled && 'shadow-lg shadow-black/20 bg-background/95 backdrop-blur-2xl',
         className,
       )}
       data-testid="header-organism"
       data-scrolled={isScrolled}
       data-sticky={sticky}
     >
+      {/* Gradient hairline — same signature treatment as the footer, anchoring the two ends of the page */}
+      <div
+        aria-hidden="true"
+        className={cn(
+          'absolute bottom-0 left-0 right-0 h-px transition-opacity duration-300',
+          isScrolled
+            ? 'bg-gradient-to-r from-transparent via-teal-400/50 to-transparent opacity-100'
+            : 'bg-white/10 opacity-100',
+        )}
+      />
+
       <Container size="default">
         <nav
           aria-label="Main Navigation"
@@ -165,7 +177,11 @@ export function Header({
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-8">
-            <NavigationGroup items={navItems} orientation="horizontal" />
+            <NavigationGroup
+              items={navItems}
+              orientation="horizontal"
+              className="[&_a]:text-primary-300 [&_a]:text-sm [&_a]:font-medium [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-teal-300 [&_a[aria-current=page]]:text-teal-300"
+            />
           </div>
 
           {/* Desktop CTA Group */}
@@ -184,7 +200,7 @@ export function Header({
               variant="ghost"
               size="md"
               onClick={toggleMobileMenu}
-              className="text-white hover:bg-white/10"
+              className="text-white hover:bg-white/10 hover:text-teal-300"
               data-testid="mobile-menu-toggle"
             />
           </div>
@@ -197,13 +213,18 @@ export function Header({
             ref={mobileMenuRef}
             aria-label="Mobile Menu"
             className={cn(
-              'lg:hidden py-6 border-t border-white/10 bg-slate-950/95 backdrop-blur-2xl text-white space-y-4',
+              'lg:hidden py-6 border-t border-white/10 bg-background/95 backdrop-blur-2xl text-white space-y-4',
               !prefersReducedMotion && 'animate-in fade-in slide-in-from-top-2 duration-200',
             )}
             data-testid="mobile-menu-panel"
           >
             <Stack direction="col" gap="4" onClick={closeMobileMenu}>
-              <NavigationGroup items={navItems} orientation="vertical" collapsible={false} />
+              <NavigationGroup
+                items={navItems}
+                orientation="vertical"
+                collapsible={false}
+                className="[&_a]:text-primary-300 [&_a]:text-base [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-teal-300"
+              />
               {renderCtaButtons(true)}
             </Stack>
           </div>
