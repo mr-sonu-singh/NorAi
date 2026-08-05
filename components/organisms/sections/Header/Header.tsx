@@ -22,7 +22,7 @@ export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = [
   { label: 'Services', href: '/services' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'About Us', href: '/about' },
-  { label: 'Team', href: '/team' },
+ // { label: 'Team', href: '/team' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];

@@ -1,7 +1,7 @@
 # NorAI Official Web — Project Progress & Evolution Context
 
 ## 1. Project Overview & Original Legacy Baseline
-**NorAI Technologies** is an AI products and enterprise automation startup operating out of its regional hub in **Uttar Pradesh, India**. NorAI builds lightweight micro-SaaS utilities (AI Resume Shortlister, Course Note-Taker, Community Chat Digest, Smart Dainik News) and bespoke enterprise AI pipelines.
+**NorAI Technologies** is an AI products and enterprise automation startup operating out of its regional hub in **Uttar Pradesh, India**. NorAI builds lightweight micro-SaaS utilities (AI Resume Shortlister, Course Note-Taker, Community Chat Digest, Smart Government Job News) and bespoke enterprise AI pipelines.
 
 ### Initial Legacy Architecture & Styling Constraints
 * **Framework:** Next.js 15 App Router, React 19, TypeScript, Tailwind CSS v4.

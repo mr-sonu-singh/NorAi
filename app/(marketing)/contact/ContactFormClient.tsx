@@ -16,7 +16,7 @@ const SERVICE_OPTIONS = [
   { value: 'AI Resume Shortlister', label: '[MICRO-SAAS] AI Resume Shortlister' },
   { value: 'Course Note-Taker', label: '[MICRO-SAAS] Course Note-Taker' },
   { value: 'Community Chat Digest', label: '[MICRO-SAAS] Community Chat Digest' },
-  { value: 'Smart Dainik News', label: '[MICRO-SAAS] Smart Dainik News' },
+  { value: 'Smart Smart Government Job News News', label: '[MICRO-SAAS] Smart Government Job News' },
   { value: 'Custom AI Chatbots & Agents', label: '[ENTERPRISE] Custom AI Chatbots & Agents' },
   { value: 'AI Web Applications', label: '[ENTERPRISE] AI Web Applications' },
   { value: 'AI Video & Product Ads', label: '[ENTERPRISE] AI Video & Product Ads' },
@@ -63,16 +63,10 @@ export function ContactFormClient() {
           <span className="text-slate-400 font-bold tracking-wider flex items-center gap-1.5">
             <Terminal className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> TECHNICAL_SCOPING_FORM
           </span>
-          <span className="text-[#45F7D6] bg-[#0CCAB1]/10 px-2 py-0.5 rounded border border-[#0CCAB1]/20">
-            ● SLA GUARANTEED
-          </span>
         </div>
         <Heading as="h2" variant="heading-lg" className="font-display font-bold text-white pt-2 flex items-center gap-2">
           <MessageSquare className="w-5 h-5 text-[#0CCAB1]" aria-hidden="true" /> Send Us a Message
         </Heading>
-        <Text variant="body-sm" className="text-slate-300">
-          Fill out the form below and an engineer will reach out within 2 hours.
-        </Text>
       </div>
 
       {submitted ? (
@@ -107,7 +101,6 @@ export function ContactFormClient() {
                 type="text"
                 required
                 aria-required="true"
-                placeholder="Dhruw Singh"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-sans"
@@ -124,7 +117,6 @@ export function ContactFormClient() {
                 type="email"
                 required
                 aria-required="true"
-                placeholder="name@company.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-sans"
@@ -141,7 +133,6 @@ export function ContactFormClient() {
                 id="contact-company"
                 name="company"
                 type="text"
-                placeholder="TechCorp Global"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-sans"
@@ -191,7 +182,7 @@ export function ContactFormClient() {
             size="lg"
             className="w-full bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold py-3.5 rounded-lg shadow-lg shadow-[#0CCAB1]/20 flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
-            Submit Inquiries <Send className="w-4 h-4" aria-hidden="true" />
+            Submit<Send className="w-4 h-4" aria-hidden="true" />
           </Button>
         </form>
       )}

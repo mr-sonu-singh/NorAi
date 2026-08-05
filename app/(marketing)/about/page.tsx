@@ -73,7 +73,7 @@ const TIMELINE_DATA = [
     phase: '03',
     year: 'Q1 2025',
     title: 'Micro-SaaS Product Suite Launch',
-    desc: 'Rolled out AI Resume Shortlister, Course Note-Taker, Community Chat Digest, and Smart Dainik News to business users.',
+    desc: 'Rolled out AI Resume Shortlister, Course Note-Taker, Community Chat Digest, and Smart Government Job News to business users.',
   },
 ];
 

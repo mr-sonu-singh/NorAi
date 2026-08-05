@@ -30,7 +30,7 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Company',
     links: [
       { label: 'About Us', href: '/about' },
-      { label: 'Team', href: '/team' },
+     // { label: 'Team', href: '/team' },
       { label: 'Careers', href: '/careers' },
       { label: 'Enterprise Services', href: '/services' },
       { label: 'Contact', href: '/contact' },

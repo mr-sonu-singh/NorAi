@@ -25,7 +25,7 @@ import {
 export const metadata = buildMetadata({
   path: '/',
   title: 'NorAI Technologies — Autonomous Micro-AI Agents for High-Growth Businesses',
-  description: 'Automate your operations with NorAI micro-SaaS suite: AI Resume Shortlister, Course Note-Taker, Community Chat Digest, and Smart Dainik News.',
+  description: 'Automate your operations with NorAI micro-SaaS suite: AI Resume Shortlister, Course Note-Taker, Community Chat Digest, and Smart Government Job News.',
 });
 
 const METRICS_DATA = [
@@ -58,7 +58,7 @@ const PRODUCTS_DATA = [
     href: '/products',
   },
   {
-    title: 'Smart Dainik News',
+    title: 'Smart Government Job News',
     badge: 'Media AI',
     desc: 'Curate hyper-local regional news and market updates filtered by sentiment, relevance, and custom interest categories.',
     icon: Layers,

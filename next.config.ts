@@ -1,10 +1,15 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",
+
   reactStrictMode: true,
+
   typedRoutes: true,
+
   images: {
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
+    formats: ["image/webp", "image/avif"],
   },
 };
 
