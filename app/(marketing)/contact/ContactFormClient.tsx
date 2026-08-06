@@ -36,6 +36,7 @@ export function ContactFormClient() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const serviceParam = searchParams.get('service');
@@ -51,22 +52,28 @@ export function ContactFormClient() {
   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const res = await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  });
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-  if (res.ok) {
-    setSubmitted(true);
-  } else {
-    alert("Failed to send message");
-  }
-};
+      if (res.ok) {
+        setSubmitted(true);
+        setError('');
+      } else {
+        setError('Failed to send message. Please try again.');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Something went wrong. Please try again.');
+    }
+  };
 
   return (
     <div className="p-8 md:p-10 bg-[#131924] border border-white/10 rounded-xl space-y-6 shadow-xl">
@@ -188,6 +195,12 @@ export function ContactFormClient() {
               className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-sans"
             />
           </div>
+
+          {error && (
+            <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-3">
+              <p className="text-sm text-red-400">{error}</p>
+            </div>
+          )}
 
           <Button
             type="submit"
