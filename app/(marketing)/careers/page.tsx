@@ -123,7 +123,7 @@ export default function CareersPage() {
                   Send Technical Inquiry <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
                 </Button>
               </Link>
-              <a href="mailto:contact@norai.asia" className="w-full sm:w-auto">
+              <a href="mailto:noraitechnologies@gmail.com" className="w-full sm:w-auto">
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto border-white/10 bg-white/5 hover:bg-white/10 text-white px-8 py-3.5 rounded-lg backdrop-blur-md inline-flex items-center justify-center gap-2">
                   <Mail className="w-4 h-4 text-[#0CCAB1]" aria-hidden="true" /> Email Talent Team
                 </Button>

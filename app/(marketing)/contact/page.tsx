@@ -35,7 +35,7 @@ export default function ContactPage() {
       '@type': 'Organization',
       name: 'NorAI Technologies Pvt. Ltd.',
       url: 'https://norai-c8yy.onrender.com',
-      email: 'contact@norai.asia',
+      email: 'noraitechnologies@gmail.com',
       address: {
         '@type': 'PostalAddress',
         addressRegion: 'Uttar Pradesh',
@@ -143,7 +143,7 @@ export default function ContactPage() {
                       Direct Email Inquiries
                     </Heading>
                     <Text variant="body-xs" className="text-[#45F7D6] font-mono">
-                      contact@norai.asia
+                      noraitechnologies@gmail.com
                     </Text>
                   </div>
                 </div>

@@ -50,10 +50,23 @@ export function ContactFormClient() {
     }
   }, [searchParams]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (res.ok) {
     setSubmitted(true);
-  };
+  } else {
+    alert("Failed to send message");
+  }
+};
 
   return (
     <div className="p-8 md:p-10 bg-[#131924] border border-white/10 rounded-xl space-y-6 shadow-xl">

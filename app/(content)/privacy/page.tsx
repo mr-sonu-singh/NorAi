@@ -56,7 +56,7 @@ const PRIVACY_SECTIONS = [
     title: '5. User Rights & Data Deletion',
     content: [
       'You have the right to request access to, correction of, or complete deletion of your account data at any time.',
-      'To request account deletion or export your billing history, email contact@norai.asia.',
+      'To request account deletion or export your billing history, email noraitechnologies@gmail.com.',
     ],
   },
 ];
@@ -168,7 +168,7 @@ export default function PrivacyPage() {
                   Data Protection Officer (DPO) Inquiry
                 </Heading>
                 <Text variant="body-sm" className="text-slate-300">
-                  For privacy requests, GDPR compliance inquiries, or custom DPA agreements, reach out to our privacy officer at <strong className="text-[#0CCAB1] font-mono">contact@norai.asia</strong>.
+                  For privacy requests, GDPR compliance inquiries, or custom DPA agreements, reach out to our privacy officer at <strong className="text-[#0CCAB1] font-mono">noraitechnologies@gmail.com</strong>.
                 </Text>
                 <div className="pt-2">
                   <Link href="/contact">

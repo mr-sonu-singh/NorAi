@@ -177,7 +177,7 @@ export default function TermsPage() {
                   Have Questions Regarding Our Terms?
                 </Heading>
                 <Text variant="body-sm" className="text-slate-300">
-                  Contact our legal team directly at <strong className="text-[#0CCAB1] font-mono">contact@norai.asia</strong> for custom enterprise agreement terms or DPA requests.
+                  Contact our legal team directly at <strong className="text-[#0CCAB1] font-mono">noraitechnologies@gmail.com</strong> for custom enterprise agreement terms or DPA requests.
                 </Text>
                 <div className="pt-2">
                   <Link href="/contact">
