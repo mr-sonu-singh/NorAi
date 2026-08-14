@@ -4,7 +4,7 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/blog',
-  title: 'Engineering Journal & Architecture Write-Ups — NorAI Technologies',
+  title: 'Engineering Journal & Architecture Write-Ups — NorAi Technologies',
   description: 'Practical notes on AI orchestration patterns, vector search retrieval, MCP developer tooling, and workflow automation engineering.',
 });
 

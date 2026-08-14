@@ -110,7 +110,7 @@ export function Header({
         direction={isMobileLayout ? 'col' : 'row'}
         gap="3"
         align={isMobileLayout ? 'stretch' : 'center'}
-        className={isMobileLayout ? 'w-full pt-4 border-t border-white/10' : undefined}
+        className={isMobileLayout ? 'w-full pt-4 border-t border-slate-200/60' : undefined}
       >
         {secondaryCta && (
           <Link href={secondaryCta.href} external={secondaryCta.external} className="w-full lg:w-auto" onClick={closeMobileMenu}>
@@ -119,7 +119,7 @@ export function Header({
               size={isMobileLayout ? 'md' : 'sm'}
               fullWidth={isMobileLayout}
               onClick={secondaryCta.onClick}
-              className="border-white/15 text-primary-200 hover:border-teal-400/50 hover:text-teal-300 hover:bg-white/5"
+              className="border-primary-200/40 text-primary-700 hover:border-[color:var(--accent-mono)/0.5] hover:text-[var(--accent-mono)] hover:bg-[var(--bg-elevated)]"
             >
               {secondaryCta.label}
             </Button>
@@ -132,7 +132,7 @@ export function Header({
               size={isMobileLayout ? 'md' : 'sm'}
               fullWidth={isMobileLayout}
               onClick={primaryCta.onClick}
-              className="bg-teal-400 hover:bg-teal-300 text-slate-950 border-none shadow-md shadow-teal-400/20 font-semibold transition-all hover:-translate-y-0.5"
+              className="bg-[var(--accent-500)] hover:bg-[var(--accent-mono)] text-[var(--bg-page)] border-none shadow-md shadow-[color:var(--accent-500)/0.2] font-semibold transition-all hover:-translate-y-0.5"
             >
               {primaryCta.label}
             </Button>
@@ -145,91 +145,60 @@ export function Header({
   return (
     <header
       className={cn(
-        'relative w-full bg-background/90 backdrop-blur-xl text-white transition-all duration-300 z-50',
+        'relative w-full bg-[var(--bg-elevated)] border-b border-slate-200/60 text-primary-800 transition-all duration-300 z-50',
         sticky && 'sticky top-0',
-        sticky && isScrolled && 'shadow-lg shadow-black/20 bg-background/95 backdrop-blur-2xl',
+        sticky && isScrolled && 'shadow-md shadow-black/10',
         className,
       )}
       data-testid="header-organism"
       data-scrolled={isScrolled}
       data-sticky={sticky}
     >
-      {/* Gradient hairline — same signature treatment as the footer, anchoring the two ends of the page */}
-      <div
-        aria-hidden="true"
-        className={cn(
-          'absolute bottom-0 left-0 right-0 h-px transition-opacity duration-300',
-          isScrolled
-            ? 'bg-gradient-to-r from-transparent via-teal-400/50 to-transparent opacity-100'
-            : 'bg-white/10 opacity-100',
-        )}
-      />
-
       <Container size="default">
-        <nav
-          aria-label="Main Navigation"
-          className="flex items-center justify-between py-3 md:py-4"
-        >
-          {/* Brand Logo */}
-          <div className="flex items-center" onClick={closeMobileMenu}>
-            <Logo variant={logoVariant} href="/" />
-          </div>
+  <nav className="flex items-center justify-between min-h-[72px]">
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-8">
-            <NavigationGroup
-              items={navItems}
-              orientation="horizontal"
-              className="[&_a]:text-primary-300 [&_a]:text-sm [&_a]:font-medium [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-teal-300 [&_a[aria-current=page]]:text-teal-300"
-            />
-          </div>
+    {/* Brand Logo */}
+    <div className="flex items-center shrink-0">
+      <Link href="/">
+        <img
+          src="/images/brand-logo.png"
+          alt="NorAi"
+          className="w-14 h-14 lg:w-16 lg:h-16 object-contain"
+        />
+      </Link>
+    </div>
 
-          {/* Desktop CTA Group */}
-          <div className="hidden lg:flex items-center">
-            {renderCtaButtons(false)}
-          </div>
+    {/* Desktop Navigation Links */}
+    <div className="hidden lg:flex items-center gap-8">
+      <NavigationGroup
+        items={navItems}
+        orientation="horizontal"
+        className="[&_a]:text-primary-600 [&_a]:text-sm [&_a]:font-medium [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-[var(--accent-mono)] [&_a[aria-current=page]]:text-[var(--accent-mono)]"
+      />
+    </div>
 
-          {/* Mobile / Tablet Hamburger Button */}
-          <div className="flex lg:hidden items-center">
-            <IconButton
-              id="mobile-menu-toggle"
-              icon={isMobileMenuOpen ? 'x' : 'menu'}
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-menu"
-              variant="ghost"
-              size="md"
-              onClick={toggleMobileMenu}
-              className="text-white hover:bg-white/10 hover:text-teal-300"
-              data-testid="mobile-menu-toggle"
-            />
-          </div>
-        </nav>
+    {/* Desktop CTA */}
+    <div className="hidden lg:flex items-center">
+      {renderCtaButtons(false)}
+    </div>
 
-        {/* Mobile / Tablet Dropdown Panel */}
-        {isMobileMenuOpen && (
-          <div
-            id="mobile-menu"
-            ref={mobileMenuRef}
-            aria-label="Mobile Menu"
-            className={cn(
-              'lg:hidden py-6 border-t border-white/10 bg-background/95 backdrop-blur-2xl text-white space-y-4',
-              !prefersReducedMotion && 'animate-in fade-in slide-in-from-top-2 duration-200',
-            )}
-            data-testid="mobile-menu-panel"
-          >
-            <Stack direction="col" gap="4" onClick={closeMobileMenu}>
-              <NavigationGroup
-                items={navItems}
-                orientation="vertical"
-                collapsible={false}
-                className="[&_a]:text-primary-300 [&_a]:text-base [&_a]:transition-colors [&_a]:duration-200 [&_a:hover]:text-teal-300"
-              />
-              {renderCtaButtons(true)}
-            </Stack>
-          </div>
-        )}
-      </Container>
+    {/* Mobile */}
+    <div className="flex lg:hidden items-center">
+      <IconButton
+        id="mobile-menu-toggle"
+        icon={isMobileMenuOpen ? 'x' : 'menu'}
+        aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={isMobileMenuOpen}
+        aria-controls="mobile-menu"
+        variant="ghost"
+        size="md"
+        onClick={toggleMobileMenu}
+        className="text-primary-800 hover:bg-[var(--bg-elevated)] hover:text-[var(--accent-500)]"
+      />
+    </div>
+
+  </nav>
+</Container>
     </header>
   );
 }

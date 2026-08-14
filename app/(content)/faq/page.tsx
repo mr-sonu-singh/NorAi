@@ -18,8 +18,8 @@ const FAQ_ITEMS: FAQItem[] = [
   // Product Category
   {
     category: 'product',
-    question: 'What self-serve AI micro-tools does NorAI offer?',
-    answer: 'NorAI offers 4 self-serve micro-tools: AI Resume Shortlister (candidate screening), AI Course Note-Taker (lecture summarization & flashcards), Chat Digest AI (community chat briefs), and Smart News Aggregator (regional news curation).',
+    question: 'What self-serve AI micro-tools does NorAi offer?',
+    answer: 'NorAi offers 4 self-serve micro-tools: AI Resume Shortlister (candidate screening), AI Course Note-Taker (lecture summarization & flashcards), Chat Digest AI (community chat briefs), and Smart News Aggregator (regional news curation).',
   },
   {
     category: 'product',
@@ -96,25 +96,25 @@ export default function FAQPage() {
   });
 
   return (
-    <div className="dark-ambient-bg text-slate-100 min-h-screen font-sans selection:bg-[#0CCAB1] selection:text-[#0B0F17]">
+    <div className="bg-[var(--bg-page)] text-primary-800 min-h-screen font-sans selection:bg-[var(--accent-500)] selection:text-[var(--bg-page)]">
       {/* Header Section */}
-      <Section className="relative pt-12 pb-12 md:pt-20 md:pb-16 border-b border-white/10">
+      <Section className="relative pt-12 pb-12 md:pt-20 md:pb-16 border-b border-slate-200/60">
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0CCAB1] uppercase tracking-wider">
-              <HelpCircle className="w-4 h-4 text-[#0CCAB1]" aria-hidden="true" />
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--accent-500)] uppercase tracking-wider">
+              <HelpCircle className="w-4 h-4 text-[var(--accent-500)]" aria-hidden="true" />
               <span>Knowledge Base &amp; Frequently Asked Questions</span>
             </div>
 
             <Heading
               as="h1"
               variant="display-lg"
-              className="font-display font-extrabold tracking-tight text-white leading-tight"
+              className="font-display font-extrabold tracking-tight text-primary-800 leading-tight"
             >
               Frequently Asked Questions
             </Heading>
 
-            <Text variant="body-lg" className="text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
+            <Text variant="body-lg" className="text-primary-700 font-normal leading-relaxed max-w-2xl mx-auto">
               Find instant answers regarding self-serve products, custom enterprise engineering, and billing structures.
             </Text>
           </div>
@@ -122,32 +122,32 @@ export default function FAQPage() {
       </Section>
 
       {/* Search & Category Filter Controls */}
-      <Section className="py-8 border-b border-white/10 bg-[#131924]/60 sticky top-16 z-30 backdrop-blur-md">
+      <Section className="py-8 border-b border-slate-200/60 bg-[color:var(--bg-elevated)/0.6] sticky top-16 z-30 backdrop-blur-md">
         <Container size="narrow">
           <div className="space-y-4">
             {/* Search Input Bar */}
             <div className="relative">
-              <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
+              <Search className="w-4 h-4 text-primary-700 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
               <input
                 type="text"
                 placeholder="Search questions or keywords..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#0B0F17] border border-white/10 rounded-lg pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] transition-all"
+                className="w-full bg-[var(--bg-page)] border border-slate-200/60 rounded-lg pl-11 pr-4 py-3 text-sm text-primary-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--accent-500)] transition-all"
               />
             </div>
 
             {/* Category Tabs */}
-            <div className="flex items-center justify-center gap-2 text-xs font-mono" role="tablist" aria-label="FAQ Category Filter">
+              <div className="flex items-center justify-center gap-2 text-xs font-mono" role="tablist" aria-label="FAQ Category Filter">
               <button
                 type="button"
                 role="tab"
                 aria-selected={activeCategory === 'all'}
                 onClick={() => setActiveCategory('all')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
+                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-500)] ${
                   activeCategory === 'all'
-                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
-                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
+                    ? 'bg-[var(--accent-500)] text-[var(--bg-page)] font-bold'
+                    : 'bg-[var(--bg-page)] text-primary-700 border border-slate-200/60 hover:text-primary-800'
                 }`}
               >
                 [ALL QUESTIONS]
@@ -157,10 +157,10 @@ export default function FAQPage() {
                 role="tab"
                 aria-selected={activeCategory === 'product'}
                 onClick={() => setActiveCategory('product')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
+                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-500)] ${
                   activeCategory === 'product'
-                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
-                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
+                    ? 'bg-[var(--accent-500)] text-[var(--bg-page)] font-bold'
+                    : 'bg-[var(--bg-page)] text-primary-700 border border-slate-200/60 hover:text-primary-800'
                 }`}
               >
                 [PRODUCTS]
@@ -170,10 +170,10 @@ export default function FAQPage() {
                 role="tab"
                 aria-selected={activeCategory === 'service'}
                 onClick={() => setActiveCategory('service')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
+                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-500)] ${
                   activeCategory === 'service'
-                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
-                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
+                    ? 'bg-[var(--accent-500)] text-[var(--bg-page)] font-bold'
+                    : 'bg-[var(--bg-page)] text-primary-700 border border-slate-200/60 hover:text-primary-800'
                 }`}
               >
                 [SERVICES]
@@ -183,10 +183,10 @@ export default function FAQPage() {
                 role="tab"
                 aria-selected={activeCategory === 'billing'}
                 onClick={() => setActiveCategory('billing')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0CCAB1] ${
+                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-500)] ${
                   activeCategory === 'billing'
-                    ? 'bg-[#0CCAB1] text-[#0B0F17] font-bold'
-                    : 'bg-[#0B0F17] text-slate-400 border border-white/10 hover:text-white'
+                    ? 'bg-[var(--accent-500)] text-[var(--bg-page)] font-bold'
+                    : 'bg-[var(--bg-page)] text-primary-700 border border-slate-200/60 hover:text-primary-800'
                 }`}
               >
                 [BILLING &amp; TIERS]
@@ -201,7 +201,7 @@ export default function FAQPage() {
         <Container size="narrow">
           {filteredItems.length === 0 ? (
             <div className="text-center py-12 space-y-3">
-              <Text variant="body-md" className="text-slate-400">
+              <Text variant="body-md" className="text-primary-700">
                 No questions found matching your search.
               </Text>
               <button
@@ -210,7 +210,7 @@ export default function FAQPage() {
                   setSearchQuery('');
                   setActiveCategory('all');
                 }}
-                className="text-xs font-mono text-[#0CCAB1] hover:underline cursor-pointer"
+                className="text-xs font-mono text-[var(--accent-500)] hover:underline cursor-pointer"
               >
                 Clear search filters
               </button>
@@ -220,16 +220,16 @@ export default function FAQPage() {
               {filteredItems.map((item, idx) => (
                 <details
                   key={idx}
-                  className="group rounded-lg border border-white/10 bg-[#131924] p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
+                  className="group rounded-lg border border-slate-200/60 bg-[var(--bg-elevated)] p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
                 >
-                  <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-base">
+                  <summary className="flex items-center justify-between cursor-pointer font-semibold text-primary-800 text-base">
                     <span className="flex items-center gap-3">
-                      <HelpCircle className="w-5 h-5 text-[#0CCAB1] flex-shrink-0" aria-hidden="true" />
+                        <HelpCircle className="w-5 h-5 text-[var(--accent-500)] flex-shrink-0" aria-hidden="true" />
                       {item.question}
                     </span>
-                    <ChevronDown className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" aria-hidden="true" />
+                    <ChevronDown className="w-4 h-4 text-primary-700 transition-transform group-open:rotate-180" aria-hidden="true" />
                   </summary>
-                  <p className="mt-4 text-sm text-slate-300 leading-relaxed pl-8">
+                  <p className="mt-4 text-sm text-primary-700 leading-relaxed pl-8">
                     {item.answer}
                   </p>
                 </details>
@@ -238,15 +238,15 @@ export default function FAQPage() {
           )}
 
           {/* Contact Support Banner */}
-          <div className="mt-16 rounded-xl border border-white/10 bg-[#131924] p-8 text-center space-y-4">
-            <Heading as="h2" variant="heading-xl" className="font-display font-bold text-white">
+          <div className="mt-16 rounded-xl border border-slate-200/60 bg-[var(--bg-elevated)] p-8 text-center space-y-4">
+            <Heading as="h2" variant="heading-xl" className="font-display font-bold text-primary-800">
               Have Additional Questions?
             </Heading>
-            <Text variant="body-sm" className="text-slate-300">
+            <Text variant="body-sm" className="text-primary-700">
               Our engineering and solution architects are available for technical scoping and inquiries.
             </Text>
             <div className="pt-2">
-              <Link href="/contact" className="inline-flex items-center text-xs font-mono text-[#0CCAB1] hover:text-[#45F7D6] font-bold">
+              <Link href="/contact" className="inline-flex items-center text-xs font-mono text-[var(--accent-500)] hover:text-[var(--accent-mono)] font-bold">
                 Schedule Technical Consultation <ArrowRight className="w-3.5 h-3.5 ml-1.5" aria-hidden="true" />
               </Link>
             </div>
@@ -256,3 +256,6 @@ export default function FAQPage() {
     </div>
   );
 }
+
+
+

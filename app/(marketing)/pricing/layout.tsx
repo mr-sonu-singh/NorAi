@@ -4,7 +4,7 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/pricing',
-  title: 'Transparent Pricing & Monthly Tiers — NorAI Technologies',
+  title: 'Transparent Pricing & Monthly Tiers — NorAi Technologies',
   description: 'Predictable monthly pricing for self-serve micro-tools (Starter, Pro, Scale) and custom enterprise AI compute options with zero hidden fees.',
 });
 

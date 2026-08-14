@@ -50,7 +50,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
       onMouseLeave={handleMouseLeave}
       style={{ transform: transformStyle }}
       className={cn(
-        'tilt-card rounded-xl border border-white/10 bg-slate-900/60 p-6 backdrop-blur-md transition-transform duration-200 ease-out hover:shadow-2xl hover:shadow-blue-500/10',
+        'tilt-card rounded-xl border border-slate-200/60 bg-[var(--bg-elevated)] p-6 backdrop-blur-md transition-transform duration-200 ease-out hover:shadow-2xl hover:shadow-[color:var(--accent-500)/0.1]',
         className
       )}
       {...props}

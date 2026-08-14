@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return buildMetadata({
-    title: `${policy.title} | NorAI Technologies`,
+    title: `${policy.title} | NorAi Technologies`,
     description: policy.description,
     path: `/${policy.slug}`,
   });

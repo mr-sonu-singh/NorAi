@@ -31,13 +31,13 @@ export function ContactClientContainer({ onSubmit }: ContactClientContainerProps
 
   const socialLinksConfig = [
     { label: 'GitHub', href: 'https://github.com/norai-tech', icon: 'github' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/company/norai-tech', icon: 'linkedin' },
-    { label: 'X (Twitter)', href: 'https://x.com/norai_tech', icon: 'twitter' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/norai-technologies', icon: 'linkedin' },
+    { label: 'X (Twitter)', href: 'https://x.com/NoraiTech', icon: 'twitter' },
   ];
 
   return (
     <ContactSection
-      heading="Contact NorAI Engineering & Sales"
+      heading="Contact NorAi Engineering & Sales"
       variant="split"
       status={status}
       onSubmit={handleSubmit}

@@ -9,4 +9,9 @@ export interface LogoProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorEle
   href?: string;
   'aria-label'?: string;
   className?: string;
+  disableBackground?: boolean;
+  useImage?: boolean;
+  imageSrc?: string;
+  /** When variant="full", controls whether the "NorAI" wordmark text renders next to the icon. Defaults to true. */
+  showWordmark?: boolean;
 }

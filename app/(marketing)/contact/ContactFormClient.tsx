@@ -76,44 +76,85 @@ export function ContactFormClient() {
   };
 
   return (
-    <div className="p-8 md:p-10 bg-[#131924] border border-white/10 rounded-xl space-y-6 shadow-xl">
+    <div
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-2xl
+        p-8 md:p-10
+        space-y-6
+
+        bg-white/45
+        backdrop-blur-xl
+
+        border
+        border-blue-400/15
+
+        shadow-[0_10px_40px_rgba(59,130,246,0.06)]
+
+        hover:border-blue-400/25
+        hover:shadow-[0_20px_55px_rgba(59,130,246,0.10)]
+
+        transition-all
+        duration-500
+      "
+    >
+      {/* Card AI Glow */}
+      <div
+        aria-hidden="true"
+        className="
+          absolute -top-24 -right-24 w-56 h-56 rounded-full
+          bg-blue-500/10 blur-[80px]
+          opacity-60 group-hover:opacity-100
+          transition-opacity duration-500 pointer-events-none
+        "
+      />
+      <div
+        aria-hidden="true"
+        className="
+          absolute top-0 left-0 right-0 h-px
+          bg-gradient-to-r from-transparent via-blue-400/50 to-transparent
+        "
+      />
+
       {/* Top Header Bar */}
-      <div className="space-y-2 border-b border-white/10 pb-6">
+      <div className="relative z-10 space-y-2 border-b border-blue-400/10 pb-6">
         <div className="flex items-center justify-between text-xs font-mono">
-          <span className="text-slate-400 font-bold tracking-wider flex items-center gap-1.5">
-            <Terminal className="w-3.5 h-3.5 text-[#0CCAB1]" aria-hidden="true" /> TECHNICAL_SCOPING_FORM
+          <span className="text-primary-700 font-bold tracking-wider flex items-center gap-1.5">
+            <Terminal className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> TECHNICAL_SCOPING_FORM
           </span>
         </div>
-        <Heading as="h2" variant="heading-lg" className="font-display font-bold text-white pt-2 flex items-center gap-2">
-          <MessageSquare className="w-5 h-5 text-[#0CCAB1]" aria-hidden="true" /> Send Us a Message
+        <Heading as="h2" variant="heading-lg" className="font-display font-bold text-primary-800 pt-2 flex items-center gap-2">
+          <MessageSquare className="w-5 h-5 text-[var(--accent-500)]" aria-hidden="true" /> Send Us a Message
         </Heading>
       </div>
 
       {submitted ? (
-        <div className="p-8 rounded-xl bg-[#0CCAB1]/10 border border-[#0CCAB1]/30 text-center space-y-4 font-mono">
-          <div className="w-12 h-12 rounded-full bg-[#0CCAB1]/20 text-[#45F7D6] flex items-center justify-center mx-auto">
+        <div className="relative z-10 p-8 rounded-2xl bg-blue-500/10 border border-blue-400/25 text-center space-y-4 font-mono">
+          <div className="w-12 h-12 rounded-full bg-blue-500/15 text-blue-600 flex items-center justify-center mx-auto">
             <CheckCircle2 className="w-6 h-6" aria-hidden="true" />
           </div>
-          <span className="inline-block text-xs font-bold text-[#45F7D6] bg-[#0B0F17] px-3 py-1 rounded border border-white/10 uppercase tracking-wider">
+          <span className="inline-block text-xs font-bold text-[var(--accent-mono)] bg-white/60 backdrop-blur-sm px-3 py-1 rounded-lg border border-blue-400/15 uppercase tracking-wider">
             [STATUS: RECEIVED] • ENGINEER ASSIGNED
           </span>
-          <Heading as="h3" variant="heading-md" className="font-display font-bold text-white">
+          <Heading as="h3" variant="heading-md" className="font-display font-bold text-primary-800">
             Message Successfully Dispatched!
           </Heading>
-          <Text variant="body-sm" className="text-slate-300 max-w-md mx-auto font-sans leading-relaxed">
-            Thank you for reaching out to NorAI Technologies. One of our solution engineers will contact you at <strong className="text-white">{formData.email}</strong> shortly.
+          <Text variant="body-sm" className="text-primary-700 max-w-md mx-auto font-sans leading-relaxed">
+            Thank you for reaching out to NorAi Technologies. One of our solution engineers will contact you at <strong className="text-primary-800">{formData.email}</strong> shortly.
           </Text>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <p className="text-xs font-mono text-slate-400">
-            Fields marked with <span className="text-[#0CCAB1] font-bold">*</span> are required.
+        <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
+          <p className="text-xs font-mono text-primary-700">
+            Fields marked with <span className="text-[var(--accent-500)] font-bold">*</span> are required.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label htmlFor="contact-name" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
-                Full Name <span className="text-[#0CCAB1]" aria-hidden="true">*</span>
+              <label htmlFor="contact-name" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
+                Full Name <span className="text-[var(--accent-500)]" aria-hidden="true">*</span>
               </label>
               <input
                 id="contact-name"
@@ -123,13 +164,21 @@ export function ContactFormClient() {
                 aria-required="true"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-sans"
+                className="
+                  w-full px-4 py-3 rounded-xl
+                  bg-white/60 backdrop-blur-sm
+                  border border-blue-400/15
+                  text-primary-800 placeholder-slate-500
+                  focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
+                  text-sm font-sans
+                  transition-all
+                "
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="contact-email" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
-                Work Email <span className="text-[#0CCAB1]" aria-hidden="true">*</span>
+              <label htmlFor="contact-email" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
+                Work Email <span className="text-[var(--accent-500)]" aria-hidden="true">*</span>
               </label>
               <input
                 id="contact-email"
@@ -139,14 +188,22 @@ export function ContactFormClient() {
                 aria-required="true"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-sans"
+                className="
+                  w-full px-4 py-3 rounded-xl
+                  bg-white/60 backdrop-blur-sm
+                  border border-blue-400/15
+                  text-primary-800 placeholder-slate-500
+                  focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
+                  text-sm font-sans
+                  transition-all
+                "
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label htmlFor="contact-company" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
+              <label htmlFor="contact-company" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
                 Company / Organization
               </label>
               <input
@@ -155,23 +212,39 @@ export function ContactFormClient() {
                 type="text"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-sans"
+                className="
+                  w-full px-4 py-3 rounded-xl
+                  bg-white/60 backdrop-blur-sm
+                  border border-blue-400/15
+                  text-primary-800 placeholder-slate-500
+                  focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
+                  text-sm font-sans
+                  transition-all
+                "
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="contact-service" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
-                Service Interest <span className="text-[#0CCAB1]" aria-hidden="true">*</span>
+              <label htmlFor="contact-service" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
+                Service Interest <span className="text-[var(--accent-500)]" aria-hidden="true">*</span>
               </label>
               <select
                 id="contact-service"
                 name="service"
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-mono cursor-pointer"
+                className="
+                  w-full px-4 py-3 rounded-xl
+                  bg-white/60 backdrop-blur-sm
+                  border border-blue-400/15
+                  text-primary-800
+                  focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
+                  text-sm font-mono cursor-pointer
+                  transition-all
+                "
               >
                 {SERVICE_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value} className="bg-[#0B0F17] text-white">
+                  <option key={opt.value} value={opt.value} className="bg-white text-primary-800">
                     {opt.label}
                   </option>
                 ))}
@@ -180,8 +253,8 @@ export function ContactFormClient() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="contact-message" className="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider block">
-              Project / Scoping Details <span className="text-[#0CCAB1]" aria-hidden="true">*</span>
+            <label htmlFor="contact-message" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
+              Project / Scoping Details <span className="text-[var(--accent-500)]" aria-hidden="true">*</span>
             </label>
             <textarea
               id="contact-message"
@@ -192,13 +265,21 @@ export function ContactFormClient() {
               placeholder="Tell us about your data bottleneck, request volume, or AI automation goals..."
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-[#0B0F17] border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0CCAB1] focus:border-[#0CCAB1] text-sm font-sans"
+              className="
+                w-full px-4 py-3 rounded-xl
+                bg-white/60 backdrop-blur-sm
+                border border-blue-400/15
+                text-primary-800 placeholder-slate-500
+                focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
+                text-sm font-sans
+                transition-all
+              "
             />
           </div>
 
           {error && (
-            <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-3">
-              <p className="text-sm text-red-400">{error}</p>
+            <div className="rounded-xl border border-red-400/30 bg-red-500/10 p-3">
+              <p className="text-sm text-red-500">{error}</p>
             </div>
           )}
 
@@ -206,9 +287,18 @@ export function ContactFormClient() {
             type="submit"
             variant="primary"
             size="lg"
-            className="w-full bg-[#0CCAB1] hover:bg-[#45F7D6] text-[#0B0F17] font-semibold py-3.5 rounded-lg shadow-lg shadow-[#0CCAB1]/20 flex items-center justify-center gap-2 transition-all cursor-pointer"
+            className="
+              w-full
+              bg-gradient-to-r from-blue-600 to-indigo-600
+              hover:from-blue-700 hover:to-violet-600
+              text-white font-semibold py-3.5 rounded-xl
+              shadow-lg shadow-blue-500/20
+              hover:shadow-blue-500/30
+              flex items-center justify-center gap-2
+              transition-all duration-300 cursor-pointer
+            "
           >
-            Submit<Send className="w-4 h-4" aria-hidden="true" />
+            Submit <Send className="w-4 h-4" aria-hidden="true" />
           </Button>
         </form>
       )}

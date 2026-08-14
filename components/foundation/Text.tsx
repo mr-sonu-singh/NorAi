@@ -31,7 +31,7 @@ export function Text({
   };
 
   return (
-    <Component className={cn('text-slate-300', variantClasses[variant], className)} {...props}>
+    <Component className={cn('text-primary-700', variantClasses[variant], className)} {...props}>
       {children}
     </Component>
   );

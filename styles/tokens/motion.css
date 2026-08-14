@@ -1,9 +1,0 @@
-:root {
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Approved Foundation Patch Tokens */
-  --tooltip-delay: 200ms;
-}

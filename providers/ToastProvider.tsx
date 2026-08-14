@@ -46,13 +46,13 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className="pointer-events-auto px-4 py-3 rounded-md bg-white text-slate-800 shadow-lg border border-slate-200 flex items-center justify-between gap-3 text-sm"
+            className="pointer-events-auto px-4 py-3 rounded-md bg-[var(--bg-page)] text-primary-800 shadow-lg border border-primary-200 flex items-center justify-between gap-3 text-sm"
           >
             <span>{toast.message}</span>
             <button
               type="button"
               onClick={() => removeToast(toast.id)}
-              className="text-slate-400 hover:text-slate-800"
+              className="text-[var(--accent-500)] hover:text-[var(--accent-mono)]"
               aria-label="Close notification"
             >
               ✕

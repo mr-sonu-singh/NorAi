@@ -3,7 +3,7 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/terms',
-  title: 'Terms of Service — NorAI Technologies',
+  title: 'Terms of Service — NorAi Technologies',
   description: 'Review the Terms of Service governing the use of NorAI micro-tools, API endpoints, and enterprise automation services.',
 });
 

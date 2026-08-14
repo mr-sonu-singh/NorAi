@@ -8,7 +8,7 @@ import MarketingLayout from '../layout';
 describe('About Page (/about)', () => {
   it('exports valid metadata', () => {
     expect(metadata).toBeDefined();
-    expect(metadata.title).toContain('About NorAI');
+    expect(metadata.title).toContain('About NorAi');
     expect(metadata.description).toBeDefined();
   });
 
@@ -45,7 +45,7 @@ describe('About Page (/about)', () => {
     expect(script).toBeTruthy();
     const parsed = JSON.parse(script?.textContent || '{}');
     expect(parsed['@type']).toBe('AboutPage');
-    expect(parsed.name).toBe('About NorAI Technologies');
+    expect(parsed.name).toBe('About NorAi Technologies');
     expect(parsed.publisher.identifier).toBe('CIN: U72900MH2025PTC123456');
   });
 });

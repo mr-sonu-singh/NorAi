@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     });
 
     await transporter.sendMail({
-        from: `"NorAI Technologies" <${process.env.EMAIL_USER}>`,
+        from: `"NorAi Technologies" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_USER,
 
         // Reply button seedha client ko mail karega
@@ -45,9 +45,9 @@ export async function POST(req: Request) {
       style="background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb;">
 
       <tr>
-      <td style="background:#0B0F17;padding:30px;text-align:center;">
+      <td style="background:#0A1229;padding:30px;text-align:center;">
 
-      <h1 style="margin:0;color:#0CCAB1;font-size:30px;">
+      <h1 style="margin:0;color:#2E5BFF;font-size:30px;">
       NorAI Technologies
       </h1>
 
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
       <div style="
       background:#f8fafc;
       padding:20px;
-      border-left:5px solid #0CCAB1;
+      border-left:5px solid #2E5BFF;
       border-radius:8px;
       line-height:1.8;
       color:#374151;
@@ -111,8 +111,8 @@ export async function POST(req: Request) {
       <a href="mailto:${body.email}"
       style="
       display:inline-block;
-      background:#0CCAB1;
-      color:#0B0F17;
+      background:#2E5BFF;
+      color:#0A1229;
       padding:14px 30px;
       border-radius:8px;
       font-weight:bold;
@@ -130,8 +130,8 @@ export async function POST(req: Request) {
 
       <tr>
       <td style="
-      background:#0B0F17;
-      color:#94a3b8;
+      background:#f8fafc;
+      color:#475569;
       text-align:center;
       padding:20px;
       font-size:13px;

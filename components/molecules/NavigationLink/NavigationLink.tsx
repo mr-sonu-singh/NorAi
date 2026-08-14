@@ -48,8 +48,8 @@ export function NavigationLink({
         'inline-flex items-center gap-2 text-body-md font-medium transition-colors duration-fast rounded-sm px-2 py-1',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
         active
-          ? 'text-blue-400 font-semibold'
-          : 'text-slate-300 hover:text-white',
+          ? 'text-[var(--accent-500)] font-semibold'
+          : 'text-primary-500 hover:text-primary-800',
         className,
       )}
       data-testid="navigation-link-molecule"

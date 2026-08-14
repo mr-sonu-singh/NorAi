@@ -10,7 +10,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary: 'bg-accent-600 text-white hover:bg-accent-700 active:scale-[0.98]',
   secondary: 'bg-primary-100 text-primary-800 hover:bg-primary-200 active:scale-[0.98]',
   ghost: 'bg-transparent text-primary-800 hover:bg-primary-100 active:scale-[0.98]',
-  dark: 'bg-bg-dark text-white hover:bg-primary-800 active:scale-[0.98]',
+  dark: 'bg-[var(--accent-700)] text-white hover:bg-[var(--accent-600)] active:scale-[0.98]',
   danger: 'bg-error-600 text-white hover:bg-error-700 active:scale-[0.98]',
 };
 
