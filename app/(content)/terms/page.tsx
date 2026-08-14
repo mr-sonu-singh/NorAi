@@ -72,14 +72,194 @@ const TERMS_SECTIONS = [
 
 export default function TermsPage() {
   return (
-    <div className="bg-[var(--bg-page)] text-primary-800 min-h-screen font-sans selection:bg-[var(--accent-500)] selection:text-[var(--bg-page)]">
+    <div
+      className="
+        text-primary-800
+        min-h-screen
+        font-sans
+        selection:bg-[var(--accent-500)]
+        selection:text-[var(--bg-page)]
+
+        bg-[linear-gradient(180deg,#F4F7FF_0%,#EEF2FF_25%,#F5F0FF_55%,#F4F7FF_100%)]
+      "
+    >
       {/* Hero Section */}
-      <Section className="relative pt-12 pb-14 md:pt-20 md:pb-16 overflow-hidden">
-        <Container size="default">
+      <Section className="relative pt-12 pb-14 md:pt-20 md:pb-16 overflow-hidden isolate">
+        {/* Cover Image — place your file at /public/images/hero-bg.jpg */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/hero-bg.jpg')",
+            backgroundColor: 'var(--primary-900)',
+          }}
+        />
+
+        {/* Tinted overlay so text stays readable over the image */}
+        <div aria-hidden="true" className="absolute inset-0 bg-[var(--bg-page)]/20" />
+
+        {/* AI Neural Network Animation */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+        >
+          <div
+            className="
+              absolute
+              -left-20
+              top-1/2
+              w-72
+              h-72
+              rounded-full
+              bg-cyan-400/10
+              blur-[100px]
+              animate-pulse
+            "
+          />
+
+          <div
+            className="
+              absolute
+              -right-20
+              top-1/3
+              w-80
+              h-80
+              rounded-full
+              bg-blue-500/10
+              blur-[110px]
+              animate-pulse
+            "
+            style={{ animationDelay: '1200ms' }}
+          />
+
+          {/* AI Node - Left */}
+          <div className="absolute left-[15%] top-[30%]">
+            <span
+              className="
+                block
+                w-2
+                h-2
+                rounded-full
+                bg-cyan-300
+                shadow-[0_0_18px_rgba(103,232,249,0.9)]
+                animate-pulse
+              "
+            />
+            <span
+              className="
+                absolute
+                -inset-3
+                rounded-full
+                border
+                border-cyan-300/20
+                animate-ping
+              "
+            />
+          </div>
+
+          {/* AI Node - Right */}
+          <div className="absolute right-[22%] top-[25%]">
+            <span
+              className="
+                block
+                w-1.5
+                h-1.5
+                rounded-full
+                bg-cyan-200
+                shadow-[0_0_15px_rgba(103,232,249,0.8)]
+                animate-pulse
+              "
+              style={{ animationDelay: '500ms' }}
+            />
+          </div>
+
+          {/* AI Node - Bottom Left */}
+          <div className="absolute left-[27%] bottom-[18%]">
+            <span
+              className="
+                block
+                w-1.5
+                h-1.5
+                rounded-full
+                bg-blue-200
+                shadow-[0_0_14px_rgba(147,197,253,0.8)]
+                animate-pulse
+              "
+              style={{ animationDelay: '900ms' }}
+            />
+          </div>
+
+          {/* AI Node - Bottom Right */}
+          <div className="absolute right-[13%] bottom-[25%]">
+            <span
+              className="
+                block
+                w-2
+                h-2
+                rounded-full
+                bg-cyan-300
+                shadow-[0_0_18px_rgba(103,232,249,0.8)]
+                animate-pulse
+              "
+              style={{ animationDelay: '1400ms' }}
+            />
+          </div>
+
+          {/* Neural Connection Lines */}
+          <div
+            className="
+              absolute
+              left-[15.5%]
+              top-[30.5%]
+              w-32
+              h-px
+              origin-left
+              rotate-[18deg]
+              bg-gradient-to-r
+              from-cyan-300/40
+              to-transparent
+              animate-pulse
+            "
+          />
+
+          <div
+            className="
+              absolute
+              right-[22%]
+              top-[25%]
+              w-28
+              h-px
+              origin-right
+              -rotate-[20deg]
+              bg-gradient-to-l
+              from-cyan-300/30
+              to-transparent
+              animate-pulse
+            "
+            style={{ animationDelay: '700ms' }}
+          />
+
+          {/* Tiny Data Particles */}
+          <span className="absolute left-[9%] top-[45%] w-1 h-1 rounded-full bg-cyan-200/70 animate-pulse" />
+          <span
+            className="absolute left-[35%] top-[20%] w-1 h-1 rounded-full bg-blue-200/70 animate-pulse"
+            style={{ animationDelay: '300ms' }}
+          />
+          <span
+            className="absolute right-[32%] top-[45%] w-1 h-1 rounded-full bg-cyan-200/70 animate-pulse"
+            style={{ animationDelay: '800ms' }}
+          />
+          <span
+            className="absolute right-[8%] top-[40%] w-1 h-1 rounded-full bg-cyan-300/70 animate-pulse"
+            style={{ animationDelay: '1100ms' }}
+          />
+        </div>
+
+        <Container size="default" className="relative z-10">
           <div className="text-center max-w-3xl mx-auto space-y-6">
             {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200/60 bg-[var(--bg-elevated)] text-primary-700 text-xs font-mono tracking-wide uppercase">
-              <ShieldCheck className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-white text-xs font-mono tracking-wide uppercase">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#DDF7FF]" aria-hidden="true" />
               <span>Legal &amp; Governance</span>
             </div>
 
@@ -87,16 +267,19 @@ export default function TermsPage() {
             <Heading
               as="h1"
               variant="display-xl"
-              className="font-display font-extrabold tracking-tight text-primary-800 leading-tight"
+              className="font-display font-extrabold text-white tracking-[-0.03em] leading-[1.08] drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]"
             >
               Terms of{' '}
-              <span className="text-[var(--accent-500)] underline decoration-[color:var(--accent-500)/0.4] underline-offset-8">
+              <span className="text-[#DDF7FF] underline decoration-[color:var(--accent-mono)/0.6] underline-offset-8">
                 Service
               </span>
             </Heading>
 
             {/* Subhead */}
-            <Text variant="body-lg" className="text-primary-700 font-mono text-sm leading-relaxed">
+            <Text
+              variant="body-lg"
+              className="font-mono text-sm text-[#E8F7FF] leading-relaxed drop-shadow-[0_1px_6px_rgba(0,20,50,0.35)]"
+            >
               Effective Date: January 1, 2026 • NorAi Technologies Pvt. Ltd. • Uttar Pradesh, India
             </Text>
           </div>
@@ -104,7 +287,15 @@ export default function TermsPage() {
       </Section>
 
       {/* Signature Element: Terms Telemetry Bar */}
-      <Section className="py-4 border-y border-slate-200/60 bg-[color:var(--bg-elevated)/0.6]">
+      <Section
+        className="
+          py-4
+          border-y
+          border-blue-400/10
+          bg-white/30
+          backdrop-blur-md
+        "
+      >
         <Container size="default">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono">
             <div className="flex items-center gap-2 text-primary-700">
@@ -114,7 +305,22 @@ export default function TermsPage() {
             </div>
 
             <div className="flex items-center gap-2 text-primary-700">
-              <span className="inline-flex items-center gap-1.5 text-xs text-[var(--accent-mono)] bg-[var(--bg-page)] px-3 py-1 rounded border border-slate-200/60">
+              <span
+                className="
+                  inline-flex
+                  items-center
+                  gap-1.5
+                  text-xs
+                  text-blue-600
+                  bg-white/40
+                  backdrop-blur-sm
+                  px-3
+                  py-1
+                  rounded-lg
+                  border
+                  border-blue-400/15
+                "
+              >
                 <Scale className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" />
                 ENTERPRISE SLA &amp; REST API PERMITTED USE
               </span>
@@ -124,25 +330,53 @@ export default function TermsPage() {
       </Section>
 
       {/* Terms Body Section */}
-      <Section className="py-12">
+      <Section
+        className="
+          relative
+          py-16
+          overflow-hidden
+          bg-[radial-gradient(circle_at_8%_20%,rgba(59,130,246,0.06),transparent_32%),radial-gradient(circle_at_92%_70%,rgba(139,92,246,0.06),transparent_34%)]
+        "
+      >
         <Container size="default">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Sidebar Table of Contents */}
             <div className="lg:col-span-4 sticky top-24 space-y-4 hidden lg:block">
-              <div className="p-6 bg-[var(--bg-elevated)] border border-slate-200/60 rounded-xl space-y-4 shadow-xl">
+              <div
+                className="
+                  relative
+                  overflow-hidden
+                  rounded-2xl
+                  p-6
+                  space-y-4
+
+                  bg-white/50
+                  backdrop-blur-xl
+
+                  border
+                  border-blue-400/15
+
+                  shadow-[0_10px_40px_rgba(59,130,246,0.06)]
+                "
+              >
                 <div className="text-xs font-mono font-bold text-[var(--accent-500)] uppercase tracking-wider flex items-center gap-2">
                   <FileText className="w-4 h-4" aria-hidden="true" />
                   Document Index
                 </div>
-                <nav className="space-y-2 text-xs font-mono">
+                <nav className="space-y-1 text-xs font-mono">
                   {TERMS_SECTIONS.map((sec) => (
                     <a
                       key={sec.id}
                       href={`#${sec.id}`}
-                      className="flex items-center gap-3 py-1.5 px-2 rounded text-primary-700 hover:text-primary-800 hover:bg-[var(--bg-page)] transition-all group"
+                      className="
+                        flex items-center gap-3 py-1.5 px-2 rounded-lg
+                        text-primary-700
+                        hover:text-blue-600 hover:bg-white/60
+                        transition-all group
+                      "
                     >
-                      <span className="text-[var(--accent-500)] font-bold">{sec.num}</span>
-                      <span className="truncate group-hover:text-[var(--accent-500)]">{sec.title.replace(/^\d+\.\s*/, '')}</span>
+                      <span className="text-blue-600 font-bold">{sec.num}</span>
+                      <span className="truncate group-hover:text-blue-600">{sec.title.replace(/^\d+\.\s*/, '')}</span>
                     </a>
                   ))}
                 </nav>
@@ -152,9 +386,9 @@ export default function TermsPage() {
             {/* Right Main Content */}
             <div className="lg:col-span-8 space-y-10">
               {TERMS_SECTIONS.map((section) => (
-                <div key={section.id} id={section.id} className="scroll-mt-28 space-y-4 border-b border-slate-200/60 pb-8">
-                  <div className="flex items-center gap-3 font-mono text-xs text-[var(--accent-500)]">
-                    <span className="px-2 py-0.5 rounded bg-[var(--bg-page)] border border-slate-200/60 font-bold">
+                <div key={section.id} id={section.id} className="scroll-mt-28 space-y-4 border-b border-blue-400/10 pb-8">
+                  <div className="flex items-center gap-3 font-mono text-xs">
+                    <span className="px-2 py-0.5 rounded-lg bg-blue-500/10 border border-blue-400/20 text-[var(--accent-mono)] font-bold">
                       SECTION_{section.num}
                     </span>
                   </div>
@@ -172,16 +406,50 @@ export default function TermsPage() {
               ))}
 
               {/* Contact Legal Banner */}
-              <div className="p-8 rounded-xl bg-[var(--bg-elevated)] border border-[color:var(--accent-500)/0.4] space-y-4 shadow-xl">
-                <Heading as="h3" variant="heading-md" className="font-display font-bold text-primary-800">
+              <div
+                className="
+                  relative
+                  overflow-hidden
+                  rounded-2xl
+                  p-8
+                  space-y-4
+
+                  bg-white/50
+                  backdrop-blur-xl
+
+                  border
+                  border-blue-400/30
+
+                  shadow-[0_15px_50px_rgba(59,130,246,0.08)]
+                "
+              >
+                <div
+                  aria-hidden="true"
+                  className="
+                    absolute -top-20 -right-20 w-48 h-48 rounded-full
+                    bg-blue-500/10 blur-[80px] pointer-events-none
+                  "
+                />
+                <Heading as="h3" variant="heading-md" className="relative z-10 font-display font-bold text-primary-800">
                   Have Questions Regarding Our Terms?
                 </Heading>
-                <Text variant="body-sm" className="text-primary-700">
-                  Contact our legal team directly at <strong className="text-[var(--accent-500)] font-mono">noraitechnologies@gmail.com</strong> for custom enterprise agreement terms or DPA requests.
+                <Text variant="body-sm" className="relative z-10 text-primary-700">
+                  Contact our legal team directly at <strong className="text-blue-600 font-mono">noraitechnologies@gmail.com</strong> for custom enterprise agreement terms or DPA requests.
                 </Text>
-                <div className="pt-2">
+                <div className="relative z-10 pt-2">
                   <Link href="/contact">
-                    <Button variant="primary" size="md" className="bg-[var(--accent-500)] hover:bg-[var(--accent-mono)] text-[var(--bg-page)] font-semibold px-6 py-2.5 rounded-lg shadow-lg shadow-[color:var(--accent-500)/0.2]">
+                    <Button
+                      variant="primary"
+                      size="md"
+                      className="
+                        bg-gradient-to-r from-blue-600 to-indigo-600
+                        hover:from-blue-700 hover:to-violet-600
+                        text-white font-semibold px-6 py-2.5 rounded-lg
+                        shadow-lg shadow-blue-500/20
+                        hover:shadow-blue-500/30
+                        transition-all duration-300
+                      "
+                    >
                       Contact Legal Team <ArrowRight className="w-4 h-4 ml-2 inline-block" aria-hidden="true" />
                     </Button>
                   </Link>
