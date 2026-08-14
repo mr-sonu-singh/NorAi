@@ -11,7 +11,6 @@ import { Link } from '@/components/atoms/Link';
 import { IconButton } from '@/components/atoms/IconButton';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
 import { HeaderProps, HeaderCTA } from './Header.types';
 
