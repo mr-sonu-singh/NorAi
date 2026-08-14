@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { Container } from '@/components/foundation/Container';
 import { Stack } from '@/components/foundation/Stack';
-import { Logo } from '@/components/molecules/Logo';
 import { NavigationGroup } from '@/components/molecules/NavigationGroup';
 import { NavItem } from '@/components/molecules/NavigationGroup/NavigationGroup.types';
 import { Button } from '@/components/atoms/Button';
@@ -34,7 +33,7 @@ export const DEFAULT_HEADER_PRIMARY_CTA: HeaderCTA = {
 
 export function Header({
   navItems = DEFAULT_HEADER_NAV_ITEMS,
-  logoVariant = 'full',
+  
   primaryCta = DEFAULT_HEADER_PRIMARY_CTA,
   secondaryCta,
   sticky = true,
@@ -44,8 +43,8 @@ export function Header({
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+ // const prefersReducedMotion = usePrefersReducedMotion();
+  //const mobileMenuRef = useRef<HTMLDivElement>(null);
   const prevIsDesktop = useRef(isDesktop);
 
   // Automatically close mobile menu when route changes
