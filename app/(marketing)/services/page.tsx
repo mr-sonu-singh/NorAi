@@ -181,7 +181,7 @@ export default function ServicesPage() {
           aria-hidden="true"
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/images/hero-bg.jpg')",
+            backgroundImage: "url('/images/services-hero-cover.jpg')",
             backgroundColor: 'var(--primary-900)',
           }}
         />
@@ -342,9 +342,6 @@ export default function ServicesPage() {
             style={{ animationDelay: '1100ms' }}
           />
         </div>
-
-        {/* Tinted overlay so text stays readable over the image */}
-        <div aria-hidden="true" className="absolute inset-0 bg-[var(--bg-page)]/20" />
 
         <Container size="default" className="relative z-10">
           <div className="text-center max-w-3xl mx-auto space-y-6">
@@ -1001,10 +998,25 @@ export default function ServicesPage() {
       </Section>
 
       {/* TIER 3: PROVISIONAL R&D SCAFFOLD */}
-      <Section className="py-16 border-t border-blue-400/10">
-        <Container size="default">
+      <Section className="relative py-16 overflow-hidden">
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="
+              absolute -left-24 top-10 w-[360px] h-[360px] rounded-full
+              bg-slate-400/10 blur-[90px]
+            "
+          />
+          <div
+            className="
+              absolute -right-24 bottom-10 w-[380px] h-[380px] rounded-full
+              bg-blue-400/10 blur-[90px]
+            "
+          />
+        </div>
+
+        <Container size="default" className="relative z-10">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-8">
-            <div className="text-xs font-mono text-primary-700 uppercase font-bold tracking-widest">
+            <div className="text-xs font-mono text-[var(--accent-500)] uppercase font-bold tracking-widest">
               Tier 03 • Provisional R&amp;D Scaffold
             </div>
             <Heading as="h2" variant="heading-xl" className="font-display font-extrabold text-primary-800">
@@ -1014,55 +1026,301 @@ export default function ServicesPage() {
 
           <div
             className="
+              group
+              relative
+              overflow-hidden
               max-w-4xl mx-auto
               rounded-2xl
               p-8
               space-y-6
-              relative
-              overflow-hidden
 
-              bg-white/30
-              backdrop-blur-md
+              bg-white/40
+              backdrop-blur-xl
 
-              border-2
+              border
               border-dashed
-              border-primary-300/50
+              border-blue-400/25
 
-              opacity-90
+              shadow-[0_10px_40px_rgba(59,130,246,0.05)]
+
+              hover:border-blue-400/40
+
+              transition-all
+              duration-500
             "
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div
+              aria-hidden="true"
+              className="
+                absolute -top-20 -right-20 w-44 h-44 rounded-full
+                bg-blue-400/10 blur-[70px]
+                opacity-0 group-hover:opacity-100
+                transition-opacity duration-500 pointer-events-none
+              "
+            />
+
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="p-3 rounded-xl bg-white/40 backdrop-blur-md border border-primary-300/40 text-primary-600">
+                <div
+                  className="
+                    p-3
+                    rounded-xl
+                    bg-white/40
+                    backdrop-blur-md
+                    border
+                    border-blue-400/20
+                    text-blue-600/80
+
+                    group-hover:bg-blue-500/10
+                    group-hover:border-blue-400/40
+
+                    transition-all
+                    duration-300
+                  "
+                >
                   <Construction className="w-6 h-6" aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider">
+                  <span className="text-xs font-mono font-bold text-[var(--accent-mono)] uppercase tracking-wider">
                     {TIER_3_SCAFFOLD_ITEM.id} • {TIER_3_SCAFFOLD_ITEM.badge}
                   </span>
-                  <Heading as="h3" variant="heading-xl" className="font-display font-bold text-primary-600">
+                  <Heading as="h3" variant="heading-xl" className="font-display font-bold text-primary-700">
                     {TIER_3_SCAFFOLD_ITEM.title}
                   </Heading>
                 </div>
               </div>
-              <span className="px-3 py-1 rounded-full bg-white/40 text-primary-700 border border-primary-300/40 text-xs font-mono font-bold uppercase tracking-wider w-fit">
+              <span
+                className="
+                  px-3 py-1 rounded-full
+                  bg-white/50 backdrop-blur-sm border border-blue-400/20
+                  text-primary-700 text-xs font-mono font-bold uppercase tracking-wider w-fit
+                "
+              >
                 Under Active R&amp;D
               </span>
             </div>
 
-            <Text variant="body-md" className="text-primary-700 leading-relaxed">
+            <Text variant="body-md" className="relative z-10 text-primary-700 leading-relaxed">
               {TIER_3_SCAFFOLD_ITEM.desc}
             </Text>
 
-            <div className="pt-4 border-t border-primary-300/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+            <div className="relative z-10 pt-4 border-t border-blue-400/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
               <span className="text-primary-700/90 flex items-center gap-1.5">
                 <Construction className="w-3.5 h-3.5 text-primary-700" aria-hidden="true" /> PROVISIONAL SCAFFOLD — NOT OFFERED FOR COMMERCIAL SCOPING
               </span>
-              <div className="px-4 py-2 rounded-lg bg-white/40 border border-primary-300/40 text-primary-700 font-bold uppercase tracking-wider cursor-not-allowed">
+              <div
+                className="
+                  px-4 py-2 rounded-lg
+                  bg-white/40 backdrop-blur-sm border border-blue-400/15
+                  text-primary-700 font-bold uppercase tracking-wider cursor-not-allowed
+                "
+              >
                 [In Development • No Active Inquiries]
               </div>
             </div>
           </div>
+        </Container>
+      </Section>
+
+      {/* Community AI Skilling / Govt Partnership Track — Flagship Style */}
+      <Section
+        className="
+          relative
+          py-16
+          overflow-hidden
+          bg-[radial-gradient(circle_at_8%_35%,rgba(59,130,246,0.10),transparent_32%),radial-gradient(circle_at_92%_65%,rgba(139,92,246,0.10),transparent_34%)]
+        "
+      >
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="
+              absolute -left-32 top-20 w-[420px] h-[420px] rounded-full
+              bg-blue-500/15 blur-[90px] animate-pulse
+            "
+            style={{ animationDuration: '4s' }}
+          />
+          <div
+            className="
+              absolute -right-32 bottom-10 w-[460px] h-[460px] rounded-full
+              bg-violet-500/15 blur-[95px] animate-pulse
+            "
+            style={{ animationDuration: '5s', animationDelay: '1s' }}
+          />
+        </div>
+
+        <Container size="default" className="relative z-10">
+          <Link href="/programs/rural-skilling.html" className="block group">
+            <div
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-2xl
+                p-8
+                space-y-6
+
+                bg-white/50
+                backdrop-blur-xl
+
+                border-2
+                border-blue-400/30
+
+                shadow-[0_20px_60px_rgba(59,130,246,0.12)]
+
+                hover:border-blue-400/50
+                hover:shadow-[0_25px_70px_rgba(59,130,246,0.18)]
+
+                transition-all
+                duration-500
+              "
+            >
+              {/* Card AI Glow */}
+              <div
+                aria-hidden="true"
+                className="
+                  absolute
+                  -top-24
+                  -right-24
+                  w-64
+                  h-64
+                  rounded-full
+                  bg-blue-500/15
+                  blur-[90px]
+                  opacity-70
+                  group-hover:opacity-100
+                  transition-opacity
+                  duration-500
+                  pointer-events-none
+                "
+              />
+              <div
+                aria-hidden="true"
+                className="
+                  absolute
+                  -bottom-24
+                  -left-24
+                  w-56
+                  h-56
+                  rounded-full
+                  bg-violet-500/15
+                  blur-[90px]
+                  opacity-60
+                  group-hover:opacity-100
+                  transition-opacity
+                  duration-700
+                  pointer-events-none
+                "
+              />
+              <div
+                aria-hidden="true"
+                className="
+                  absolute
+                  top-0
+                  left-0
+                  right-0
+                  h-px
+                  bg-gradient-to-r
+                  from-transparent
+                  via-blue-400/60
+                  to-transparent
+                "
+              />
+
+              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div
+                    className="
+                      p-3
+                      rounded-xl
+                      bg-white/40
+                      backdrop-blur-md
+                      border
+                      border-blue-400/20
+                      text-blue-600
+
+                      group-hover:bg-blue-500/10
+                      group-hover:border-blue-400/40
+                      group-hover:scale-110
+                      group-hover:rotate-2
+
+                      transition-all
+                      duration-300
+                    "
+                  >
+                    <Sparkles className="w-6 h-6" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-mono font-bold text-[var(--accent-mono)] uppercase tracking-wider">
+                      COMMUNITY_01 &middot; Govt Partnership Track
+                    </span>
+                    <Heading as="h3" variant="heading-xl" className="font-display font-bold text-primary-800">
+                      Community AI Skilling
+                    </Heading>
+                  </div>
+                </div>
+                <span
+                  className="
+                    px-3 py-1 rounded-full
+                    bg-gradient-to-r from-blue-600 to-indigo-600
+                    text-white text-xs font-mono font-bold uppercase tracking-wider w-fit
+                    shadow-lg shadow-blue-500/20
+                  "
+                >
+                  Flagship Community Program
+                </span>
+              </div>
+
+              <Text variant="body-md" className="relative z-10 text-primary-700 max-w-3xl leading-relaxed">
+                AI literacy for the last mile — vernacular, offline-first training that puts practical AI skills into the hands of rural students, shopkeepers, and local youth, designed to plug into Digital India and Skill India delivery networks.
+              </Text>
+
+              <div className="relative z-10 pt-2 flex flex-wrap gap-2 text-xs font-mono">
+                <span
+                  className="
+                    inline-flex items-center gap-1.5 px-3 py-1 rounded-lg
+                    bg-white/40 backdrop-blur-sm border border-blue-400/15 text-primary-700
+                  "
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> Vernacular &amp; Offline-First
+                </span>
+                <span
+                  className="
+                    inline-flex items-center gap-1.5 px-3 py-1 rounded-lg
+                    bg-white/40 backdrop-blur-sm border border-blue-400/15 text-primary-700
+                  "
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> Block / District Deployment Ready
+                </span>
+                <span
+                  className="
+                    inline-flex items-center gap-1.5 px-3 py-1 rounded-lg
+                    bg-white/40 backdrop-blur-sm border border-blue-400/15 text-primary-700
+                  "
+                >
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> Aligned with Digital &amp; Skill India
+                </span>
+              </div>
+
+              <div className="relative z-10 pt-4 border-t border-blue-400/10 flex items-center justify-between">
+                <span className="text-xs font-mono text-primary-700 flex items-center gap-1.5">
+                  <Lock className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> Enquiries Open — Online &amp; Offline Sessions
+                </span>
+                <span
+                  className="
+                    inline-flex items-center gap-2
+                    bg-gradient-to-r from-blue-600 to-indigo-600
+                    hover:from-blue-700 hover:to-violet-600
+                    text-white font-semibold px-6 py-2.5 rounded-lg
+                    shadow-lg shadow-blue-500/20
+                    group-hover:shadow-blue-500/30
+                    transition-all duration-300
+                  "
+                >
+                  View Rural Skilling Program <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </span>
+              </div>
+            </div>
+          </Link>
         </Container>
       </Section>
 
