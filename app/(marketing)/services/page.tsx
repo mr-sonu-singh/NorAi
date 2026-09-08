@@ -181,7 +181,7 @@ export default function ServicesPage() {
           aria-hidden="true"
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/images/services-hero-cover.jpg')",
+            backgroundImage: "url('/images/hero-bg.jpg')",
             backgroundColor: 'var(--primary-900)',
           }}
         />
@@ -876,7 +876,7 @@ export default function ServicesPage() {
       <Section className="py-16 border-t border-blue-400/10 bg-white/20 backdrop-blur-sm">
         <Container size="default">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-8">
-            <div className="text-xs font-mono text-[var(--accent-mono)] uppercase font-bold tracking-widest">
+            <div className="text-xs font-mono text-[var(--accent-500)] uppercase font-bold tracking-widest">
               Tier 02 • Early Access Practice
             </div>
             <Heading as="h2" variant="heading-xl" className="font-display font-extrabold text-primary-800">
@@ -898,12 +898,12 @@ export default function ServicesPage() {
               backdrop-blur-xl
 
               border
-              border-violet-400/25
+              border-blue-400/25
 
-              shadow-[0_15px_50px_rgba(139,92,246,0.08)]
+              shadow-[0_15px_50px_rgba(59,130,246,0.08)]
 
-              hover:border-violet-400/40
-              hover:shadow-[0_20px_60px_rgba(139,92,246,0.14)]
+              hover:border-blue-400/40
+              hover:shadow-[0_20px_60px_rgba(59,130,246,0.14)]
 
               transition-all
               duration-500
@@ -918,7 +918,7 @@ export default function ServicesPage() {
                 w-52
                 h-52
                 rounded-full
-                bg-violet-500/10
+                bg-blue-500/10
                 blur-[80px]
                 opacity-60
                 group-hover:opacity-100
@@ -934,8 +934,8 @@ export default function ServicesPage() {
                   className="
                     p-3 rounded-xl
                     bg-white/40 backdrop-blur-md
-                    border border-violet-400/25
-                    text-violet-600
+                    border border-blue-400/20
+                    text-blue-600
                   "
                 >
                   <Sparkles className="w-6 h-6" aria-hidden="true" />
@@ -952,8 +952,9 @@ export default function ServicesPage() {
               <span
                 className="
                   px-3 py-1 rounded-full
-                  bg-violet-500/10 text-violet-700 border border-violet-400/30
-                  text-xs font-mono font-bold uppercase tracking-wider w-fit
+                  bg-gradient-to-r from-blue-600 to-indigo-600
+                  text-white text-xs font-mono font-bold uppercase tracking-wider w-fit
+                  shadow-lg shadow-blue-500/20
                 "
               >
                 Early Access Pilot Program
@@ -968,24 +969,26 @@ export default function ServicesPage() {
               {TIER_2_EARLY_ACCESS_SERVICE.highlights.map((h, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/40 backdrop-blur-sm border border-violet-400/15 text-primary-700"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/40 backdrop-blur-sm border border-blue-400/15 text-primary-700"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-violet-600" aria-hidden="true" /> {h}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> {h}
                 </span>
               ))}
             </div>
 
-            <div className="relative z-10 pt-4 border-t border-violet-400/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="relative z-10 pt-4 border-t border-blue-400/10 flex flex-col sm:flex-row items-center justify-between gap-4">
               <span className="text-xs font-mono text-primary-700 flex items-center gap-1.5">
-                <FlaskConical className="w-3.5 h-3.5 text-violet-600" aria-hidden="true" /> Active Early Access Program — Onboarding Pilot Partners
+                <FlaskConical className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> Active Early Access Program — Onboarding Pilot Partners
               </span>
               <Link href="/contact">
                 <Button
-                  variant="secondary"
+                  variant="primary"
                   size="md"
                   className="
-                    border border-violet-400/30 bg-violet-500/10 text-violet-700
-                    hover:bg-violet-500/20 font-semibold px-6 py-2 rounded-lg
+                    bg-gradient-to-r from-blue-600 to-indigo-600
+                    hover:from-blue-700 hover:to-violet-600
+                    text-white font-semibold px-6 py-2.5 rounded-lg
+                    shadow-lg shadow-blue-500/20
                     transition-all duration-300
                   "
                 >
@@ -1090,12 +1093,13 @@ export default function ServicesPage() {
                 </div>
               </div>
               <span
-                className="
-                  px-3 py-1 rounded-full
-                  bg-white/50 backdrop-blur-sm border border-blue-400/20
-                  text-primary-700 text-xs font-mono font-bold uppercase tracking-wider w-fit
-                "
-              >
+                  className="
+                    px-3 py-1 rounded-full
+                    bg-gradient-to-r from-blue-600 to-indigo-600
+                    text-white text-xs font-mono font-bold uppercase tracking-wider w-fit
+                    shadow-lg shadow-blue-500/20
+                  "
+                >
                 Under Active R&amp;D
               </span>
             </div>
@@ -1149,7 +1153,7 @@ export default function ServicesPage() {
         </div>
 
         <Container size="default" className="relative z-10">
-          <Link href="/programs/rural-skilling.html" className="block group">
+          <Link href="/programs/rural-skilling.html" className="block group no-underline hover:no-underline">
             <div
               className="
                 group

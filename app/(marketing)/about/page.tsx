@@ -140,7 +140,7 @@ export default function AboutPage() {
         />
 
         {/* Tinted overlay so text stays readable over the image */}
-        <div aria-hidden="true" className="absolute inset-0 bg-[var(--bg-page)]/20" />
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none" />
 
         {/* AI Neural Network Animation */}
         <div

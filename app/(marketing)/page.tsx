@@ -34,6 +34,7 @@ const METRICS_DATA = [
   { value: '24/7', label: 'API Availability', desc: 'Enterprise reliability & 99.9% SLA' },
 ];
 
+
 const PRODUCTS_DATA = [
   {
     title: 'AI Resume Shortlister',
@@ -356,8 +357,6 @@ export default function HomePage() {
             style={{ animationDelay: '1100ms' }}
           />
         </div>
-        {/* Tinted overlay so text/headline stay readable over the image */}
-        <div aria-hidden="true" className="absolute inset-0 bg-[var(--bg-page)]/20" />
 
         <Container size="default" className="relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">

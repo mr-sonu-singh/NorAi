@@ -56,7 +56,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Tinted overlay so text/headline stay readable over the image */}
-        <div aria-hidden="true" className="absolute inset-0 bg-[var(--bg-page)]/20" />
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none" />
         
         {/* AI Animated Background */}
         <div
@@ -212,31 +212,39 @@ export default function ProductsPage() {
 
               <Link href="#catalog" className="w-full sm:w-auto">
                 <Button
-                  variant="primary"
-                  size="lg"
-                  className="
-                    w-full sm:w-auto
-                    bg-gradient-to-r
-                    from-blue-600
-                    to-indigo-600
-                    hover:from-blue-700
-                    hover:to-violet-600
-                    text-white
-                    font-semibold
-                    px-8
-                    py-3.5
-                    rounded-xl
-                    shadow-lg
-                    shadow-blue-500/20
-                    hover:shadow-blue-500/30
-                    hover:-translate-y-0.5
-                    transition-all
-                    duration-300
-                  "
-                >
+                variant="primary"
+                size="lg"
+                className="
+                  w-full sm:w-auto
+                  !flex !flex-row
+                  !items-center !justify-center
+                  !whitespace-nowrap
+                  gap-2
+
+                  bg-gradient-to-r
+                  from-blue-600
+                  to-indigo-600
+                  hover:from-blue-700
+                  hover:to-violet-600
+                  text-white
+                  font-semibold
+                  px-8
+                  py-3.5
+                  rounded-xl
+                  shadow-lg
+                  shadow-blue-500/20
+                  hover:shadow-blue-500/30
+                  hover:-translate-y-0.5
+                  transition-all
+                  duration-300
+                "
+              >
+                <span className="whitespace-nowrap">
                   Explore Self-Serve Tools
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                </span>
+
+                <ArrowRight className="w-4 h-4 !shrink-0 !inline-block" />
+              </Button>
               </Link>
 
               <Link href="/pricing" className="w-full sm:w-auto">
